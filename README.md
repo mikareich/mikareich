@@ -3,7 +3,7 @@
 
 - 🔭 I’m currently working on [a discord bot connected to a minecraft plugin via an api](https://github.com/mikareich/minecraft-dev)
 
-- 🌱 I’m currently learning **Docker and Vue3**
+- 🌱 I’m currently learning **Docker and Svelte**
 
 - 💬 Ask me about **react, vue, typescript...**
 
