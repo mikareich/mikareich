@@ -1,35 +1,49 @@
 "use client";
 
 import NextLink from "next/link";
-import Underline from "./Underline";
 import { ComponentProps, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import tailwindMerge from "@/utils/tailwindMerge";
+import { cx } from "class-variance-authority";
+import path from "path";
 
-type LinkProps = ComponentProps<typeof NextLink>;
+const containerStyles = tailwindMerge("group relative whitespace-nowrap mx-2");
 
-const isLinkActive = (href: string) => {
-  console.log(href, window.location.href);
-  return window.location.href.endsWith(href);
-};
+// same props as NextLink but href is optional
+type LinkProps = {
+  href?: string;
+  active?: boolean;
+} & Omit<ComponentProps<typeof NextLink>, "href">;
 
-export default function Link({ children, href, ...props }: LinkProps) {
-  const [isActive, setIsActive] = useState(false);
+export default function Link({
+  children,
+  active,
+  href = "",
+  className,
+  ...props
+}: LinkProps) {
+  const [isActive, setIsActive] = useState(active);
 
-  const searchParams = useSearchParams();
+  const pathname = usePathname();
 
   useEffect(() => {
-    setIsActive(isLinkActive(href.toString()));
-  }, [searchParams]);
+    setIsActive(active || href === pathname);
+  }, [active, href, pathname, setIsActive]);
 
   return (
-    <NextLink href={href} {...props}>
-      <Underline
-        className={`ml-[10px] text-raisin-black-100 hover:text-baby-powder ${
-          isActive ? "!text-baby-powder" : ""
+    <NextLink
+      href={href}
+      className={cx(containerStyles({}), className)}
+      {...props}
+    >
+      <span className="absolute bottom-1 left-0 w-full h-1.5 bg-primary opacity-60 transition-all group-hover:h-full"></span>
+      <span
+        className={`relative ${
+          isActive ? "text-baby-powder" : "text-raisin-black-100"
         }`}
       >
         {children}
-      </Underline>
+      </span>
     </NextLink>
   );
 }

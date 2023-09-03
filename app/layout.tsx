@@ -1,4 +1,5 @@
 import Container from "@/components/Container";
+import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import "@/styles/global.css";
 
@@ -22,11 +23,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${firaCode.variable} font-mono bg-raisin-black-400`}>
+      <body
+        className={`${firaCode.variable} font-mono bg-raisin-black-200 flex flex-col min-h-[100dvh] overflow-x-hidden`}
+      >
         <Container>
           <NavBar />
           {children}
         </Container>
+        <Footer />
       </body>
     </html>
   );

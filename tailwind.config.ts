@@ -12,7 +12,7 @@ const config: Config = {
         "100": "#D1D1D3",
         "200": "#1B1725",
         "300": "#100E16",
-        "400": "#100E16",
+        "400": "#0B090F",
       },
       "baby-powder": {
         DEFAULT: "#FCFFFD",
