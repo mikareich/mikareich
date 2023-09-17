@@ -1,30 +1,25 @@
+"use client";
+
 import Link from "./Link";
 import Logo from "./Logo";
+import { routes } from "@/utils/routes";
+import { useContext } from "react";
+import { Context } from "./ContextProvider";
 
-const links = [
-  {
-    name: "About me",
-    href: "/about-me",
-  },
-  {
-    name: "Projects",
-    href: "/projects",
-  },
-  {
-    name: "Contact",
-    href: "/contact",
-  },
-];
-
+import { Bars2Icon, XMarkIcon } from "@heroicons/react/20/solid";
 export default function NavBar() {
+  const { menuOpen, toggleMenu } = useContext(Context)!;
+
   return (
-    <nav className="w-full flex mb-[100px]">
+    <nav className="w-full flex">
+      {/* Logo */}
       <div className="mr-auto">
         <Logo />
       </div>
 
-      <ol className="flex items-center gap-[20px] text-lg text-raisin-black-100">
-        {links.map(({ name, href }, index) => (
+      {/* NavBar link (hidden if size < md-breakpoint) */}
+      <ol className="hidden md:flex items-center gap-[20px] text-lg text-raisin-black-100">
+        {routes.map(({ name, href }, index) => (
           <li key={name}>
             <span className="text-primary">
               {
@@ -39,6 +34,14 @@ export default function NavBar() {
           </li>
         ))}
       </ol>
+
+      {/* Toggle Menu Button (only if size < md-breakpoint) */}
+      <button
+        className="md:hidden text-raisin-black-100 object-contain text-lg"
+        onClick={toggleMenu}
+      >
+        {menuOpen ? <XMarkIcon width={24} /> : <Bars2Icon width={24} />}
+      </button>
     </nav>
   );
 }

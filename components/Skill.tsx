@@ -21,21 +21,37 @@ export const skills = Object.keys(assetPaths) as SkillType[];
 
 type SkillProps = {
   skill: SkillType;
-  size?: "small" | "medium" | "large";
+  size?: "small" | "large" | "auto";
 };
 
-export default function Skill({ skill, size = "medium" }: SkillProps) {
+export default function Skill({ skill, size = "auto" }: SkillProps) {
   const assetPath = assetPaths[skill];
-
-  const imageSize = size === "medium" ? 24 : 20;
 
   return (
     <div className="flex items-center">
-      <Image src={assetPath} alt={skill} width={imageSize} height={imageSize} />
+      <picture>
+        {size !== "small" && (
+          <source
+            srcSet={assetPath}
+            media="(min-width: 576px)"
+            width={24}
+            height={24}
+          />
+        )}
+        {size !== "large" && (
+          <source
+            srcSet={assetPath}
+            media="(min-width: 0px)"
+            width={20}
+            height={20}
+          />
+        )}
+        <Image src={assetPath} alt={skill} width={24} height={24} />
+      </picture>
       <span
-        className={`ml-[10px] text-baby-powder ${
-          size === "small" ? "text-sm" : "text-lg"
-        }`}
+        className={`ml-[10px] text-baby-powder text-sm xs:text-lg 
+        ${size === "small" && "!text-sm"} 
+        ${size === "large" && "!text-lg"}`}
       >
         {skill}
       </span>

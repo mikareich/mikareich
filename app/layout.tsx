@@ -1,5 +1,7 @@
 import Container from "@/components/Container";
+import ContextProvider from "@/components/ContextProvider";
 import Footer from "@/components/Footer";
+import Menu from "@/components/Menu";
 import NavBar from "@/components/NavBar";
 import "@/styles/global.css";
 
@@ -24,13 +26,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${firaCode.variable} font-mono bg-raisin-black-200 flex flex-col min-h-[100dvh] overflow-x-hidden`}
+        className={`${firaCode.variable} font-mono bg-raisin-black-200 min-h-[100dvh] relative`}
       >
-        <Container>
-          <NavBar />
-          {children}
-        </Container>
-        <Footer />
+        <ContextProvider>
+          <Container>
+            <NavBar />
+            <div className="mt-[100px]">{children}</div>
+          </Container>
+          <Menu />
+          <Footer />
+        </ContextProvider>
       </body>
     </html>
   );

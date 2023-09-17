@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ComponentProps } from "react";
 
 type LogoProps = {
   type?: "full" | "initials" | "auto";
@@ -8,17 +7,27 @@ type LogoProps = {
 
 export default function Logo({ type = "auto", className }: LogoProps) {
   return (
-    <div className={`relative w-[150px] h-[50px] ${className}`}>
+    <div className={`relative h-[50px] ${className}`}>
       <picture>
         {type !== "initials" && (
-          <source srcSet="/logo-full.svg" media="(min-width: 768px)" />
+          <source
+            srcSet="/logo-full.png"
+            media="(min-width: 640px)"
+            width={206}
+            height={50}
+          />
         )}
 
         {type !== "full" && (
-          <source srcSet="/logo-initials.svg" media="(min-width: 0px)" />
+          <source
+            srcSet="/logo-initials.png"
+            media="(min-width: 0px)"
+            width={80}
+            height={50}
+          />
         )}
 
-        <Image src="/logo-full.svg" alt="Mika Reich" fill />
+        <Image src="/logo-full.png" alt="Mika Reich" width={206} height={50} />
       </picture>
     </div>
   );

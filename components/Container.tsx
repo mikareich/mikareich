@@ -1,7 +1,8 @@
-export default function Container({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-w-[280px] p-[20px] sm:px-[40px] lg:px-[100px] sm:container mx-auto mt-[20px] sm:mt-[100px]">
-      {children}
-    </div>
-  );
-}
+import appendStyles from "@/utils/appendStyles";
+
+const Container = appendStyles(
+  "div",
+  "min-w-[280px] p-[20px] sm:px-[40px] lg:px-[100px] sm:container mx-auto sm:mt-[100px] relative"
+);
+
+export default Container;

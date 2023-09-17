@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
-      <p className="text-raisin-black-100 text-lg mb-[75px]">
+      <p className="text-raisin-black-100 xs:text-lg mb-[75px]">
         Hi, I&apos;m Mika Reich, an 18-year-old student from Germany. Ever
         <Link active>since I was 12</Link>, I&apos;ve been passionately coding{" "}
         <Link active>web applications and much more</Link>. Lorem ipsum dolor
@@ -15,7 +15,7 @@ export default function Home() {
         I&apos;ve honed over the years:
       </p>
       <div className="flex flex-wrap gap-[20px] px-[20px]">
-        {[...skills, ...skills]
+        {[...skills, ...skills.slice(0, 7)]
           .sort(() => Math.random() - 0.5)
           .map((skill) => (
             <Skill key={skill} skill={skill} />
