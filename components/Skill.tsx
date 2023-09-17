@@ -15,7 +15,7 @@ const assetPaths = {
   Python: "/skills/python.svg",
 };
 
-type SkillType = keyof typeof assetPaths;
+export type SkillType = keyof typeof assetPaths;
 
 export const skills = Object.keys(assetPaths) as SkillType[];
 
@@ -29,7 +29,7 @@ export default function Skill({ skill, size = "auto" }: SkillProps) {
 
   return (
     <div className="flex items-center">
-      <picture>
+      <picture className="shrink-0">
         {size !== "small" && (
           <source
             srcSet={assetPath}
@@ -49,9 +49,9 @@ export default function Skill({ skill, size = "auto" }: SkillProps) {
         <Image src={assetPath} alt={skill} width={24} height={24} />
       </picture>
       <span
-        className={`ml-[10px] text-baby-powder text-sm xs:text-lg 
-        ${size === "small" && "!text-sm"} 
-        ${size === "large" && "!text-lg"}`}
+        className={`ml-[10px] text-baby-powder text-sm xs:text-lg ${
+          size === "small" && "!text-sm"
+        } ${size === "large" && "!text-lg"}`}
       >
         {skill}
       </span>

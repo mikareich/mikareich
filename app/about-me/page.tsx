@@ -2,7 +2,7 @@ import HeroSection from "@/components/HeroSection";
 import Link from "@/components/Link";
 import Skill, { skills } from "@/components/Skill";
 
-export default function Home() {
+export default function AboutMe() {
   return (
     <main>
       <HeroSection />
@@ -14,11 +14,12 @@ export default function Home() {
         consequuntur eos, esse maiores. Below is an overview of the skills
         I&apos;ve honed over the years:
       </p>
+
       <div className="flex flex-wrap gap-[20px] px-[20px]">
         {[...skills, ...skills.slice(0, 7)]
           .sort(() => Math.random() - 0.5)
           .map((skill) => (
-            <Skill key={skill} skill={skill} />
+            <Skill key={skill} skill={skill} size="small" />
           ))}
       </div>
     </main>
