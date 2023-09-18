@@ -4,11 +4,18 @@ import { routes } from "@/utils/routes";
 import Link from "./Link";
 import NavBar from "./NavBar";
 import Container from "./Container";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "./ContextProvider";
+import { usePathname } from "next/navigation";
 
 export default function Menu() {
-  const { menuOpen } = useContext(Context)!;
+  const { menuOpen, closeMenu } = useContext(Context)!;
+  const pathname = usePathname();
+
+  useEffect(() => {
+    closeMenu();
+  }, [pathname]);
+
   return (
     menuOpen && (
       <div

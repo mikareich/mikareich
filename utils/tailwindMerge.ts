@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 type Option<
   ComponentProps extends Record<string, any> | undefined = undefined
 > = (ComponentProps extends undefined
@@ -44,7 +46,7 @@ function merged<ComponentProps extends Record<string, any> | undefined>(
     }
   });
 
-  return classes.join(" ");
+  return clsx(classes);
 }
 
 /**

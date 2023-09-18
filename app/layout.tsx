@@ -9,6 +9,7 @@ import { Fira_Code } from "next/font/google";
 
 const firaCode = Fira_Code({
   subsets: ["latin"],
+  display: "swap",
   variable: "--font-fira-code",
 });
 
@@ -26,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${firaCode.variable} font-mono bg-raisin-black-200 min-h-[100dvh] relative`}
+        className={`${firaCode.variable} flex flex-col font-mono bg-raisin-black-200 min-h-[100dvh] relative`}
       >
         <ContextProvider>
           <Container>

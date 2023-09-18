@@ -1,4 +1,4 @@
-import { cx } from "class-variance-authority";
+import clsx from "clsx";
 import React, { ComponentType, FC } from "react";
 
 type StyleArg<T> = string | ((props: T) => string);
@@ -34,7 +34,7 @@ export default function appendStyles<
     const { className, ...otherProps } = props;
     const resolvedStyles =
       typeof styles === "function" ? styles(props) : styles;
-    const newClassName = cx(resolvedStyles, className || "");
+    const newClassName = clsx(resolvedStyles, className || "");
     return React.createElement(Component, {
       className: newClassName,
       ...otherProps,

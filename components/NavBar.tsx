@@ -21,7 +21,7 @@ export default function NavBar() {
       <ol className="hidden md:flex items-center gap-[20px] text-lg text-raisin-black-100">
         {routes.map(({ name, href }, index) => (
           <li key={name}>
-            <span className="text-primary">
+            <span className="text-primary mr-[10px]">
               {
                 // make index two digits
                 index.toLocaleString("en-US", {

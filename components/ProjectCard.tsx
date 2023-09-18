@@ -34,7 +34,7 @@ export default function ProjectCard({
             Visit Project Website
           </Link>
 
-          <ArrowRightIcon className="ml-[10px] text-baby-powder" width={16} />
+          <ArrowRightIcon className="ml-[5px] text-baby-powder" width={16} />
         </div>
       </div>
     </div>

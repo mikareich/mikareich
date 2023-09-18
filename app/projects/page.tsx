@@ -1,4 +1,5 @@
 import ProjectCard, { ProjectType } from "@/components/ProjectCard";
+import { Heading1, Text } from "@/components/Typography";
 
 const exampleProject: ProjectType = {
   id: "1",
@@ -11,20 +12,18 @@ const exampleProject: ProjectType = {
 };
 const projects: ProjectType[] = new Array(10).fill(exampleProject);
 
-export default function AboutMe() {
+export default function MyShowcase() {
   return (
     <main>
-      <h1 className="text-4xl font-medium text-baby-powder">
-        Projects Showcase
-      </h1>
-      <p className="text-raisin-black-100 mt-[50px]">
+      <Heading1>Projects Showcase</Heading1>
+      <Text>
         Below you&apos;ll find a collection of web applications and other
         projects I&apos;ve worked on over the years. Each one reflects my
         skills, passion, and dedication to web development. Take a look and see
         what I&apos;ve been up to!
-      </p>
+      </Text>
 
-      <div className="mt-[50px] grid grid-cols-[repeat(auto-fit,305px)] gap-[20px]">
+      <div className="mt-[50px] grid grid-cols-[repeat(auto-fit,305px)] gap-[20px] justify-center">
         {projects.map((project) => (
           <ProjectCard key={project.id} {...project} />
         ))}

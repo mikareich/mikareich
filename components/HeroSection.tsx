@@ -1,14 +1,13 @@
 import Image from "next/image";
+import { Heading3, Title } from "./Typography";
 
 export default function HeroSection() {
   return (
     <section className="w-full mb-[50px] grid grid-cols-[1fr_auto] grid-rows-[auto_auto]">
-      <h1 className="text-2xl xs:text-5xl font-bold text-baby-powder self-end col-span-1">
-        Hey, I&apos;m Mika
-      </h1>
-      <h3 className="xs:text-2xl self-start font-medium text-raisin-black-100">
+      <Title className="self-end col-span-1">Hey, I&apos;m Mika</Title>
+      <Heading3 className="self-start text-raisin-black-100">
         Student & programming enthusiast
-      </h3>
+      </Heading3>
       <picture className="self-center rounded-full overflow-hidden col-start-2 row-start-1 row-span-2">
         <source
           srcSet="/avatar.svg"
