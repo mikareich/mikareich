@@ -7,9 +7,8 @@ import Underline from "./Underline";
 
 // same props as NextLink but href is optional
 type LinkProps = {
-  href?: string;
   active?: boolean;
-} & Omit<ComponentProps<typeof NextLink>, "href">;
+} & ComponentProps<typeof NextLink>;
 
 export default function Link({
   children,

@@ -1,0 +1,11 @@
+{
+  "projects": [
+    {
+      "title": "url-dwarf",
+      "description": "A quick, easy solution for transforming long URLs into short, sharable links.",
+      "skills": ["Docker", "HTML", "CSS", "Node.js"],
+      "githubRepoURL": "https://github.com/mikareich/url-dwarf",
+      "websiteUrl": "https://url-dwarf.vercel.app/"
+    }
+  ]
+}

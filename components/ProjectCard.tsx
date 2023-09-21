@@ -1,13 +1,13 @@
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import Link from "./Link";
 import Skill, { SkillType } from "./Skill";
+import Projects from "@/content/projects.json";
 
-export type ProjectType = {
-  id: string;
-  title: string;
-  description: string;
+export type ProjectType = Omit<
+  (typeof Projects.projects)[number],
+  "skills" | "websiteUrl"
+> & {
   skills: SkillType[];
-  githubRepoURL: string;
   websiteUrl?: string;
 };
 
@@ -19,18 +19,18 @@ export default function ProjectCard({
   websiteUrl,
 }: ProjectType) {
   return (
-    <div className="w-[305px] h-[205px] relative group ">
-      <div className="absolute top-[5px] left-[5px] w-[300px] h-[200px] bg-raisin-black-400"></div>
-      <div className="overflow-hidden absolute w-[300px] h-[200px] bg-raisin-black-300 group-hover:mt-[5px] group-hover:ml-[5px] flex flex-col p-[20px] gap-[10px] transition-all">
+    <div className="group relative h-[205px] w-[305px] ">
+      <div className="absolute left-[5px] top-[5px] h-[200px] w-[300px] bg-raisin-black-400"></div>
+      <div className="absolute flex h-[200px] w-[300px] flex-col gap-[10px] overflow-hidden bg-raisin-black-300 p-[20px] transition-all group-hover:ml-[5px] group-hover:mt-[5px]">
         <h4 className="text-xl font-medium text-baby-powder">{title}</h4>
         <p className="text-xs text-raisin-black-100">{description}</p>
-        <div className="flex gap-[10px] min-w-max">
+        <div className="flex min-w-max gap-[10px]">
           {skills.map((skill) => (
             <Skill key={skill} skill={skill} size="small" />
           ))}
         </div>
         <div className="flex">
-          <Link href={websiteUrl} className="w-fit mx-0">
+          <Link href={websiteUrl!} className="mx-0 w-fit">
             Visit Project Website
           </Link>
 

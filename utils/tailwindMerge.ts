@@ -1,7 +1,7 @@
 import clsx from "clsx";
 
 type Option<
-  ComponentProps extends Record<string, any> | undefined = undefined
+  ComponentProps extends Record<string, any> | undefined = undefined,
 > = (ComponentProps extends undefined
   ? {
       [key: string]: any;
@@ -12,7 +12,7 @@ type Option<
 
 function merged<ComponentProps extends Record<string, any> | undefined>(
   props: ComponentProps | undefined,
-  styles: (string | Option<ComponentProps>)[]
+  styles: (string | Option<ComponentProps>)[],
 ) {
   const classes: string[] = [];
 
@@ -79,7 +79,7 @@ function merged<ComponentProps extends Record<string, any> | undefined>(
  *
  */
 export default function tailwindMerge<
-  ComponentProps extends Record<string, any> | undefined = undefined
+  ComponentProps extends Record<string, any> | undefined = undefined,
 >(
   ...styles: (string | Option<ComponentProps>)[]
 ): (props: Partial<ComponentProps>) => string {

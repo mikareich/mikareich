@@ -1,0 +1,15 @@
+{
+  "skills": {
+    "React": "/skills/react.svg",
+    "Vue": "/skills/vue.svg",
+    "Next.js": "/skills/nextjs.svg",
+    "TypeScript": "/skills/typescript.svg",
+    "JavaScript": "/skills/javascript.svg",
+    "HTML": "/skills/html.svg",
+    "CSS": "/skills/css.svg",
+    "Tailwindcss": "/skills/tailwindcss.svg",
+    "Node.js": "/skills/nodejs.svg",
+    "Docker": "/skills/docker.svg",
+    "Python": "/skills/python.svg"
+  }
+}

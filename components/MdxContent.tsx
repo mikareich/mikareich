@@ -1,4 +1,3 @@
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote/rsc";
 import {
   Heading1,
   Heading2,
@@ -11,10 +10,13 @@ import {
 import Underline from "./Underline";
 
 import type { MDXComponents } from "mdx/types";
-import { MDXProvider } from "@mdx-js/react";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "./Link";
+import AllSkills from "./AllSkills";
+import HeroSection from "./HeroSection";
+import AllProjects from "./AllProjects";
 
-const components: MDXComponents = {
+const typographyComponents: MDXComponents = {
   h1: Heading1,
   h2: Heading2,
   h3: Heading3,
@@ -22,18 +24,33 @@ const components: MDXComponents = {
   h5: Heading5,
   TextLarge,
   p: Text,
-  a: Link as any, // passt schon
+  a: Link as any,
   Underline,
+  u: Underline,
+};
+
+const layoutComponents: MDXComponents = {
+  HeroSection,
+  AllSkills,
+  AllProjects,
 };
 
 type ContentProps = {
-  children: React.ReactNode;
+  components?: MDXComponents;
+  source: string;
 };
 
-export default function MdxContent({ children }: ContentProps) {
+export default function MdxContent({ components, source }: ContentProps) {
   return (
-    <MDXProvider disableParentContext={true} components={components}>
-      {children}
-    </MDXProvider>
+    <MDXRemote
+      source={source}
+      // override literal html elements with custom components
+      options={{}}
+      components={{
+        ...typographyComponents,
+        ...layoutComponents,
+        ...components,
+      }}
+    />
   );
 }
