@@ -12,13 +12,14 @@ type PageProps = {
 export async function generateStaticParams() {
   const pages = await getAllPages()
 
-  console.log(pages.map((page) => page.frontMatter))
-
-  return pages.map((page) => ({
-    params: {
-      slug: page.frontMatter.slug,
-    },
-  }))
+  return (
+    pages
+      // filter index page
+      .filter((page) => page.frontMatter.slug !== '')
+      .map((page) => ({
+        slug: page.frontMatter.slug,
+      }))
+  )
 }
 
 export async function generateMetadata({ params }: PageProps) {
