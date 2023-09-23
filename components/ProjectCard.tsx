@@ -5,7 +5,7 @@ import type Projects from '@/content/projects.json'
 import Link from './Link'
 import type { SkillType } from './Skill'
 import Skill from './Skill'
-import { Small, TextLarge } from './Typography'
+import { Small, Heading5 } from './Typography'
 
 export type ProjectType = Omit<
   (typeof Projects.projects)[number],
@@ -20,27 +20,28 @@ export default function ProjectCard({
   description,
   skills,
   websiteUrl,
+  githubRepoURL,
 }: ProjectType) {
   return (
-    <div className="group relative h-[210px] w-[305px] ">
-      <div className="absolute left-[5px] top-[5px] h-[205px] w-[300px] bg-raisin-black-400"></div>
-      <div className="absolute flex h-[205px] w-[300px] flex-col gap-[10px] overflow-hidden bg-raisin-black-200 p-[20px] transition-all group-hover:ml-[5px] group-hover:mt-[5px]">
-        <TextLarge className="!m-0 font-medium !text-baby-powder">
-          {title}
-        </TextLarge>
-        <Small className="text-raisin-black-100">{description}</Small>
-        <div className="flex min-w-max gap-[10px]">
-          {skills.map((skill) => (
-            <Skill key={skill} skill={skill} size="small" />
-          ))}
-        </div>
-        <div className="flex">
-          <Link href={websiteUrl!} className="mx-0 w-fit">
+    <div className="w-[320px] overflow-hidden bg-raisin-black-200 p-[20px] pb-[10px]">
+      <Heading5 className="h-[30px]">{title}</Heading5>
+      <Small className="h-[60px] leading-normal">{description}</Small>
+      <div className="my-[5px] flex h-[25px] min-w-max gap-[10px]">
+        {skills.map((skill) => (
+          <Skill key={skill} skill={skill} size="small" />
+        ))}
+      </div>
+      <div className="flex h-[25px]">
+        {websiteUrl ? (
+          <Link href={websiteUrl} className="mx-0 w-fit">
             Visit Project Website
           </Link>
-
-          <ArrowRightIcon className="ml-[5px] text-baby-powder" width={16} />
-        </div>
+        ) : (
+          <Link href={githubRepoURL} className="mx-0 w-fit">
+            Visit Project on GitHub
+          </Link>
+        )}
+        <ArrowRightIcon className="ml-[5px] text-baby-powder" width={16} />
       </div>
     </div>
   )

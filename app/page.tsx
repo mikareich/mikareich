@@ -4,7 +4,7 @@ import MdxContent from '@/components/MdxContent'
 import { getPageBySlug } from '@/utils/pageUtils'
 
 export async function generateMetadata() {
-  const page = await getPageBySlug('')
+  const page = await getPageBySlug('index')
 
   if (!page) notFound()
 
@@ -15,7 +15,7 @@ export async function generateMetadata() {
 }
 
 export default async function Page() {
-  const page = await getPageBySlug('')
+  const page = await getPageBySlug('index')
 
   if (!page) notFound()
 

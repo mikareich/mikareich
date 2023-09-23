@@ -36,7 +36,7 @@ export default function NavBar({ routes }: NavBarProps) {
                 })
               }
             </span>
-            <Link href={`/${slug}`}>{title}</Link>
+            <Link href={`/${slug === 'index' ? '' : slug}`}>{title}</Link>
           </li>
         ))}
       </ol>

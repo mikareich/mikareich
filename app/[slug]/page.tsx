@@ -15,7 +15,7 @@ export async function generateStaticParams() {
   return (
     pages
       // filter index page
-      .filter((page) => page.frontMatter.slug !== '')
+      .filter((page) => page.frontMatter.slug !== 'index')
       .map((page) => ({
         slug: page.frontMatter.slug,
       }))
@@ -39,6 +39,5 @@ export default async function Page({ params }: PageProps) {
   const page = await getPageBySlug(slug)
 
   if (!page) notFound()
-
   return <MdxContent source={page.content} />
 }
