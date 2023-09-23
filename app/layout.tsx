@@ -30,6 +30,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body
         className={`${firaCode.variable} relative flex min-h-[100dvh] flex-col bg-raisin-black-200 font-mono`}
       >
