@@ -17,7 +17,7 @@ export default function NavBar({ routes }: NavBarProps) {
   const { drawerOpen, toggleDrawer } = useContext(Context)!
 
   return (
-    <nav className="flex w-full">
+    <nav className="font-heading  flex w-full">
       {/* Logo */}
       <div className="mr-auto">
         <Logo />

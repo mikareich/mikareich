@@ -1,5 +1,5 @@
 // eslint-disable-next-line camelcase
-import { Fira_Code } from 'next/font/google'
+import { Fira_Code, Space_Mono } from 'next/font/google'
 
 import Container from '@/components/Container'
 import ContextProvider from '@/components/ContextProvider'
@@ -9,10 +9,17 @@ import NavBar from '@/components/NavBar'
 import '@/styles/global.css'
 import { getPageRoutes } from '@/utils/pageUtils'
 
-const firaCode = Fira_Code({
+const firaMono = Fira_Code({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-fira-code',
+  variable: '--font-fira-mono',
+})
+
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '700'],
+  variable: '--font-space-mono',
 })
 
 export const metadata = {
@@ -34,7 +41,7 @@ export default async function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body
-        className={`${firaCode.variable} relative flex min-h-[100dvh] flex-col bg-raisin-black-200 font-mono`}
+        className={`${firaMono.variable} ${spaceMono.variable} font-body relative flex min-h-[100dvh] flex-col bg-raisin-black-200 font-mono`}
       >
         <ContextProvider>
           <Container>

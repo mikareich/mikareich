@@ -9,7 +9,8 @@
 [x] Update Content
 [ ] Mayb a blog?
 [ ] Dockerize App
-[ ] Deploy on mikareich.studio
+[x] Deploy on mikareich.studio
 [ ] Implement Test?
 [ ] Add Analytics
-[ ] add favico
+[x] add favico
+x

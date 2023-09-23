@@ -2,10 +2,10 @@ import appendStyles from '@/utils/appendStyles'
 
 export const Title = appendStyles(
   'h1',
-  'text-2xl xs:text-5xl font-bold text-baby-powder',
+  'font-heading text-2xl xs:text-5xl font-bold text-baby-powder',
 )
 
-const headingStyles = 'font-medium text-baby-powder'
+const headingStyles = 'font-heading font-medium text-baby-powder'
 export const Heading1 = appendStyles(
   'h1',
   `${headingStyles} text-xl xs:text-4xl mb-[14px]`,
@@ -27,17 +27,18 @@ export const Heading5 = appendStyles(
   `${headingStyles} text-base xs:text-lg mb-[8px]`,
 )
 
+const bodyStyles = 'font-body text-raisin-black-100'
 export const TextLarge = appendStyles(
   'p',
-  'text-raisin-black-100 text-base xs:text-lg my-[20px]',
+  `${bodyStyles} text-raisin-black-100 text-base xs:text-lg my-[20px]`,
 )
 
 export const Text = appendStyles(
   'p',
-  'text-raisin-black-100 leading-normal text-base xs:text-base my-[20px]',
+  `${bodyStyles} text-raisin-black-100 leading-normal text-base xs:text-base my-[20px]`,
 )
 
 export const Small = appendStyles(
   'p',
-  'text-raisin-black-100 leading-loose text-xs xs:text-sm',
+  `${bodyStyles} text-raisin-black-100 leading-loose text-xs xs:text-sm`,
 )

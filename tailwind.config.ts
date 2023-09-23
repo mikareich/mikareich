@@ -23,7 +23,8 @@ const config: Config = {
       },
     },
     fontFamily: {
-      mono: ['var(--font-fira-code)'],
+      body: ['var(--font-space-mono)'],
+      heading: ['var(--font-fira-mono)'],
     },
     fontSize: {
       '5xl': '61.04px', // title
@@ -32,7 +33,7 @@ const config: Config = {
       '2xl': '31.25px', // h3
       xl: '25px', // h4
       lg: '20px', // h5, lg
-      base: '16px', // base
+      base: '18px', // base
       sm: '14px', // text-small
       xs: '12.8px', // text-small
     },
