@@ -41,7 +41,7 @@ export default async function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body
-        className={`${firaMono.variable} ${spaceMono.variable} font-body relative flex min-h-[100dvh] flex-col bg-raisin-black-200 font-mono`}
+        className={`${firaMono.variable} ${spaceMono.variable} font-body relative flex min-h-[100dvh] flex-col bg-raisin-black-300 font-mono`}
       >
         <ContextProvider>
           <Container>

@@ -33,8 +33,8 @@ const config: Config = {
       '2xl': '31.25px', // h3
       xl: '25px', // h4
       lg: '20px', // h5, lg
-      base: '16px', // base
-      sm: '14px', // text-small
+      base: '18px', // base
+      sm: '16px', // text-small
       xs: '12.8px', // text-small
     },
     screens: {

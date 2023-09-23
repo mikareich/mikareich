@@ -24,7 +24,7 @@ export default function ProjectCard({
   return (
     <div className="group relative h-[210px] w-[305px] ">
       <div className="absolute left-[5px] top-[5px] h-[205px] w-[300px] bg-raisin-black-400"></div>
-      <div className="absolute flex h-[205px] w-[300px] flex-col gap-[10px] overflow-hidden bg-raisin-black-300 p-[20px] transition-all group-hover:ml-[5px] group-hover:mt-[5px]">
+      <div className="absolute flex h-[205px] w-[300px] flex-col gap-[10px] overflow-hidden bg-raisin-black-200 p-[20px] transition-all group-hover:ml-[5px] group-hover:mt-[5px]">
         <TextLarge className="!m-0 font-medium !text-baby-powder">
           {title}
         </TextLarge>
