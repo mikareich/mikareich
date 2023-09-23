@@ -7,7 +7,7 @@ const PAGE_PATHS = {
   contact: '/content/pages/contact.mdx',
 }
 
-export const NOT_FOUND_PATH = '/content/pages/not-found.mdx'
+const NOT_FOUND_PATH = '/content/pages/not-found.mdx'
 
 type PageMetadata = {
   title: string

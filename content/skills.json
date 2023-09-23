@@ -16,6 +16,7 @@
     "MongoDB": "/skills/mongodb.svg",
     "Jest": "/skills/jest.svg",
     "Git": "/skills/git.svg",
-    "npm": "/skills/npm.svg"
+    "npm": "/skills/npm.svg",
+    "GraphQL": "/skills/graphql.svg"
   }
 }
