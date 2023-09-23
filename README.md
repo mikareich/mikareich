@@ -12,3 +12,4 @@
 [ ] Deploy on mikareich.studio
 [ ] Implement Test?
 [ ] Add Analytics
+[ ] add favico
