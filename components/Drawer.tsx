@@ -11,21 +11,21 @@ import { Context } from './ContextProvider'
 import Link from './Link'
 import NavBar from './NavBar'
 
-type MenuProps = {
+type DrawerProps = {
   routes: Route[]
 }
 
-export default function Menu({ routes }: MenuProps) {
-  const { menuOpen, closeMenu } = useContext(Context)!
+export default function Drawer({ routes }: DrawerProps) {
+  const { drawerOpen, closeDrawer } = useContext(Context)!
   const pathname = usePathname()
 
   useEffect(() => {
-    closeMenu()
+    closeDrawer()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
 
   return (
-    menuOpen && (
+    drawerOpen && (
       <div
         className={`fixed left-0 top-0 h-full w-full bg-raisin-black-200 bg-opacity-80 backdrop-blur md:hidden`}
       >

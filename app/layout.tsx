@@ -3,8 +3,8 @@ import { Fira_Code } from 'next/font/google'
 
 import Container from '@/components/Container'
 import ContextProvider from '@/components/ContextProvider'
+import Drawer from '@/components/Drawer'
 import Footer from '@/components/Footer'
-import Menu from '@/components/Menu'
 import NavBar from '@/components/NavBar'
 import '@/styles/global.css'
 import { getPageRoutes } from '@/utils/pageUtils'
@@ -38,7 +38,7 @@ export default async function RootLayout({
             <NavBar routes={pageRoutes} />
             <div className="mt-[100px]">{children}</div>
           </Container>
-          <Menu routes={pageRoutes} />
+          <Drawer routes={pageRoutes} />
           <Footer />
         </ContextProvider>
       </body>

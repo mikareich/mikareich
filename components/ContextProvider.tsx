@@ -2,22 +2,22 @@
 
 import { createContext, useState } from 'react'
 
-export const useMenu = () => {
-  const [menuOpen, setMenuOpen] = useState(false)
+export const useDrawer = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
-  const toggleMenu = () => setMenuOpen((prev) => !prev)
-  const closeMenu = () => setMenuOpen(false)
-  const openMenu = () => setMenuOpen(true)
+  const toggleDrawer = () => setDrawerOpen((prev) => !prev)
+  const closeDrawer = () => setDrawerOpen(false)
+  const openDrawer = () => setDrawerOpen(true)
 
   return {
-    menuOpen,
-    toggleMenu,
-    closeMenu,
-    openMenu,
+    drawerOpen,
+    toggleDrawer,
+    closeDrawer,
+    openDrawer,
   }
 }
 
-type ContextType = ReturnType<typeof useMenu>
+type ContextType = ReturnType<typeof useDrawer>
 export const Context = createContext<ContextType | null>(null)
 
 export default function ContextProvider({
@@ -25,8 +25,8 @@ export default function ContextProvider({
 }: {
   children: React.ReactNode
 }) {
-  const menuContext = useMenu()
+  const drawerContext = useDrawer()
   return (
-    <Context.Provider value={{ ...menuContext }}>{children}</Context.Provider>
+    <Context.Provider value={{ ...drawerContext }}>{children}</Context.Provider>
   )
 }

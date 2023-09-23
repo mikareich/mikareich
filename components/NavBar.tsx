@@ -14,7 +14,7 @@ type NavBarProps = {
   routes: Route[]
 }
 export default function NavBar({ routes }: NavBarProps) {
-  const { menuOpen, toggleMenu } = useContext(Context)!
+  const { drawerOpen, toggleDrawer } = useContext(Context)!
 
   return (
     <nav className="flex w-full">
@@ -44,9 +44,9 @@ export default function NavBar({ routes }: NavBarProps) {
       {/* Toggle Menu Button (only if size < md-breakpoint) */}
       <button
         className="object-contain text-lg text-raisin-black-100 md:hidden"
-        onClick={toggleMenu}
+        onClick={toggleDrawer}
       >
-        {menuOpen ? <XMarkIcon width={24} /> : <Bars2Icon width={24} />}
+        {drawerOpen ? <XMarkIcon width={24} /> : <Bars2Icon width={24} />}
       </button>
     </nav>
   )
