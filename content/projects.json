@@ -1,46 +1,24 @@
 {
   "projects": [
     {
-      "title": "url-dwarf",
-      "description": "A quick, easy solution for transforming long URLs into short, sharable links.",
-      "skills": ["Docker", "HTML", "CSS", "Node.js"],
-      "githubRepoURL": "https://github.com/mikareich/url-dwarf",
-      "websiteUrl": "https://url-dwarf.vercel.app/"
+      "title": "astarix-trier",
+      "description": "Website for the Astarix Trier, a well-known restaurant in Trier, Germany.",
+      "skills": ["Docker", "Next.js", "CSS", "Figma"],
+      "githubRepoURL": "https://github.com/astarix-trier/astarix-trier",
+      "websiteUrl": "https://www.astarix-trier.de/"
     },
     {
-      "title": "url-dwarf",
-      "description": "A quick, easy solution for transforming long URLs into short, sharable links.",
-      "skills": ["Docker", "HTML", "CSS", "Node.js"],
-      "githubRepoURL": "https://github.com/mikareich/url-dwarf",
-      "websiteUrl": "https://url-dwarf.vercel.app/"
+      "title": "contribution-graph",
+      "description": "Generate a contribution graph for your GitHub profile.",
+      "skills": ["Next.js", "CSS", "Git"],
+      "githubRepoURL": "https://github.com/mikareich/contribution-graph",
+      "websiteUrl": "https://contribution-graph.vercel.app/"
     },
     {
-      "title": "url-dwarf",
-      "description": "A quick, easy solution for transforming long URLs into short, sharable links.",
-      "skills": ["Docker", "HTML", "CSS", "Node.js"],
-      "githubRepoURL": "https://github.com/mikareich/url-dwarf",
-      "websiteUrl": "https://url-dwarf.vercel.app/"
-    },
-    {
-      "title": "url-dwarf",
-      "description": "A quick, easy solution for transforming long URLs into short, sharable links.",
-      "skills": ["Docker", "HTML", "CSS", "Node.js"],
-      "githubRepoURL": "https://github.com/mikareich/url-dwarf",
-      "websiteUrl": "https://url-dwarf.vercel.app/"
-    },
-    {
-      "title": "url-dwarf",
-      "description": "A quick, easy solution for transforming long URLs into short, sharable links.",
-      "skills": ["Docker", "HTML", "CSS", "Node.js"],
-      "githubRepoURL": "https://github.com/mikareich/url-dwarf",
-      "websiteUrl": "https://url-dwarf.vercel.app/"
-    },
-    {
-      "title": "url-dwarf",
-      "description": "A quick, easy solution for transforming long URLs into short, sharable links.",
-      "skills": ["Docker", "HTML", "CSS", "Node.js"],
-      "githubRepoURL": "https://github.com/mikareich/url-dwarf",
-      "websiteUrl": "https://url-dwarf.vercel.app/"
+      "title": "sudoku-solver",
+      "description": "TypeScript Sudoku Solver using Exact Cover for varied difficulties.",
+      "skills": ["npm", "TypeScript", "Jest"],
+      "githubRepoURL": "https://github.com/mikareich/sudoku"
     },
     {
       "title": "url-dwarf",
