@@ -4,7 +4,9 @@
 
 [x] Update Typography Components
 [x] Integrate with MDX
-[ ] Update Colortheme and add Light Mode
+[x] Update Colortheme
+[ ] Add light mode
+[ ] Underline Hover bissel zu hoch
 [x] Use different font for body-text
 [x] Update Content
 [ ] Mayb a blog?
