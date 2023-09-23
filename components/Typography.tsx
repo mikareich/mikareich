@@ -40,5 +40,5 @@ export const Text = appendStyles(
 
 export const Small = appendStyles(
   'p',
-  `${bodyStyles} text-raisin-black-100 leading-loose text-small xs:text-xs`,
+  `${bodyStyles} text-raisin-black-100 leading-loose text-xs`,
 )
