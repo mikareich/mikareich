@@ -2,12 +2,12 @@ import type { MDXFile } from './getMdxFile'
 import getMdxFile from './getMdxFile'
 
 const PAGE_PATHS = {
-  abouteMe: 'content/pages/about-me.mdx',
-  projects: 'content/pages/projects.mdx',
-  contact: 'content/pages/contact.mdx',
+  abouteMe: '/content/pages/about-me.mdx',
+  projects: '/content/pages/projects.mdx',
+  contact: '/content/pages/contact.mdx',
 }
 
-export const NOT_FOUND_PATH = 'content/pages/not-found.mdx'
+export const NOT_FOUND_PATH = '/content/pages/not-found.mdx'
 
 type PageMetadata = {
   title: string
