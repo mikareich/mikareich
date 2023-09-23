@@ -1,12 +1,22 @@
 import { notFound } from 'next/navigation'
 
 import MdxContent from '@/components/MdxContent'
-import { getPageBySlug } from '@/utils/pageUtils'
+import { getAllPages, getPageBySlug } from '@/utils/pageUtils'
 
 type PageProps = {
   params: {
     slug: string
   }
+}
+
+export async function generateStaticParams() {
+  const pages = await getAllPages()
+
+  return pages.map((page) => ({
+    params: {
+      slug: page.frontMatter.slug,
+    },
+  }))
 }
 
 export async function generateMetadata({ params }: PageProps) {
