@@ -35,10 +35,10 @@ export const TextLarge = appendStyles(
 
 export const Text = appendStyles(
   'p',
-  `${bodyStyles} text-raisin-black-100 leading-normal text-base xs:text-base my-[20px]`,
+  `${bodyStyles} text-raisin-black-100 leading-normal text-sm xs:text-base my-[20px]`,
 )
 
 export const Small = appendStyles(
   'p',
-  `${bodyStyles} text-raisin-black-100 leading-loose text-xs xs:text-sm`,
+  `${bodyStyles} text-raisin-black-100 leading-loose text-xs xs:text-xs`,
 )
