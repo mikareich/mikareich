@@ -1,7 +1,9 @@
-import clsx from "clsx";
-import React, { ComponentType, FC } from "react";
+import type { ComponentType, FC } from 'react'
+import React from 'react'
 
-type StyleArg<T> = string | ((props: T) => string);
+import clsx from 'clsx'
+
+type StyleArg<T> = string | ((props: T) => string)
 
 /**
  * `appendStyles` is a Higher-Order Component (HOC) that appends additional styles
@@ -31,13 +33,12 @@ export default function appendStyles<
   Props extends Record<string, any> = React.ComponentPropsWithoutRef<T>,
 >(Component: T, styles: StyleArg<any>): FC<Props> {
   return function StyledComponent(props) {
-    const { className, ...otherProps } = props;
-    const resolvedStyles =
-      typeof styles === "function" ? styles(props) : styles;
-    const newClassName = clsx(resolvedStyles, className || "");
+    const { className, ...otherProps } = props
+    const resolvedStyles = typeof styles === 'function' ? styles(props) : styles
+    const newClassName = clsx(resolvedStyles, className || '')
     return React.createElement(Component, {
       className: newClassName,
       ...otherProps,
-    });
-  };
+    })
+  }
 }

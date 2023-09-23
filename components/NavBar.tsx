@@ -1,18 +1,20 @@
-"use client";
+'use client'
 
-import Link from "./Link";
-import Logo from "./Logo";
-import { useContext } from "react";
-import { Context } from "./ContextProvider";
+import { useContext } from 'react'
 
-import { Bars2Icon, XMarkIcon } from "@heroicons/react/20/solid";
-import { Route } from "@/utils/pageUtils";
+import { Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid'
+
+import type { Route } from '@/utils/pageUtils'
+
+import { Context } from './ContextProvider'
+import Link from './Link'
+import Logo from './Logo'
 
 type NavBarProps = {
-  routes: Route[];
-};
+  routes: Route[]
+}
 export default function NavBar({ routes }: NavBarProps) {
-  const { menuOpen, toggleMenu } = useContext(Context)!;
+  const { menuOpen, toggleMenu } = useContext(Context)!
 
   return (
     <nav className="flex w-full">
@@ -28,7 +30,7 @@ export default function NavBar({ routes }: NavBarProps) {
             <span className="mr-[10px] text-primary">
               {
                 // make index two digits
-                index.toLocaleString("en-US", {
+                index.toLocaleString('en-US', {
                   minimumIntegerDigits: 2,
                   useGrouping: false,
                 })
@@ -47,5 +49,5 @@ export default function NavBar({ routes }: NavBarProps) {
         {menuOpen ? <XMarkIcon width={24} /> : <Bars2Icon width={24} />}
       </button>
     </nav>
-  );
+  )
 }

@@ -1,21 +1,23 @@
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
-import Link from "./Link";
-import Skill, { SkillType } from "./Skill";
-import Projects from "@/content/projects.json";
+import { ArrowRightIcon } from '@heroicons/react/24/solid'
+
+import type Projects from '@/content/projects.json'
+
+import Link from './Link'
+import type { SkillType } from './Skill'
+import Skill from './Skill'
 
 export type ProjectType = Omit<
   (typeof Projects.projects)[number],
-  "skills" | "websiteUrl"
+  'skills' | 'websiteUrl'
 > & {
-  skills: SkillType[];
-  websiteUrl?: string;
-};
+  skills: SkillType[]
+  websiteUrl?: string
+}
 
 export default function ProjectCard({
   title,
   description,
   skills,
-  githubRepoURL,
   websiteUrl,
 }: ProjectType) {
   return (
@@ -38,5 +40,5 @@ export default function ProjectCard({
         </div>
       </div>
     </div>
-  );
+  )
 }

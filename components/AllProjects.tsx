@@ -1,5 +1,7 @@
-import ProjectCard, { ProjectType } from "./ProjectCard";
-import Projects from "@/content/projects.json";
+import Projects from '@/content/projects.json'
+
+import type { ProjectType } from './ProjectCard'
+import ProjectCard from './ProjectCard'
 
 export default function AllProjects() {
   return (
@@ -8,5 +10,5 @@ export default function AllProjects() {
         <ProjectCard key={project.title} {...(project as ProjectType)} />
       ))}
     </div>
-  );
+  )
 }

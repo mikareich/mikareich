@@ -1,20 +1,21 @@
-import Image from "next/image";
-import Skills from "@/content/skills.json";
+import Image from 'next/image'
 
-export type SkillType = keyof typeof Skills.skills;
+import Skills from '@/content/skills.json'
+
+export type SkillType = keyof typeof Skills.skills
 
 type SkillProps = {
-  skill: SkillType;
-  size?: "small" | "large" | "auto";
-};
+  skill: SkillType
+  size?: 'small' | 'large' | 'auto'
+}
 
-export default function Skill({ skill, size = "auto" }: SkillProps) {
-  const assetPath = Skills.skills[skill];
+export default function Skill({ skill, size = 'auto' }: SkillProps) {
+  const assetPath = Skills.skills[skill]
 
   return (
     <div className="flex items-center">
       <picture className="shrink-0">
-        {size !== "small" && (
+        {size !== 'small' && (
           <source
             srcSet={assetPath}
             media="(min-width: 576px)"
@@ -22,7 +23,7 @@ export default function Skill({ skill, size = "auto" }: SkillProps) {
             height={24}
           />
         )}
-        {size !== "large" && (
+        {size !== 'large' && (
           <source
             srcSet={assetPath}
             media="(min-width: 0px)"
@@ -34,11 +35,11 @@ export default function Skill({ skill, size = "auto" }: SkillProps) {
       </picture>
       <span
         className={`ml-[10px] text-sm text-baby-powder xs:text-lg ${
-          size === "small" && "!text-sm"
-        } ${size === "large" && "!text-lg"}`}
+          size === 'small' && '!text-sm'
+        } ${size === 'large' && '!text-lg'}`}
       >
         {skill}
       </span>
     </div>
-  );
+  )
 }

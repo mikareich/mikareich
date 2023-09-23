@@ -10,6 +10,12 @@
     "Tailwindcss": "/skills/tailwindcss.svg",
     "Node.js": "/skills/nodejs.svg",
     "Docker": "/skills/docker.svg",
-    "Python": "/skills/python.svg"
+    "Python": "/skills/python.svg",
+    "Figma": "/skills/figma.svg",
+    "Firebase": "/skills/firebase.svg",
+    "MongoDB": "/skills/mongodb.svg",
+    "Jest": "/skills/jest.svg",
+    "Git": "/skills/git.svg",
+    "npm": "/skills/npm.svg"
   }
 }

@@ -1,17 +1,23 @@
-import MdxContent from "@/components/MdxContent";
-import { getPageBySlug } from "@/utils/pageUtils";
+import { notFound } from 'next/navigation'
+
+import MdxContent from '@/components/MdxContent'
+import { getPageBySlug } from '@/utils/pageUtils'
 
 export async function generateMetadata() {
-  const { frontMatter } = await getPageBySlug("");
+  const page = await getPageBySlug('')
+
+  if (!page) notFound()
 
   return {
-    title: `Mika Reich | ${frontMatter.title}`,
-    description: frontMatter.description,
-  };
+    title: `Mika Reich | ${page.frontMatter.title}`,
+    description: page.frontMatter.description,
+  }
 }
 
-export default async function Projects() {
-  const { content } = await getPageBySlug("");
+export default async function Page() {
+  const page = await getPageBySlug('')
 
-  return <MdxContent source={content} />;
+  if (!page) notFound()
+
+  return <MdxContent source={page.content} />
 }

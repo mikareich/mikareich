@@ -1,24 +1,28 @@
-"use client";
+'use client'
 
-import Link from "./Link";
-import NavBar from "./NavBar";
-import Container from "./Container";
-import { useContext, useEffect } from "react";
-import { Context } from "./ContextProvider";
-import { usePathname } from "next/navigation";
-import { Route } from "@/utils/pageUtils";
+import { useContext, useEffect } from 'react'
+
+import { usePathname } from 'next/navigation'
+
+import type { Route } from '@/utils/pageUtils'
+
+import Container from './Container'
+import { Context } from './ContextProvider'
+import Link from './Link'
+import NavBar from './NavBar'
 
 type MenuProps = {
-  routes: Route[];
-};
+  routes: Route[]
+}
 
 export default function Menu({ routes }: MenuProps) {
-  const { menuOpen, closeMenu } = useContext(Context)!;
-  const pathname = usePathname();
+  const { menuOpen, closeMenu } = useContext(Context)!
+  const pathname = usePathname()
 
   useEffect(() => {
-    closeMenu();
-  }, [pathname]);
+    closeMenu()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname])
 
   return (
     menuOpen && (
@@ -33,7 +37,7 @@ export default function Menu({ routes }: MenuProps) {
                 <span className="mr-[10px] text-primary">
                   {
                     // make index two digits
-                    index.toLocaleString("en-US", {
+                    index.toLocaleString('en-US', {
                       minimumIntegerDigits: 2,
                       useGrouping: false,
                     })
@@ -46,5 +50,5 @@ export default function Menu({ routes }: MenuProps) {
         </Container>
       </div>
     )
-  );
+  )
 }

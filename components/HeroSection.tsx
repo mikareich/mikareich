@@ -1,5 +1,6 @@
-import Image from "next/image";
-import { Heading3, Title } from "./Typography";
+import Image from 'next/image'
+
+import { Heading3, Title } from './Typography'
 
 export default function HeroSection() {
   return (
@@ -43,5 +44,5 @@ export default function HeroSection() {
         <Image src="/avatar.svg" alt="Mika Reich" width={300} height={300} />
       </picture>
     </section>
-  );
+  )
 }

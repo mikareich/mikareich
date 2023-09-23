@@ -1,15 +1,15 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 type LogoProps = {
-  type?: "full" | "initials" | "auto";
-  className?: string;
-};
+  type?: 'full' | 'initials' | 'auto'
+  className?: string
+}
 
-export default function Logo({ type = "auto", className }: LogoProps) {
+export default function Logo({ type = 'auto', className }: LogoProps) {
   return (
     <div className={`relative h-[50px] ${className}`}>
       <picture>
-        {type !== "initials" && (
+        {type !== 'initials' && (
           <source
             srcSet="/logo-full.png"
             media="(min-width: 640px)"
@@ -18,7 +18,7 @@ export default function Logo({ type = "auto", className }: LogoProps) {
           />
         )}
 
-        {type !== "full" && (
+        {type !== 'full' && (
           <source
             srcSet="/logo-initials.png"
             media="(min-width: 0px)"
@@ -30,5 +30,5 @@ export default function Logo({ type = "auto", className }: LogoProps) {
         <Image src="/logo-full.png" alt="Mika Reich" width={206} height={50} />
       </picture>
     </div>
-  );
+  )
 }

@@ -5,5 +5,5 @@ export default function Footer() {
         <span className="text-baby-powder">Designed & built by Mika Reich</span>
       </footer>
     </div>
-  );
+  )
 }
