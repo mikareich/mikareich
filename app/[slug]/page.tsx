@@ -12,6 +12,8 @@ type PageProps = {
 export async function generateStaticParams() {
   const pages = await getAllPages()
 
+  console.log(pages.map((page) => page.frontMatter))
+
   return pages.map((page) => ({
     params: {
       slug: page.frontMatter.slug,
