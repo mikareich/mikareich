@@ -1,8 +1,8 @@
 import MdxContent from '@/components/MdxContent'
-import { getNotFoundPage } from '@/utils/pageUtils'
+import { getNotFoundPage, getPageBySlug } from '@/utils/pageUtils'
 
 export default async function NotFound() {
-  const { content } = (await getNotFoundPage())!
+  const page = await getPageBySlug('index')
 
-  return <MdxContent source={content} />
+  return <MdxContent source={page!} />
 }
