@@ -1,8 +1,10 @@
-import MdxContent from '@/components/MdxContent'
-import { getPageBySlug } from '@/utils/pageUtils'
+import { Heading1, Text } from '@/components/Typography'
 
 export default async function NotFound() {
-  const page = await getPageBySlug('index')
-
-  return <MdxContent source={page!.content} />
+  return (
+    <>
+      <Heading1>Page not found</Heading1>
+      <Text>The page you are looking for does not exist 😕</Text>
+    </>
+  )
 }

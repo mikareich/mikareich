@@ -7,8 +7,6 @@ const PAGE_PATHS = {
   contact: '/content/pages/contact.mdx',
 }
 
-const NOT_FOUND_PATH = '/content/pages/not-found.mdx'
-
 type PageMetadata = {
   title: string
   description: string
@@ -51,9 +49,4 @@ export async function getPageBySlug(
   const page = pages.find((p) => p.frontMatter.slug === slug)
 
   return page
-}
-
-/** Returns the not-found page */
-export async function getNotFoundPage(): Promise<MDXFile<PageMetadata> | null> {
-  return getMdxFile<PageMetadata>(NOT_FOUND_PATH)
 }
