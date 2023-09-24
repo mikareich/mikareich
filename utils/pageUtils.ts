@@ -25,7 +25,7 @@ export async function getAllPages(): Promise<MDXFile<PageMetadata>[]> {
     }),
   )
 
-  return pages
+  return pages.filter((page) => page !== null) as MDXFile<PageMetadata>[]
 }
 
 export type Route = {
@@ -54,6 +54,6 @@ export async function getPageBySlug(
 }
 
 /** Returns the not-found page */
-export async function getNotFoundPage(): Promise<MDXFile<PageMetadata>> {
+export async function getNotFoundPage(): Promise<MDXFile<PageMetadata> | null> {
   return getMdxFile<PageMetadata>(NOT_FOUND_PATH)
 }

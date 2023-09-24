@@ -14,13 +14,17 @@ export type MDXFile<FrontMatter extends Record<string, unknown>> = {
  */
 export default async function getMdxFile<
   FrontMatter extends Record<string, unknown>,
->(path: string): Promise<MDXFile<FrontMatter>> {
+>(path: string): Promise<MDXFile<FrontMatter> | null> {
   const realPath = nodePath.join(process.cwd(), path)
-  const fileContent = await fs.readFile(realPath, 'utf-8')
-  const { content, data } = matter(fileContent)
+  try {
+    const fileContent = await fs.readFile(realPath, 'utf-8')
+    const { content, data } = matter(fileContent)
 
-  return {
-    content,
-    frontMatter: data as FrontMatter,
+    return {
+      content,
+      frontMatter: data as FrontMatter,
+    }
+  } catch (error) {
+    return null
   }
 }
