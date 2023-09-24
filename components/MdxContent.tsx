@@ -19,6 +19,25 @@ import {
 } from './Typography'
 import Underline from './Underline'
 
+function ActiveLink({ children, href, ...props }: Parameters<typeof Link>[0]) {
+  return (
+    <Link href={href} active {...props}>
+      {children}
+    </Link>
+  )
+}
+
+function ActiveUnderline({
+  children,
+  ...props
+}: Parameters<typeof Underline>[0]) {
+  return (
+    <Underline active {...props}>
+      {children}
+    </Underline>
+  )
+}
+
 const typographyComponents: MDXComponents = {
   h1: Heading1,
   h2: Heading2,
@@ -27,8 +46,8 @@ const typographyComponents: MDXComponents = {
   h5: Heading5,
   TextLarge,
   p: Text,
-  a: Link as ComponentType,
-  Underline,
+  a: ActiveLink as ComponentType,
+  Underline: ActiveUnderline,
   u: Underline,
 }
 

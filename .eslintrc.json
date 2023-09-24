@@ -2,7 +2,7 @@
   "extends": [
     "next/core-web-vitals",
     "airbnb",
-     "airbnb-typescript",
+    "airbnb-typescript",
     "prettier",
     "plugin:@typescript-eslint/recommended"
   ],
@@ -25,6 +25,7 @@
     "no-console": "warn",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "react/jsx-props-no-spreading": "off",
     "import/order": [
       "error",
       {
