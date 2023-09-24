@@ -1,7 +1,8 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "airbnb-base",
+    "airbnb",
+     "airbnb-typescript",
     "prettier",
     "plugin:@typescript-eslint/recommended"
   ],
@@ -12,6 +13,14 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "react/require-default-props": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".tsx"]
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
     "import/extensions": "off",
     "no-console": "warn",
     "@typescript-eslint/no-non-null-assertion": "off",

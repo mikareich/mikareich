@@ -12,7 +12,7 @@ export type ProjectType = Omit<
   'skills' | 'websiteUrl'
 > & {
   skills: SkillType[]
-  websiteUrl?: string
+    websiteUrl?: string
 }
 
 export default function ProjectCard({
@@ -22,6 +22,8 @@ export default function ProjectCard({
   websiteUrl,
   githubRepoURL,
 }: ProjectType) {
+  const projectLink = websiteUrl || githubRepoURL
+
   return (
     <div className="w-[320px] overflow-hidden bg-raisin-black-200 p-[20px] pb-[10px]">
       <Heading5 className="h-[30px]">{title}</Heading5>
@@ -32,15 +34,10 @@ export default function ProjectCard({
         ))}
       </div>
       <div className="flex h-[25px]">
-        {websiteUrl ? (
-          <Link href={websiteUrl} className="mx-0 w-fit">
-            Visit Project Website
-          </Link>
-        ) : (
-          <Link href={githubRepoURL} className="mx-0 w-fit">
-            Visit Project on GitHub
-          </Link>
-        )}
+        <Link href={projectLink} className="mx-0 w-fit">
+          Visit Project {websiteUrl ? 'Website' : 'on GitHub'}
+        </Link>
+
         <ArrowRightIcon className="ml-[5px] text-baby-powder" width={16} />
       </div>
     </div>

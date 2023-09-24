@@ -15,6 +15,7 @@
 - [ ] Implement Test?
 - [ ] Add Analytics
 - [x] add favicon
+- [ ] not-found route doesnt work on domain
 
 ## Icons and Logos
 
