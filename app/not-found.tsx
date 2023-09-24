@@ -2,18 +2,16 @@ import MdxContent from '@/components/MdxContent'
 import { getNotFoundPage } from '@/utils/pageUtils'
 
 export async function generateMetadata() {
-  const p = await getNotFoundPage()
-
-  console.log(p)
+  const { frontMatter } = (await getNotFoundPage())!
 
   return {
-    title: `Mika Reich | ${p?.frontMatter.title}`,
-    description: p?.frontMatter.description,
+    title: `Mika Reich | ${frontMatter.title}`,
+    description: frontMatter.description,
   }
 }
 
 export default async function NotFound() {
-  const p = await getNotFoundPage()
+  const { content } = (await getNotFoundPage())!
 
-  return <MdxContent source={p?.content || ''} />
+  return <MdxContent source={content} />
 }

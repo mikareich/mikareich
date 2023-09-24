@@ -39,5 +39,6 @@ export default async function Page({ params }: PageProps) {
   const page = await getPageBySlug(slug)
 
   if (!page) notFound()
+
   return <MdxContent source={page.content} />
 }
