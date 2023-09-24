@@ -25,7 +25,7 @@ export default function ContextProvider({
 }: {
   children: React.ReactNode
 }) {
-  const drawerContext = useMemo(useDrawer, [])
+  const drawerContext = useDrawer()
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
