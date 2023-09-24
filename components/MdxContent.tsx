@@ -2,6 +2,7 @@ import type { ComponentType } from 'react'
 
 import type { MDXComponents } from 'mdx/types'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import rehypeExternalLinks from 'rehype-external-links'
 
 import AllProjects from './AllProjects'
 import AllSkills from './AllSkills'
@@ -47,7 +48,12 @@ export default function MdxContent({ components, source }: ContentProps) {
     <MDXRemote
       source={source}
       // override literal html elements with custom components
-      options={{}}
+      options={{
+        mdxOptions: {
+          rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
+          format: 'mdx',
+        },
+      }}
       components={{
         ...typographyComponents,
         ...layoutComponents,
