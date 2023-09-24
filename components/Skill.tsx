@@ -13,8 +13,8 @@ export default function Skill({ skill, size = 'auto' }: SkillProps) {
   const assetPath = Skills.skills[skill]
 
   return (
-    <div className="flex items-center">
-      <picture className="shrink-0">
+    <div className="flex shrink-0 items-center">
+      <picture>
         {size !== 'small' && (
           <source
             srcSet={assetPath}

@@ -25,10 +25,10 @@ export default function ProjectCard({
   const projectLink = websiteUrl || githubRepoURL
 
   return (
-    <div className="w-[320px] overflow-hidden bg-raisin-black-200 p-[20px] pb-[10px]">
+    <div className="w-[320px] bg-raisin-black-200 p-[20px] pb-[10px]">
       <Heading5 className="h-[30px]">{title}</Heading5>
       <Small className="h-[60px] leading-normal">{description}</Small>
-      <div className="my-[5px] flex h-[25px] min-w-max gap-[10px]">
+      <div className="relative my-[5px] flex h-[25px] gap-[10px] overflow-scroll">
         {skills.map((skill) => (
           <Skill key={skill} skill={skill} size="small" />
         ))}
