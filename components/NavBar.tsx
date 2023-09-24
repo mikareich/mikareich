@@ -43,6 +43,7 @@ export default function NavBar({ routes }: NavBarProps) {
 
       {/* Toggle Drawer Button (only if size < md-breakpoint) */}
       <button
+        type="button"
         aria-label="Toggle Drawer"
         className="object-contain text-lg text-raisin-black-100 md:hidden"
         onClick={toggleDrawer}

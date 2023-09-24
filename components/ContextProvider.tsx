@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useState } from 'react'
+import { createContext, useMemo, useState } from 'react'
 
 export const useDrawer = () => {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -25,8 +25,10 @@ export default function ContextProvider({
 }: {
   children: React.ReactNode
 }) {
-  const drawerContext = useDrawer()
+  const drawerContext = useMemo(useDrawer, [])
+
   return (
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
     <Context.Provider value={{ ...drawerContext }}>{children}</Context.Provider>
   )
 }
