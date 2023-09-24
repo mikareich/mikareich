@@ -16,8 +16,11 @@ export default async function getMdxFile<
   FrontMatter extends Record<string, unknown>,
 >(path: string): Promise<MDXFile<FrontMatter> | null> {
   const realPath = nodePath.join(process.cwd(), path)
+  console.log(realPath)
+
   try {
     const fileContent = await fs.readFile(realPath, 'utf-8')
+    console.log(fileContent)
     const { content, data } = matter(fileContent)
 
     return {
