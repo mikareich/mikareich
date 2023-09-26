@@ -1,4 +1,7 @@
-import { Heading1, Text } from '@/components/Typography'
+import matter from 'gray-matter'
+
+import MdxContent from '@/components/MdxContent'
+import NotFoundMDX from '@/content/pages/not-found.mdx'
 
 export const metadata = {
   title: 'Mika Reich | Page not found',
@@ -6,10 +9,7 @@ export const metadata = {
 }
 
 export default async function NotFound() {
-  return (
-    <>
-      <Heading1>Page not found</Heading1>
-      <Text>The page you are looking for does not exist 😕</Text>
-    </>
-  )
+  const { content } = matter(NotFoundMDX)
+
+  return <MdxContent source={content} />
 }
