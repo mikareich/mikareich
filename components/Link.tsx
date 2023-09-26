@@ -25,7 +25,8 @@ export default function Link({
   const pathname = usePathname()
 
   useEffect(() => {
-    setIsActive(active || href === pathname)
+    const indexPageActive = href === '/index' && pathname === '/'
+    setIsActive(active || href === pathname || indexPageActive)
   }, [active, href, pathname, setIsActive])
 
   return (
