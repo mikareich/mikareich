@@ -1,11 +1,13 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
 
 import type Projects from '@/content/projects.json'
+import appendStyles from '@/utils/appendStyles'
+import tailwindMerge from '@/utils/tailwindMerge'
 
 import Link from './Link'
 import type { SkillType } from './Skill'
@@ -19,6 +21,14 @@ export type ProjectType = Omit<
   skills: SkillType[]
   websiteUrl?: string
 }
+
+const ScrollButtonStyles = tailwindMerge(
+  'absolute top-0 grid hidden w-[24px] h-[24px] shrink-0 place-items-center rounded-full bg-baby-powder bg-opacity-60 hover:bg-opacity-100 transition-all cursor-pointer',
+)
+
+const ScrollButton = forwardRef<HTMLButtonElement, any>((props, ref) =>
+  appendStyles('button', ScrollButtonStyles)({ ...props, ref }),
+)
 
 export default function ProjectCard({
   title,
@@ -97,14 +107,9 @@ export default function ProjectCard({
       <Heading5 className="h-[30px]">{title}</Heading5>
       <Small className="h-[60px] leading-normal">{description}</Small>
       <div className="relative my-[5px]">
-        <button
-          type="button"
-          ref={leftButtonRef}
-          onClick={scrollLeft}
-          className="absolute top-0 grid hidden h-[24px] w-[24px] shrink-0 place-items-center rounded-full bg-baby-powder bg-opacity-60"
-        >
+        <ScrollButton type="button" ref={leftButtonRef} onClick={scrollLeft}>
           <ChevronLeftIcon width={20} />
-        </button>
+        </ScrollButton>
         <div
           ref={skillContainerRef}
           className="scrollbar-hide flex h-[25px] gap-[10px] overflow-scroll"
@@ -113,14 +118,14 @@ export default function ProjectCard({
             <Skill key={skill} skill={skill} size="small" />
           ))}
         </div>
-        <button
+        <ScrollButton
           type="button"
           ref={rightButtonRef}
           onClick={scrollRight}
-          className="absolute left-[256px] top-0 grid hidden h-[24px] w-[24px] shrink-0 place-items-center rounded-full bg-baby-powder bg-opacity-60"
+          className="left-[256px]"
         >
           <ChevronRightIcon width={20} />
-        </button>
+        </ScrollButton>
       </div>
       <div className="flex h-[25px]">
         <Link href={projectLink} target="_" className="mx-0 w-fit">

@@ -1,5 +1,6 @@
 import type { ComponentType, FC } from 'react'
-import React from 'react'
+import type React from 'react'
+import { createElement } from 'react'
 
 import clsx from 'clsx'
 
@@ -30,13 +31,13 @@ type StyleArg<T> = string | ((props: T) => string)
  */
 export default function appendStyles<
   T extends ComponentType<any> | keyof JSX.IntrinsicElements,
-  Props extends Record<string, any> = React.ComponentPropsWithoutRef<T>,
+  Props extends Record<string, any> = React.ComponentPropsWithRef<T>,
 >(Component: T, styles: StyleArg<any>): FC<Props> {
   return function StyledComponent(props) {
     const { className, ...otherProps } = props
     const resolvedStyles = typeof styles === 'function' ? styles(props) : styles
     const newClassName = clsx(resolvedStyles, className || '')
-    return React.createElement(Component, {
+    return createElement(Component, {
       className: newClassName,
       ...otherProps,
     })
