@@ -4,9 +4,6 @@ import type { MDXComponents } from 'mdx/types'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypeExternalLinks from 'rehype-external-links'
 
-import AllProjects from './AllProjects'
-import AllSkills from './AllSkills'
-import HeroSection from './HeroSection'
 import Link from './Link'
 import {
   Heading1,
@@ -51,12 +48,6 @@ const typographyComponents: MDXComponents = {
   u: Underline,
 }
 
-const layoutComponents: MDXComponents = {
-  HeroSection,
-  AllSkills,
-  AllProjects,
-}
-
 type ContentProps = {
   components?: MDXComponents
   source: string
@@ -76,7 +67,6 @@ export default function MdxContent({ components, source }: ContentProps) {
       }}
       components={{
         ...typographyComponents,
-        ...layoutComponents,
         ...components,
       }}
     />

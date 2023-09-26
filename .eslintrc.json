@@ -58,5 +58,5 @@
     "@typescript-eslint/consistent-type-exports": "error",
     "@typescript-eslint/consistent-type-imports": "error"
   },
-  "ignorePatterns": ["*.config.js", "node_modules/"]
+  "ignorePatterns": ["*.config.js", "node_modules/", "*.mdx"]
 }

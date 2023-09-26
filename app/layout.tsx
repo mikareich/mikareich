@@ -7,11 +7,7 @@ import Drawer from '@/components/Drawer'
 import Footer from '@/components/Footer'
 import NavBar from '@/components/NavBar'
 import '@/styles/global.css'
-import {
-  ALL_PAGE_PATHS,
-  DYNAMIC_PAGE_PATHS,
-  getPagesByPath,
-} from '@/utils/pageUtils'
+import { getAllPages } from '@/utils/pageUtils'
 
 const firaMono = Fira_Code({
   subsets: ['latin'],
@@ -37,15 +33,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const pagePaths = [
-    ALL_PAGE_PATHS.abouteMe,
-    ALL_PAGE_PATHS.blog,
-    ALL_PAGE_PATHS.projects,
-    ALL_PAGE_PATHS.contact,
-  ]
-  const pageRoutes = (await getPagesByPath(pagePaths)).map(
-    ({ frontMatter }) => frontMatter,
-  )
+  const pageRoutes = (await getAllPages()).map(({ frontMatter }) => frontMatter)
 
   return (
     <html lang="en">
@@ -58,7 +46,7 @@ export default async function RootLayout({
         <ContextProvider>
           <Container>
             <NavBar routes={pageRoutes} />
-            <div className="mt-[100px]">{children}</div>
+            <div className="mt-[50px] xs:mt-[100px]">{children}</div>
           </Container>
           <Drawer routes={pageRoutes} />
           <Footer />

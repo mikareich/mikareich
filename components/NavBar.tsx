@@ -4,6 +4,7 @@ import { useContext } from 'react'
 
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid'
 
+import makeTwoDigitNumber from '@/utils/makeTwoDigitNumber'
 import type { PageMetadata } from '@/utils/pageUtils'
 
 import { Context } from './ContextProvider'
@@ -24,17 +25,11 @@ export default function NavBar({ routes }: NavBarProps) {
       </div>
 
       {/* NavBar link (hidden if size < md-breakpoint) */}
-      <ol className="hidden items-center gap-[20px] text-lg text-raisin-black-100 md:flex">
+      <ol className="hidden items-center gap-[20px] text-lg text-raisin-black-100 lg:flex">
         {routes.map(({ title, slug }, index) => (
-          <li key={title}>
+          <li key={title} className="shrink-0">
             <span className="mr-[10px] text-primary">
-              {
-                // make index two digits
-                index.toLocaleString('en-US', {
-                  minimumIntegerDigits: 2,
-                  useGrouping: false,
-                })
-              }
+              {makeTwoDigitNumber(index)}
             </span>
             <Link href={`/${slug}`}>{title}</Link>
           </li>
@@ -45,7 +40,7 @@ export default function NavBar({ routes }: NavBarProps) {
       <button
         type="button"
         aria-label="Toggle Drawer"
-        className="object-contain text-lg text-raisin-black-100 md:hidden"
+        className="object-contain text-lg text-raisin-black-100 lg:hidden"
         onClick={toggleDrawer}
       >
         {drawerOpen ? <XMarkIcon width={24} /> : <Bars2Icon width={24} />}

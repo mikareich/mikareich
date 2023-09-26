@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation'
 
+import AllProjects from '@/components/AllProjects'
+import AllSkills from '@/components/AllSkills'
+import BlogPosts from '@/components/BlogPosts'
+import HeroSection from '@/components/HeroSection'
 import MdxContent from '@/components/MdxContent'
-import {
-  getPagesByPath,
-  getPageBySlug,
-  DYNAMIC_PAGE_PATHS,
-} from '@/utils/pageUtils'
+import { getAllPages, getPageBySlug } from '@/utils/pageUtils'
 
 type PageProps = {
   params: {
@@ -14,9 +14,7 @@ type PageProps = {
 }
 
 export async function generateStaticParams() {
-  const pages = await getPagesByPath(Object.values(DYNAMIC_PAGE_PATHS))
-
-  console.log(pages)
+  const pages = await getAllPages()
 
   return pages.map((page) => ({
     slug: page.frontMatter.slug,
@@ -39,9 +37,14 @@ export default async function Page({ params }: PageProps) {
   const { slug } = params
   const page = await getPageBySlug(slug)
 
-  console.log(slug, page)
-
   if (!page) notFound()
 
-  return <MdxContent source={page.content} />
+  const components = {
+    HeroSection,
+    AllSkills,
+    AllProjects,
+    BlogPosts,
+  }
+
+  return <MdxContent components={components} source={page.content} />
 }
