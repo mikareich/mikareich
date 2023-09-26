@@ -31,7 +31,7 @@ type StyleArg<T> = string | ((props: T) => string)
  */
 export default function appendStyles<
   T extends ComponentType<any> | keyof JSX.IntrinsicElements,
-  Props extends Record<string, any> = React.ComponentPropsWithRef<T>,
+  Props extends Record<string, any> = React.ComponentProps<T>,
 >(Component: T, styles: StyleArg<any>): FC<Props> {
   return function StyledComponent(props) {
     const { className, ...otherProps } = props
