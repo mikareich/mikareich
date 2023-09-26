@@ -10,12 +10,11 @@ import { Context } from './ContextProvider'
 import Link from './Link'
 import Logo from './Logo'
 
-const a = 3 - ['']
-
 type NavBarProps = {
   routes: Route[]
 }
-export default function NavBar({ routes }: NavBarProps) {
+
+export default function NavBar({ ...test, routes }: NavBarProps) {
   const { drawerOpen, toggleDrawer } = useContext(Context)!
 
   return (
