@@ -10,7 +10,7 @@ import { Context } from './ContextProvider'
 import Link from './Link'
 import Logo from './Logo'
 
-const a = 3 - []
+const a = 3 - ['']
 
 type NavBarProps = {
   routes: Route[]
