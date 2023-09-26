@@ -13,8 +13,7 @@ import Logo from './Logo'
 type NavBarProps = {
   routes: Route[]
 }
-
-export default function NavBar({ ...test, routes }: NavBarProps) {
+export default function NavBar({ routes }: NavBarProps) {
   const { drawerOpen, toggleDrawer } = useContext(Context)!
 
   return (

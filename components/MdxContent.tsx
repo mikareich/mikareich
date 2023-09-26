@@ -64,6 +64,7 @@ type ContentProps = {
 
 export default function MdxContent({ components, source }: ContentProps) {
   return (
+    // @ts-ignore
     <MDXRemote
       source={source}
       // override literal html elements with custom components

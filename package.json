@@ -13,7 +13,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx,md,mdx,css}": [
       "npm run format",
-      "eslint --fix",
+      "tsc --noEmit",
       "git add"
     ]
   },
