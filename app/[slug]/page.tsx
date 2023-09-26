@@ -1,7 +1,11 @@
 import { notFound } from 'next/navigation'
 
 import MdxContent from '@/components/MdxContent'
-import { getAllPages, getPageBySlug } from '@/utils/pageUtils'
+import {
+  getPagesByPath,
+  getPageBySlug,
+  DYNAMIC_PAGE_PATHS,
+} from '@/utils/pageUtils'
 
 type PageProps = {
   params: {
@@ -10,16 +14,13 @@ type PageProps = {
 }
 
 export async function generateStaticParams() {
-  const pages = await getAllPages()
+  const pages = await getPagesByPath(Object.values(DYNAMIC_PAGE_PATHS))
 
-  return (
-    pages
-      // filter index page
-      .filter((page) => page.frontMatter.slug !== 'index')
-      .map((page) => ({
-        slug: page.frontMatter.slug,
-      }))
-  )
+  console.log(pages)
+
+  return pages.map((page) => ({
+    slug: page.frontMatter.slug,
+  }))
 }
 
 export async function generateMetadata({ params }: PageProps) {
@@ -37,6 +38,8 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function Page({ params }: PageProps) {
   const { slug } = params
   const page = await getPageBySlug(slug)
+
+  console.log(slug, page)
 
   if (!page) notFound()
 

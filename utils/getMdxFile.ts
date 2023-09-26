@@ -14,7 +14,7 @@ export type MDXFile<FrontMatter> = {
  */
 export default async function getMdxFile<
   FrontMatter extends Record<string, unknown>,
->(path: string): Promise<MDXFile<FrontMatter> | null> {
+>(path: string): Promise<MDXFile<FrontMatter> | undefined> {
   const realPath = nodePath.join(process.cwd(), path)
 
   try {
@@ -26,6 +26,6 @@ export default async function getMdxFile<
       frontMatter: data as FrontMatter,
     }
   } catch (error) {
-    return null
+    return undefined
   }
 }

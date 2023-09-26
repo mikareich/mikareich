@@ -1,10 +1,12 @@
 import { notFound } from 'next/navigation'
 
 import MdxContent from '@/components/MdxContent'
-import { getPageBySlug } from '@/utils/pageUtils'
+import getMdxFile from '@/utils/getMdxFile'
+import type { PageMetadata } from '@/utils/pageUtils'
+import { ALL_PAGE_PATHS } from '@/utils/pageUtils'
 
 export async function generateMetadata() {
-  const page = await getPageBySlug('index')
+  const page = await getMdxFile<PageMetadata>(ALL_PAGE_PATHS.blog)
 
   if (!page) notFound()
 
@@ -15,7 +17,7 @@ export async function generateMetadata() {
 }
 
 export default async function Page() {
-  const page = await getPageBySlug('index')
+  const page = await getMdxFile<PageMetadata>(ALL_PAGE_PATHS.blog)
 
   if (!page) notFound()
 

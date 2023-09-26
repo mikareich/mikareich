@@ -4,14 +4,14 @@ import { useContext } from 'react'
 
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid'
 
-import type { Route } from '@/utils/pageUtils'
+import type { PageMetadata } from '@/utils/pageUtils'
 
 import { Context } from './ContextProvider'
 import Link from './Link'
 import Logo from './Logo'
 
 type NavBarProps = {
-  routes: Route[]
+  routes: PageMetadata[]
 }
 export default function NavBar({ routes }: NavBarProps) {
   const { drawerOpen, toggleDrawer } = useContext(Context)!

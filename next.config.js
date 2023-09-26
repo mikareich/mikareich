@@ -3,9 +3,17 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/index',
+        source: '/about-me',
         destination: '/',
         permanent: true,
+      },
+    ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/',
+        destination: '/about-me',
       },
     ]
   },

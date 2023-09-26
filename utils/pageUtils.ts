@@ -1,10 +1,18 @@
 import type { MDXFile } from './getMdxFile'
 import getMdxFile from './getMdxFile'
 
-const PAGE_PATHS = {
+export const ALL_PAGE_PATHS = {
   abouteMe: '/content/pages/about-me.mdx',
   projects: '/content/pages/projects.mdx',
   contact: '/content/pages/contact.mdx',
+  blog: '/content/pages/blog.mdx',
+  notFound: '/content/pages/not-found.mdx',
+}
+
+export const DYNAMIC_PAGE_PATHS = {
+  projects: ALL_PAGE_PATHS.projects,
+  contact: ALL_PAGE_PATHS.contact,
+  abouteMe: ALL_PAGE_PATHS.abouteMe,
 }
 
 export type PageMetadata = {
@@ -13,39 +21,26 @@ export type PageMetadata = {
   slug: string
 }
 
-/** Returns all pages */
-export async function getAllPages(): Promise<MDXFile<PageMetadata>[]> {
-  // search for all mdx files inside the pages folder and parse them
-  const pages = await Promise.all(
-    Object.values(PAGE_PATHS).map(async (path) => {
-      const page = await getMdxFile<PageMetadata>(path)
-      return page
-    }),
-  )
+export type MDXPage = MDXFile<PageMetadata>
 
-  return pages.filter((page) => page !== null) as MDXFile<PageMetadata>[]
+/** Returns all pages with the given paths
+ * @param paths The paths to search for pages
+ */
+export async function getPagesByPath(paths: string[]): Promise<MDXPage[]> {
+  const pages = await Promise.all(paths.map(getMdxFile<PageMetadata>))
+
+  return pages.filter((page) => page !== undefined) as MDXPage[]
 }
 
-export type Route = {
-  title: string
-  slug: string
-}
-
-/** Returns all routes for the pages */
-export async function getPageRoutes(): Promise<Route[]> {
-  const pages = await getAllPages()
-
-  return pages.map((page) => ({
-    title: page.frontMatter.title,
-    slug: page.frontMatter.slug,
-  }))
-}
-
-/** Returns the page with the given slug */
+/** Returns the page with the given slug
+ * @param slug The slug of the page
+ * @param paths The paths to search for the page
+ */
 export async function getPageBySlug(
   slug: string,
-): Promise<MDXFile<PageMetadata> | undefined> {
-  const pages = await getAllPages()
+  paths = Object.values(ALL_PAGE_PATHS),
+): Promise<MDXPage | undefined> {
+  const pages = await getPagesByPath(paths)
   const page = pages.find((p) => p.frontMatter.slug === slug)
 
   return page
