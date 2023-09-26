@@ -26,6 +26,47 @@
       "skills": ["Docker", "HTML", "CSS", "Node.js"],
       "githubRepoURL": "https://github.com/mikareich/url-dwarf",
       "websiteUrl": "https://url-dwarf.vercel.app/"
+    },
+    {
+      "title": "poke-mon",
+      "description": "My first bigger game engine with over 50 TypeScript files.",
+      "skills": ["TypeScript", "npm", "CSS", "Jest"],
+      "githubRepoURL": "https://github.com/mikareich/poke-mon"
+    },
+    {
+      "title": "Johnny JS",
+      "description": "Von Neumann architecture Simulator. Inspired by the Johnny Simulator.",
+      "skills": ["TypeScript", "React", "CSS"],
+      "githubRepoURL": "https://github.com/mikareich/johnny-js",
+      "websiteUrl": "https://johnny-js.vercel.app/"
+    },
+    {
+      "title": "lars-reich",
+      "description": "Portfolio Website for Sen. Scientist Lars Reich",
+      "skills": ["Next.js", "Tailwindcss", "Figma"],
+      "githubRepoURL": "https://github.com/mikareich/lars-reich",
+      "websiteUrl": "https://lars-reich.vercel.app/"
+    },
+    {
+      "title": "minesweeper",
+      "description": "Minesweeper game with a custom game mode.",
+      "skills": ["TypeScript", "HTML", "CSS"],
+      "githubRepoURL": "https://github.com/mikareich/minesweeper",
+      "websiteUrl": "https://minesweeper-opal-eight.vercel.app/"
+    },
+    {
+      "title": "stronghold-location",
+      "description": "Determines the location of a stronghold in Minecraft.",
+      "skills": ["TypeScript", "React", "Tailwindcss", "MongoDB"],
+      "githubRepoURL": "https://github.com/mikareich/stronghold-location",
+      "websiteUrl": "https://stronghold-location.vercel.app/"
+    },
+    {
+      "title": "course-planner",
+      "description": "Course planner for MSS",
+      "skills": ["TypeScript", "React", "CSS"],
+      "githubRepoURL": "https://github.com/mikareich/course-planner",
+      "websiteUrl": "https://course-planner.mikareich.studio/leistungskurse"
     }
   ]
 }
