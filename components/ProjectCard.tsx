@@ -33,6 +33,8 @@ export default function ProjectCard({
   const leftButtonRef = useRef<HTMLButtonElement>(null)
   const rightButtonRef = useRef<HTMLButtonElement>(null)
 
+  const scrollOffset = 10 // the distance away from the edge of the container to show the scroll buttons
+
   const handleScrollButtons = () => {
     const skillContainer = skillContainerRef.current
     const leftButton = leftButtonRef.current
@@ -49,13 +51,13 @@ export default function ProjectCard({
         return
       }
 
-      if (scrollLeft === 0) {
+      if (scrollLeft < scrollOffset) {
         leftButton.classList.add('hidden')
       } else {
         leftButton.classList.remove('hidden')
       }
 
-      if (Math.floor(scrollLeft + clientWidth) === scrollWidth) {
+      if (scrollLeft + clientWidth > scrollWidth - scrollOffset) {
         rightButton.classList.add('hidden')
       } else {
         rightButton.classList.remove('hidden')
