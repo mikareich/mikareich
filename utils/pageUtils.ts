@@ -7,7 +7,7 @@ const PAGE_PATHS = {
   contact: '/content/pages/contact.mdx',
 }
 
-type PageMetadata = {
+export type PageMetadata = {
   title: string
   description: string
   slug: string
