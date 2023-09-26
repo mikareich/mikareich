@@ -26,9 +26,7 @@ export default function Drawer({ routes }: DrawerProps) {
 
   return (
     drawerOpen && (
-      <div
-        className="fixed left-0 top-0 h-full w-full bg-raisin-black-200 bg-opacity-80 font-heading backdrop-blur md:hidden"
-      >
+      <div className="fixed left-0 top-0 h-full w-full bg-raisin-black-200 bg-opacity-80 font-heading backdrop-blur md:hidden">
         <Container className="flex flex-col">
           <NavBar routes={routes} />
           <ol className="my-auto mt-[100px] text-center text-lg text-raisin-black-100">
