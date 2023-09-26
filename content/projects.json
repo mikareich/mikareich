@@ -10,7 +10,7 @@
     {
       "title": "contribution-graph",
       "description": "Generate a contribution graph for your GitHub profile.",
-      "skills": ["Next.js", "CSS", "Git"],
+      "skills": ["Next.js", "CSS", "Git" ],
       "githubRepoURL": "https://github.com/mikareich/contribution-graph",
       "websiteUrl": "https://contribution-graph.vercel.app/"
     },
