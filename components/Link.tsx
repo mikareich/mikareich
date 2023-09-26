@@ -15,8 +15,8 @@ type LinkProps = {
 
 export default function Link({
   children,
-  active,
-  href = '',
+  active = false,
+  href,
   className,
   ...props
 }: LinkProps) {
