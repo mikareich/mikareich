@@ -66,7 +66,7 @@ function merged<ComponentProps extends Record<string, any> | undefined>(
  *   'rounded px-5',
  *   {
  *     fillMode: 'filled',
- *     use: 'bg-primary-500',
+ *     use: 'bg-primary-color-500',
  *   },
  *   {
  *     disabled: true,
@@ -75,7 +75,7 @@ function merged<ComponentProps extends Record<string, any> | undefined>(
  * );
  *
  * buttonStyles({ fillMode: 'filled', disabled: true })
- * // returns "rounded px-5 bg-primary-500 opacity-50"
+ * // returns "rounded px-5 bg-primary-color-500 opacity-50"
  *
  */
 export default function tailwindMerge<

@@ -3,8 +3,10 @@ import type { ComponentType } from 'react'
 import type { MDXComponents } from 'mdx/types'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypeExternalLinks from 'rehype-external-links'
+import rehypeHighlight from 'rehype-highlight'
 
-import Link from './Link'
+import HorizontalLine from '../base/HorizontalLine'
+import Image from '../base/Image'
 import {
   Heading1,
   Heading2,
@@ -13,8 +15,9 @@ import {
   Heading5,
   Text,
   TextLarge,
-} from './Typography'
-import Underline from './Underline'
+} from '../base/Typography'
+import Underline from '../base/Underline'
+import Link from '../navigation/Link'
 
 function ActiveLink({ children, href, ...props }: Parameters<typeof Link>[0]) {
   return (
@@ -46,6 +49,11 @@ const typographyComponents: MDXComponents = {
   a: ActiveLink as ComponentType,
   Underline: ActiveUnderline,
   u: Underline,
+  hr: HorizontalLine,
+}
+
+const layoutComponents: MDXComponents = {
+  img: Image as ComponentType,
 }
 
 type ContentProps = {
@@ -61,12 +69,20 @@ export default function MdxContent({ components, source }: ContentProps) {
       // override literal html elements with custom components
       options={{
         mdxOptions: {
-          rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
+          rehypePlugins: [
+            [
+              rehypeExternalLinks,
+              { target: '_blank', rel: ['noopener', 'noreferrer'] },
+            ],
+            // @ts-ignore
+            [rehypeHighlight],
+          ],
           format: 'mdx',
         },
       }}
       components={{
         ...typographyComponents,
+        ...layoutComponents,
         ...components,
       }}
     />

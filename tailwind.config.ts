@@ -10,17 +10,24 @@ const config: Config = {
   theme: {
     colors: {
       'raisin-black': {
-        '100': '#D1D1D3',
-        '200': '#1B1725',
-        '300': '#100E16',
-        '400': '#0B090F',
+        // https://maketintsandshades.com/#1B1725
+        '100': '#d1d1d3',
+        '200': '#a4a2a8',
+        '300': '#76747c',
+        '400': '#494551',
+        '500': '#1b1725',
+        '600': '#16121e',
+        '700': '#100e16',
+        '800': '#0b090f',
+        '900': '#050507',
       },
-      'baby-powder': {
-        DEFAULT: '#FCFFFD',
-      },
-      primary: {
-        DEFAULT: '#7C90DB',
-      },
+      'baby-powder': '#FCFFFD',
+      'primary-color': '#7C90DB',
+      'background-color': '#050507',
+      'background-accent-color': '#1b1725',
+      'heading-color': '#FCFFFD',
+      'body-color': '#d1d1d3',
+      transparent: 'transparent',
     },
     fontFamily: {
       body: ['var(--font-space-mono)'],

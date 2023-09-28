@@ -27,14 +27,14 @@ export default function Skill({ skill, size = 'auto' }: SkillProps) {
           <source
             srcSet={assetPath}
             media="(min-width: 0px)"
-            width={20}
-            height={20}
+            width={16}
+            height={16}
           />
         )}
         <Image src={assetPath} alt={skill} width={24} height={24} />
       </picture>
       <span
-        className={`ml-[10px] font-heading text-xs text-baby-powder xs:text-lg ${
+        className={`ml-[10px] font-heading text-xs text-heading-color xs:text-lg ${
           size === 'small' && '!text-xs'
         } ${size === 'large' && '!text-lg'}`}
       >

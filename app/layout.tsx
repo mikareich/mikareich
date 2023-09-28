@@ -1,11 +1,11 @@
 // eslint-disable-next-line camelcase
 import { Fira_Code, Space_Mono } from 'next/font/google'
 
-import Container from '@/components/Container'
 import ContextProvider from '@/components/ContextProvider'
-import Drawer from '@/components/Drawer'
-import Footer from '@/components/Footer'
-import NavBar from '@/components/NavBar'
+import Container from '@/components/layout/Container'
+import Footer from '@/components/layout/Footer'
+import Drawer from '@/components/navigation/Drawer'
+import NavBar from '@/components/navigation/NavBar'
 import '@/styles/global.css'
 import { getAllPages } from '@/utils/pageUtils'
 
@@ -38,10 +38,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/app/favicon.ico" sizes="any" />
       </head>
       <body
-        className={`${firaMono.variable} ${spaceMono.variable} font-mono relative flex min-h-[100dvh] flex-col bg-raisin-black-300 font-body`}
+        className={`${firaMono.variable} ${spaceMono.variable} font-mono relative flex min-h-[100dvh] flex-col bg-background-color font-body`}
       >
         <ContextProvider>
           <Container>

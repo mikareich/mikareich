@@ -6,24 +6,24 @@ import getMdxFile from './getMdxFile'
 
 const BLOG_PATH = '/content/blog'
 
-export type RawPostMetadata = {
+export type PostMetadata = {
   title: string
   description: string
+  heroImage: string
+  heroImageAlt: string
   skills: string[]
   slug: string
   date: Date
 }
 
-export type MDXPost = MDXFile<RawPostMetadata>
+export type MDXPost = MDXFile<PostMetadata>
 
 /** Returns all blog posts */
 export async function getAllPosts(): Promise<MDXPost[]> {
   const realPath = nodePath.join(process.cwd(), BLOG_PATH)
   const blogFiles = await fs.readdir(realPath)
   const posts = await Promise.all(
-    blogFiles.map((path) =>
-      getMdxFile<RawPostMetadata>(`${BLOG_PATH}/${path}`),
-    ),
+    blogFiles.map((path) => getMdxFile<PostMetadata>(`${BLOG_PATH}/${path}`)),
   )
 
   return posts
@@ -42,7 +42,7 @@ export async function getPostBySlug(
   slug: string,
 ): Promise<MDXPost | undefined> {
   const posts = await getAllPosts()
-  const post = posts.find((p) => p.frontMatter.title === slug)
+  const post = posts.find((p) => p.frontMatter.slug === slug)
 
   return post
 }

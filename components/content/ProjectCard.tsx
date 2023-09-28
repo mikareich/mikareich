@@ -9,10 +9,11 @@ import type Projects from '@/content/projects.json'
 import appendStyles from '@/utils/appendStyles'
 import tailwindMerge from '@/utils/tailwindMerge'
 
-import Link from './Link'
+import { Small, Heading5 } from '../base/Typography'
+import Link from '../navigation/Link'
+
 import type { SkillType } from './Skill'
 import Skill from './Skill'
-import { Small, Heading5 } from './Typography'
 
 export type ProjectType = Omit<
   (typeof Projects.projects)[number],
@@ -23,7 +24,7 @@ export type ProjectType = Omit<
 }
 
 const ScrollButtonStyles = tailwindMerge(
-  'absolute top-0 grid hidden w-[24px] h-[24px] shrink-0 place-items-center rounded-full bg-baby-powder bg-opacity-60 hover:bg-opacity-100 transition-all cursor-pointer',
+  'absolute top-0 grid hidden w-[24px] h-[24px] shrink-0 place-items-center rounded-full bg-heading-color bg-opacity-60 hover:bg-opacity-100 transition-all cursor-pointer',
 )
 
 const ScrollButton = forwardRef<HTMLButtonElement, any>((props, ref) =>
@@ -103,7 +104,7 @@ export default function ProjectCard({
   const scrollRight = () => scroll(100)
 
   return (
-    <div className="w-[320px] bg-raisin-black-200 p-[20px] pb-[10px]">
+    <div className="w-[320px] bg-background-accent-color p-[20px] pb-[10px]">
       <Heading5 className="h-[30px]">{title}</Heading5>
       <Small className="h-[60px] leading-normal">{description}</Small>
       <div className="relative my-[5px]">
@@ -132,7 +133,7 @@ export default function ProjectCard({
           Visit Project {websiteUrl ? 'Website' : 'on GitHub'}
         </Link>
 
-        <ArrowRightIcon className="ml-[5px] text-baby-powder" width={16} />
+        <ArrowRightIcon className="ml-[5px] text-heading-color" width={16} />
       </div>
     </div>
   )

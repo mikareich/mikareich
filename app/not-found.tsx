@@ -1,6 +1,6 @@
 import matter from 'gray-matter'
 
-import MdxContent from '@/components/MdxContent'
+import MdxContent from '@/components/content/MdxContent'
 import NotFoundMDX from '@/content/pages/not-found.mdx'
 
 const { content, data: frontMatter } = matter(NotFoundMDX)

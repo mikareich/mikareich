@@ -13,7 +13,7 @@ export default function Logo({ type = 'auto', className }: LogoProps) {
         <picture>
           {type !== 'initials' && (
             <source
-              srcSet="/logo-full.png"
+              srcSet="/app/logo-full.png"
               media="(min-width: 640px)"
               width={206}
               height={50}
@@ -22,7 +22,7 @@ export default function Logo({ type = 'auto', className }: LogoProps) {
 
           {type !== 'full' && (
             <source
-              srcSet="/logo-initials.png"
+              srcSet="/app/logo-initials.png"
               media="(min-width: 0px)"
               width={80}
               height={50}
@@ -30,7 +30,7 @@ export default function Logo({ type = 'auto', className }: LogoProps) {
           )}
 
           <Image
-            src="/logo-full.png"
+            src="/app/logo-full.png"
             alt="Mika Reich"
             width={206}
             height={50}

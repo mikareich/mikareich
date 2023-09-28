@@ -1,8 +1,8 @@
 import makeTwoDigitNumber from '@/utils/makeTwoDigitNumber'
 import { getAllPosts } from '@/utils/postUtils'
 
-import Link from './Link'
-import { Small } from './Typography'
+import { Small } from '../base/Typography'
+import Link from '../navigation/Link'
 
 export default async function PostList() {
   const allPosts = await getAllPosts()
@@ -14,11 +14,11 @@ export default async function PostList() {
           key={frontMatter.slug}
           className="grid grid-cols-[auto_1fr_auto] grid-rows-[1fr_auto] items-center gap-x-[20px]"
         >
-          <span className="row-span-2 text-lg text-primary xs:text-xl">
+          <span className="row-span-2 text-lg text-primary-color xs:text-xl">
             {makeTwoDigitNumber(index)}
           </span>
           <div className="col-span-2 overflow-hidden xs:col-span-1">
-            <p className="font-heading !text-baby-powder xs:text-lg">
+            <p className="font-heading text-heading-color xs:text-lg">
               {frontMatter.title}
             </p>
             <div className="flex overflow-hidden">
@@ -27,8 +27,8 @@ export default async function PostList() {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',
-                })}{' '}
-                .{' '}
+                })}
+                .
               </Small>
 
               <Small className="ml-[5px] truncate">

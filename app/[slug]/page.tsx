@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation'
 
-import AllProjects from '@/components/AllProjects'
-import AllSkills from '@/components/AllSkills'
-import BlogPosts from '@/components/BlogPosts'
-import HeroSection from '@/components/HeroSection'
-import MdxContent from '@/components/MdxContent'
+import AllPosts from '@/components/content/AllPosts'
+import AllProjects from '@/components/content/AllProjects'
+import AllSkills from '@/components/content/AllSkills'
+import MdxContent from '@/components/content/MdxContent'
+import AboutMeHeroSection from '@/components/layout/AboutMeHeroSection'
 import { getAllPages, getPageBySlug } from '@/utils/pageUtils'
 
 type PageProps = {
@@ -40,10 +40,10 @@ export default async function Page({ params }: PageProps) {
   if (!page) notFound()
 
   const components = {
-    HeroSection,
+    AboutMeHeroSection,
     AllSkills,
     AllProjects,
-    BlogPosts,
+    AllPosts,
   }
 
   return <MdxContent components={components} source={page.content} />
