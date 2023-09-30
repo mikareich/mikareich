@@ -4,6 +4,8 @@ import type { MDXComponents } from 'mdx/types'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeHighlight from 'rehype-highlight'
+import rehypeKatex from 'rehype-katex'
+import remarkMath from 'remark-math'
 
 import HorizontalLine from '../base/HorizontalLine'
 import Image from '../base/Image'
@@ -69,13 +71,16 @@ export default function MdxContent({ components, source }: ContentProps) {
       // override literal html elements with custom components
       options={{
         mdxOptions: {
+          remarkPlugins: [remarkMath],
           rehypePlugins: [
             [
               rehypeExternalLinks,
               { target: '_blank', rel: ['noopener', 'noreferrer'] },
             ],
             // @ts-ignore
-            [rehypeHighlight],
+            rehypeHighlight,
+            // @ts-ignore
+            [rehypeKatex],
           ],
           format: 'mdx',
         },

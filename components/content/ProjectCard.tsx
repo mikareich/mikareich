@@ -104,7 +104,7 @@ export default function ProjectCard({
   const scrollRight = () => scroll(100)
 
   return (
-    <div className="w-[320px] bg-background-accent-color p-[20px] pb-[10px]">
+    <div className="w-[320px] rounded-lg bg-background-accent-color p-[20px] pb-[10px]">
       <Heading5 className="h-[30px]">{title}</Heading5>
       <Small className="h-[60px] leading-normal">{description}</Small>
       <div className="relative my-[5px]">

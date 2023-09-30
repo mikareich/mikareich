@@ -39,6 +39,7 @@ export default async function PostList() {
           <Link
             className="col-start-2 xs:col-start-3"
             href={`/blog/${frontMatter.slug}`}
+            active
           >
             Read more
           </Link>

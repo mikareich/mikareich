@@ -38,6 +38,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link
+          href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+          rel="stylesheet"
+        />
         <link rel="icon" href="/app/favicon.ico" sizes="any" />
       </head>
       <body
