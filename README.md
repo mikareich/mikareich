@@ -9,7 +9,7 @@
 - [ ] Dockerize App
 - [ ] Implement Test?
 - [ ] Add Analytics
-- [-] not-found route doesnt work on domain
+- [ ] not-found route doesnt work on domain
 
 ## Icons and Logos
 
