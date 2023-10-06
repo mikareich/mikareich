@@ -4,7 +4,7 @@ import Code from '@/components/base/CodeBlock'
 import Pre from '@/components/base/Preformatted'
 import MdxContent from '@/components/content/MdxContent'
 import PostHeroSection from '@/components/layout/PostHeroSection'
-import { getAllPosts, getPostBySlug } from '@/utils/postUtils'
+import { getAllPosts, getPostBySlug } from '@/utils/contentUtils'
 
 type PageProps = {
   params: {

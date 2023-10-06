@@ -1,15 +1,17 @@
-import matter from 'gray-matter'
-
 import MdxContent from '@/components/content/MdxContent'
-import NotFoundMDX from '@/content/pages/not-found.mdx'
+import { getNotFoundPage } from '@/utils/contentUtils'
 
-const { content, data: frontMatter } = matter(NotFoundMDX)
+export async function generateMetadata() {
+  const page = await getNotFoundPage()
 
-export const metadata = {
-  title: `Mika Reich | ${frontMatter.title}`,
-  description: frontMatter.description,
+  return {
+    title: `Mika Reich | ${page?.frontMatter.title}`,
+    description: page?.frontMatter.description,
+  }
 }
 
-export default async function NotFound() {
-  return <MdxContent source={content} />
+export default async function Page() {
+  const page = await getNotFoundPage()
+
+  return <MdxContent source={page?.content || ''} />
 }

@@ -7,7 +7,7 @@ import Footer from '@/components/layout/Footer'
 import Drawer from '@/components/navigation/Drawer'
 import NavBar from '@/components/navigation/NavBar'
 import '@/styles/global.css'
-import { getAllPages } from '@/utils/pageUtils'
+import { getAllPages, getFrontMatter } from '@/utils/contentUtils'
 
 const firaMono = Fira_Code({
   subsets: ['latin'],
@@ -33,7 +33,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const pageRoutes = (await getAllPages()).map(({ frontMatter }) => frontMatter)
+  const pageRoutes = getFrontMatter(await getAllPages(false))
 
   return (
     <html lang="en">

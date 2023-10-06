@@ -5,7 +5,7 @@ import AllProjects from '@/components/content/AllProjects'
 import AllSkills from '@/components/content/AllSkills'
 import MdxContent from '@/components/content/MdxContent'
 import AboutMeHeroSection from '@/components/layout/AboutMeHeroSection'
-import { getAllPages, getPageBySlug } from '@/utils/pageUtils'
+import { getAllPages, getPageBySlug } from '@/utils/contentUtils'
 
 type PageProps = {
   params: {
@@ -14,7 +14,7 @@ type PageProps = {
 }
 
 export async function generateStaticParams() {
-  const pages = await getAllPages()
+  const pages = await getAllPages(false)
 
   return pages.map((page) => ({
     slug: page.frontMatter.slug,

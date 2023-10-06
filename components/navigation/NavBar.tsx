@@ -4,8 +4,8 @@ import { useContext } from 'react'
 
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid'
 
+import type { PageMetadata } from '@/utils/contentUtils'
 import makeTwoDigitNumber from '@/utils/makeTwoDigitNumber'
-import type { PageMetadata } from '@/utils/pageUtils'
 
 import Logo from '../base/Logo'
 import { Context } from '../ContextProvider'

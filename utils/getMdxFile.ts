@@ -3,7 +3,11 @@ import nodePath from 'path'
 
 import matter from 'gray-matter'
 
-export type MDXFile<FrontMatter> = {
+export type MDXFile<
+  FrontMatter extends Record<string, unknown> = {
+    [key: string]: unknown
+  },
+> = {
   content: string
   frontMatter: FrontMatter
 }

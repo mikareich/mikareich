@@ -1,6 +1,6 @@
 import NextImage from 'next/image'
 
-import type { PostMetadata } from '@/utils/postUtils'
+import type { PostMetadata } from '@/utils/contentUtils'
 
 import { TextLarge, Title } from '../base/Typography'
 

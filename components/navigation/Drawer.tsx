@@ -4,8 +4,8 @@ import { useContext, useEffect } from 'react'
 
 import { usePathname } from 'next/navigation'
 
+import type { PageMetadata } from '@/utils/contentUtils'
 import makeTwoDigitNumber from '@/utils/makeTwoDigitNumber'
-import type { PageMetadata } from '@/utils/pageUtils'
 
 import { Context } from '../ContextProvider'
 import Container from '../layout/Container'

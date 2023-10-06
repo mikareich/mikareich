@@ -1,5 +1,5 @@
+import { getAllPosts } from '@/utils/contentUtils'
 import makeTwoDigitNumber from '@/utils/makeTwoDigitNumber'
-import { getAllPosts } from '@/utils/postUtils'
 
 import { Small } from '../base/Typography'
 import Link from '../navigation/Link'
