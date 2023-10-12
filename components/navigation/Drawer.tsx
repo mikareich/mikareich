@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import type { PageMetadata } from '@/utils/contentUtils'
 import makeTwoDigitNumber from '@/utils/makeTwoDigitNumber'
 
+import { List, ListItem } from '../base/List'
 import { Context } from '../ContextProvider'
 import Container from '../layout/Container'
 
@@ -30,16 +31,13 @@ export default function Drawer({ routes }: DrawerProps) {
     <div className="fixed left-0 top-0 h-full w-full bg-background-accent-color bg-opacity-80 font-heading backdrop-blur lg:hidden">
       <Container className="flex flex-col">
         <NavBar routes={routes} />
-        <ol className="text-text mx-auto my-auto mt-[100px] w-fit text-lg">
-          {routes.map(({ title, slug }, index) => (
-            <li key={title} className="mb-[20px]">
-              <span className="mr-[10px] text-primary-color">
-                {makeTwoDigitNumber(index)}
-              </span>
+        <List className="mx-auto mt-[100px] gap-y-[20px] text-lg">
+          {routes.map(({ title, slug }) => (
+            <ListItem key={title}>
               <Link href={`/${slug}`}>{title}</Link>
-            </li>
+            </ListItem>
           ))}
-        </ol>
+        </List>
       </Container>
     </div>
   ) : null

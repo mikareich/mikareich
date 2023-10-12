@@ -9,6 +9,7 @@ import remarkMath from 'remark-math'
 
 import HorizontalLine from '../base/HorizontalLine'
 import Image from '../base/Image'
+import { List, ListItem } from '../base/List'
 import {
   Heading1,
   Heading2,
@@ -52,6 +53,8 @@ const typographyComponents: MDXComponents = {
   Underline: ActiveUnderline,
   u: Underline,
   hr: HorizontalLine,
+  ol: List,
+  li: ListItem,
 }
 
 const layoutComponents: MDXComponents = {
