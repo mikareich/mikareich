@@ -6,7 +6,7 @@ import "@fontsource/space-mono";
 // load global styles
 import "@/styles/global.css";
 
-import NavBar from "@/components/NavBar.astro";
+import NavBar from "@/components/NavBar";
 import { ViewTransitions } from "astro:transitions";
 import Footer from "@/components/Footer.astro";
 
@@ -42,11 +42,13 @@ const { seo, hero } = Astro.props;
   </head>
 
   <body
-    class="min-h-dvh container flex flex-col gap-10 bg-gray-400 text-gray-200 font-body"
+    class="min-h-dvh container flex flex-col gap-5 sm:gap-10 bg-gray-400 text-gray-200 font-body"
   >
-    <NavBar />
+    <NavBar client:only />
 
-    <header class="grid grid-cols-[1fr_auto] grid-rows-[1fr_1fr] sm:h-[300px]">
+    <header
+      class="grid grid-cols-[1fr_auto] grid-rows-[1fr_1fr] sm:h-72 gap-x-5"
+    >
       <h1 class="title self-end m-0">{hero.title}</h1>
       <img
         class="self-center row-span-2 overflow-hidden h-full hidden sm:block"

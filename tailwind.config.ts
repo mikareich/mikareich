@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./src/**/*.astro"],
+  content: ["./src/**/*.astro", "./src/**/*.tsx"],
   theme: {
     colors: {
       gray: {

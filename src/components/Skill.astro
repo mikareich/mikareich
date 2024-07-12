@@ -1,5 +1,6 @@
 ---
 import { skillMap } from "@/lib/utils";
+import Image from "astro/components/Image.astro";
 
 const SIZE_IN_PIXELS = {
   small: 24,
@@ -22,7 +23,7 @@ if (!skillPath) throw new Error(`Skill "${skillName}" not found in skill map`);
 ---
 
 <div class="flex gap-2 text-gray-100 items-center">
-  <img
+  <Image
     src={skillPath}
     alt={skillName}
     width={SIZE_IN_PIXELS[size]}
