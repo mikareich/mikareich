@@ -1,0 +1,74 @@
+---
+import { router } from "@/lib/utils";
+import Logo from "./Logo.astro";
+---
+
+<script>
+  function init() {
+    const nav = document.querySelector("nav#top-app-bar")!;
+    const items = nav.querySelectorAll("a");
+
+    items.forEach((item) => {
+      const slug = item.getAttribute("href")!;
+
+      if (slug === location.pathname) {
+        item.classList.add("highlighted-full");
+      }
+    });
+
+    const menu = document.querySelector("#menu")!;
+    const toggleMenuBtn = document.querySelector("#toggle-menu-btn")!;
+    let isMenuOpen = false;
+
+    toggleMenuBtn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+      isMenuOpen = !isMenuOpen;
+
+      // disable scrolling when the menu is open
+      document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
+      toggleMenuBtn.textContent = isMenuOpen ? "[Close]" : "[Menu]";
+    });
+  }
+
+  init();
+  document.addEventListener("astro:after-swap", init);
+</script>
+
+<nav
+  id="top-app-bar"
+  class="mt-10 flex justify-between items-center py-5 gap-4"
+>
+  <img src="/images/logo.png" alt="Logo" />
+
+  <ol class="gap-4 overflow-hidden hidden sm:flex">
+    {
+      router.map(({ title, slug }) => (
+        <li class="large truncate">
+          <a class="highlighted" href={slug}>
+            {title}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+
+  <button id="toggle-menu-btn" class="sm:hidden z-30"> [Menu] </button>
+</nav>
+
+<aside
+  id="menu"
+  class="hidden fixed z-10 top-0 left-0 w-screen h-screen bg-gray-400"
+>
+  <ol class="flex flex-col gap-4 mx-auto justify-center w-fit h-full">
+    <Logo />
+    {
+      router.map(({ title, slug }) => (
+        <li class="large truncate">
+          <a class="highlighted" href={slug}>
+            {title}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</aside>

@@ -1,0 +1,25 @@
+@import "./highlighted.css";
+@import "./lists.css";
+@import "./typography.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scrollbar-gutter: stable both-edges;
+}
+
+::selection {
+  background-color: theme("colors.blue.300");
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: theme("colors.gray.400");
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: theme("colors.blue.300");
+  border-radius: 0px;
+}

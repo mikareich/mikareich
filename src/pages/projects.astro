@@ -1,0 +1,73 @@
+---
+import Skill from "@/components/Skill.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { projects } from "@/lib/utils";
+
+const MY_BIRTHDAY = new Date("2005-03-27");
+const TODAY = new Date();
+
+const MY_AGE = Math.floor(
+  (TODAY.getTime() - MY_BIRTHDAY.getTime()) / (1000 * 60 * 60 * 24 * 365),
+);
+
+const page = {
+  seo: {
+    title: "Projects",
+  },
+  hero: {
+    title: "Project Showcase",
+    subtitle: "The best way to learn is by doing...",
+    image: "/images/projects.svg",
+  },
+};
+---
+
+<BaseLayout {...page}>
+  <p>
+    Below you'll find a collection of web applications and other projects I've
+    worked on over the years. Each one reflects my skills, passion, and
+    dedication to web development. Take a look and see what I've been up to!
+  </p>
+
+  <section class="flex flex-wrap gap-5">
+    {
+      projects.map((project, i) => (
+        <div class="min-w-72 max-w-96 flex-1 h-fit p-4 border border-gray-100/10 space-y-3">
+          <header class="flex justify-between">
+            <h5 class="text-xl text-gray-100 font-medium truncate">
+              {project.title}
+            </h5>
+            <span class="text-blue-200">{i.toString().padStart(2, "0")}</span>
+          </header>
+
+          <div>
+            <p class="small">Description</p>
+            <p class="text-gray-100 font-medium">{project.description}</p>
+          </div>
+
+          <div>
+            <p class="small">Technologies</p>
+            <div class="flex flex-wrap gap-2 py-1">
+              {project.skills.map((skill) => (
+                <Skill skill={skill} size="small" />
+              ))}
+            </div>
+          </div>
+
+          <a
+            class="block w-fit highlighted mt-2"
+            href={
+              "websiteUrl" in project
+                ? project.websiteUrl
+                : project.githubRepoURL
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {"websiteUrl" in project ? "Visit Website" : "View Source Code"}
+          </a>
+        </div>
+      ))
+    }
+  </section>
+</BaseLayout>
