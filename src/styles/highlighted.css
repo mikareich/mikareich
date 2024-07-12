@@ -1,0 +1,16 @@
+@layer components {
+  .highlighted,
+  .prose a {
+    &::after {
+      @apply absolute bottom-1 left-0 w-full h-2 bg-blue-300 transition-all -z-10;
+      content: "";
+    }
+
+    &.highlighted-full::after,
+    &:hover::after {
+      @apply h-full;
+    }
+
+    @apply whitespace-nowrap relative text-gray-100;
+  }
+}

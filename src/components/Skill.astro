@@ -1,0 +1,37 @@
+---
+import { skillMap } from "@/lib/utils";
+
+const SIZE_IN_PIXELS = {
+  small: 24,
+  medium: 24,
+  large: 32,
+} as const;
+
+type Size = keyof typeof SIZE_IN_PIXELS;
+
+type Props = {
+  skill: string;
+  size?: Size;
+};
+
+const { skill: skillName, size = "medium" } = Astro.props;
+
+const skillPath = skillMap.find((skill) => skill.name === skillName)?.path;
+
+if (!skillPath) throw new Error(`Skill "${skillName}" not found in skill map`);
+---
+
+<div class="flex gap-2 text-gray-100 items-center">
+  <img
+    src={skillPath}
+    alt={skillName}
+    width={SIZE_IN_PIXELS[size]}
+    height={SIZE_IN_PIXELS[size]}
+    class="overflow-hidden"
+  />
+  {
+    size !== "small" && (
+      <span class={size === "medium" ? "base" : "large"}>{skillName}</span>
+    )
+  }
+</div>

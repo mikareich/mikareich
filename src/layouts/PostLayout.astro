@@ -1,0 +1,44 @@
+---
+// load local fonts
+import "@fontsource-variable/fira-code";
+import "@fontsource/space-mono";
+
+// load global styles
+import "@/styles/global.css";
+
+import NavBar from "@/components/NavBar.astro";
+import { ViewTransitions } from "astro:transitions";
+import Footer from "@/components/Footer.astro";
+
+const DEFAULT_DESCRIPTION =
+  "Hi, I'm Mika Reich, an 18-year-old student from Germany. Ever since I was 12, I've been passionately coding web applications and much more.";
+
+const { title, description = DEFAULT_DESCRIPTION, keywords } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <ViewTransitions />
+
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Mika Reich | {title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Mika Reich" />
+    {keywords && <meta name="keywords" content={keywords} />}
+  </head>
+
+  <body
+    class="min-h-[100dvh] flex flex-col bg-gray-400 text-gray-200 font-body"
+  >
+    <div class="container flex-1">
+      <NavBar client:load />
+
+      <slot />
+    </div>
+
+    <Footer />
+  </body>
+</html>
