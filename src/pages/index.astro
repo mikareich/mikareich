@@ -3,13 +3,6 @@ import Skill from "@/components/Skill.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { skills } from "@/lib/utils";
 
-const MY_BIRTHDAY = new Date("2005-03-27");
-const TODAY = new Date();
-
-const MY_AGE = Math.floor(
-  (TODAY.getTime() - MY_BIRTHDAY.getTime()) / (1000 * 60 * 60 * 24 * 365),
-);
-
 const page = {
   seo: {
     title: "About me",
@@ -24,16 +17,16 @@ const page = {
 
 <BaseLayout {...page}>
   <p class="large">
-    Hi, I'm Mika Reich, an {MY_AGE}-year-old student from Germany. I've been
-    coding <span class="highlighted">since I was 12</span>, working on <span
-      class="highlighted">web applications</span
-    > and exploring <span class="highlighted">different technologies.</span> From
-    front-end to back-end, I've delved into various aspects of development, always
-    eager to learn and take on new challenges. Below, you'll find an overview of
-    the skills I've developed and perfected over the years:
+    Hi, I'm Mika Reich, an 19-year-old student from Germany. I've been coding <span
+      class="highlighted">since I was 12</span
+    >, working on <span class="highlighted">web applications</span> and exploring
+    <span class="highlighted">different technologies.</span> From front-end to back-end,
+    I've delved into various aspects of development, always eager to learn and take
+    on new challenges. Below, you'll find an overview of the skills I've developed
+    and perfected over the years:
   </p>
 
-  <section class="flex flex-wrap gap-8">
+  <section class="flex flex-wrap gap-8 line-clamp-5">
     {skills.map((skill) => <Skill skill={skill} size="large" />)}
     <spa class="small my-auto">And many more...</spa>
   </section>

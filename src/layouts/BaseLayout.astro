@@ -47,11 +47,11 @@ const { seo, hero } = Astro.props;
     <NavBar client:only />
 
     <header
-      class="grid grid-cols-[1fr_auto] grid-rows-[1fr_1fr] sm:h-72 gap-x-5"
+      class="grid grid-cols-[1fr_auto] grid-rows-[1fr_1fr] sm:h-72 gap-x-5 lg:gap-x-20"
     >
       <h1 class="title self-end m-0">{hero.title}</h1>
       <img
-        class="self-center row-span-2 overflow-hidden h-full hidden sm:block"
+        class="self-center row-span-2 overflow-hidden h-full hidden sm:block aspect-square w-40 sm:w-52 lg:w-72"
         width="300"
         height="300"
         src={hero.image}

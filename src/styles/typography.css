@@ -1,6 +1,6 @@
 @layer base {
   .title {
-    @apply !font-heading !font-black !text-5xl sm:!text-6xl !text-gray-100 !mb-6 !mt-4;
+    @apply !font-heading !font-black !text-5xl sm:!text-6xl !text-gray-100 !mb-6 !mt-4 leading-10;
   }
 
   .h1,
