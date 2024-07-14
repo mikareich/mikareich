@@ -45,6 +45,8 @@ Deno, because its their Fetch / Http API does not support setting TLS Ciphers.
 The following TLS Ciphers may change in the future:
 
 ```ts
+// request.ts
+
 const CIPHERS = [
   "TLS_AES_128_GCM_SHA256",
   "TLS_AES_256_GCM_SHA384",
@@ -70,6 +72,8 @@ package or something like
 want to use a proxy server:
 
 ```ts
+// request.ts
+
 import https from "node:https";
 
 const HTTPS_OPTIONS = {
@@ -88,6 +92,8 @@ Finally, we have to set the right request headers. Because we will use
 Header class too:
 
 ```ts
+// request.ts
+
 import { Headers } from "node-fetch";
 
 const RIOT_USER_AGENT =
@@ -103,6 +109,8 @@ method, url and body as parameters and return a serialized JSON object of the
 response if it was successful.
 
 ```ts
+// request.ts
+
 import fetch from "node-fetch";
 
 function request(method: string, url: string, body: string) {

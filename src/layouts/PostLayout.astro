@@ -12,9 +12,12 @@ import Footer from "@/components/Footer.astro";
 import type { CollectionEntry } from "astro:content";
 import TagList from "@/components/TagList.astro";
 
-type Props = CollectionEntry<"posts">["data"];
+type Props = CollectionEntry<"posts">["data"] & {
+  headings: { slug: string; text: string }[];
+  id: CollectionEntry<"posts">["id"];
+};
 
-const { title, description, tags, published } = Astro.props;
+const { title, description, tags, published, headings, id } = Astro.props;
 ---
 
 <html lang="en">
@@ -67,8 +70,32 @@ const { title, description, tags, published } = Astro.props;
       </div>
     </div>
 
-    <main class="prose">
-      <slot />
+    <main class="flex justify-between">
+      <article class="prose">
+        <slot />
+      </article>
+
+      <aside class="sticky top-5 h-min max-w-72">
+        <h2 class="large text-gray-100">On this page</h2>
+        <p class="mb-2">{description}</p>
+        <ol class="mb-10 space-y-4">
+          {
+            headings.map(({ slug, text }) => (
+              <li class="truncate">
+                <a class="highlighted truncate" href={`#${slug}`}>
+                  {text}
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+
+        <a
+          class="small"
+          href={`https://github.com/mikareich/portfolio/edit/main/src/content/posts/${id}`}
+          >Edit this page on GitHub
+        </a>
+      </aside>
     </main>
 
     <span class="mt-auto"></span>

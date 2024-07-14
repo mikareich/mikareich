@@ -8,6 +8,8 @@
 
 html {
   scrollbar-gutter: stable both-edges;
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
 }
 
 ::selection {
