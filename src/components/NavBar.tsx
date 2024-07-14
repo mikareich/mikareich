@@ -28,7 +28,7 @@ export default function NavBar() {
     setIsMenuOpen(!isMenuOpen);
     const drawer = drawerScope.current;
 
-    window.document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
+    window.document.body.style.overflow = !isMenuOpen ? "hidden" : "auto";
     if (!isMenuOpen) drawer.classList.remove("hidden");
 
     animateDrawer(
@@ -47,25 +47,25 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="mt-10 flex justify-between items-center py-5 gap-4 z-30">
+      <nav className="z-30 mt-10 flex items-center justify-between gap-4 py-5">
         <Logo />
-        <ol className="gap-4 overflow-hidden hidden sm:flex">{links}</ol>
+        <ol className="hidden gap-4 overflow-hidden sm:flex">{links}</ol>
         <button
           ref={btnScope}
-          className="sm:hidden relative w-6 h-6"
+          className="relative h-6 w-6 sm:hidden"
           onClick={toggleMenu}
         >
           <img
-            className="absolute top-0 left-0"
-            src="/images/menu.svg"
+            className="absolute left-0 top-0"
+            src="/menu.svg"
             width={24}
             height={24}
             alt="menu"
           />
 
           <img
-            className="absolute top-0 left-0 opacity-0"
-            src="/images/close.svg"
+            className="absolute left-0 top-0 opacity-0"
+            src="/close.svg"
             width={24}
             height={24}
             alt="close"
@@ -75,9 +75,9 @@ export default function NavBar() {
 
       <aside
         ref={drawerScope}
-        className="fixed z-10 top-0 left-0 w-screen h-screen bg-gray-400/50 backdrop-blur-3xl hidden sm:hidden"
+        className="fixed left-0 top-0 z-10 hidden h-screen w-screen bg-gray-400/50 backdrop-blur-3xl sm:hidden"
       >
-        <ol className="flex flex-col gap-4 mx-auto justify-center w-fit h-full">
+        <ol className="mx-auto flex h-full w-fit flex-col justify-center gap-4">
           {links}
         </ol>
       </aside>

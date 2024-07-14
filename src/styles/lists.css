@@ -18,7 +18,7 @@
 
     li {
       &::marker {
-        @apply text-blue-200 font-heading;
+        @apply font-heading text-blue-200;
         content: "-> ";
       }
     }

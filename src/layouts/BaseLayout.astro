@@ -9,23 +9,15 @@ import "@/styles/global.css";
 import NavBar from "@/components/NavBar";
 import { ViewTransitions } from "astro:transitions";
 import Footer from "@/components/Footer.astro";
+import type { CollectionEntry } from "astro:content";
 
 const DEFAULT_DESCRIPTION =
   "Hi, I'm Mika Reich, an 18-year-old student from Germany. Ever since I was 12, I've been passionately coding web applications and much more.";
 
-type Props = {
-  seo: {
-    title: string;
-    description?: string;
-  };
-  hero: {
-    title: string;
-    subtitle: string;
-    image: string;
-  };
-};
+type Props = CollectionEntry<"pages">["data"];
 
-const { seo, hero } = Astro.props;
+const { pageTitle, metaDescription, heroTitle, heroDescription, heroImage } =
+  Astro.props;
 ---
 
 <html lang="en">
@@ -33,32 +25,32 @@ const { seo, hero } = Astro.props;
     <ViewTransitions />
 
     <meta charset="utf-8" />
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Mika Reich | {seo.title}</title>
-    <meta name="description" content={seo.description || DEFAULT_DESCRIPTION} />
+    <title>Mika Reich | {pageTitle}</title>
+    <meta name="description" content={metaDescription || DEFAULT_DESCRIPTION} />
     <meta name="author" content="Mika Reich" />
   </head>
 
   <body
-    class="min-h-dvh container flex flex-col gap-5 sm:gap-10 bg-gray-400 text-gray-200 font-body"
+    class="container flex min-h-dvh flex-col gap-5 bg-gray-400 font-body text-gray-200 sm:gap-10"
   >
-    <NavBar client:only />
+    <NavBar client:only="react" />
 
     <header
-      class="grid grid-cols-[1fr_auto] grid-rows-[1fr_1fr] sm:h-72 gap-x-5 lg:gap-x-20"
+      class="grid grid-cols-[1fr_auto] grid-rows-2 gap-x-5 sm:h-72 lg:gap-x-20"
     >
-      <h1 class="title self-end m-0">{hero.title}</h1>
+      <h1 class="title m-0 self-end">{heroTitle}</h1>
       <img
-        class="self-center row-span-2 overflow-hidden h-full hidden sm:block aspect-square w-40 sm:w-52 lg:w-72"
+        class="row-span-2 hidden aspect-square h-full w-40 self-center overflow-hidden sm:block sm:w-52 lg:w-72"
         width="300"
         height="300"
-        src={hero.image}
-        alt={`Image for ${hero.title}`}
+        src={heroImage}
+        alt={`Image for ${heroTitle}`}
       />
-      <h3 class="h3 row-start-2 text-gray-200 font-thin m-0">
-        {hero.subtitle}
+      <h3 class="h3 row-start-2 m-0 font-thin text-gray-200">
+        {heroDescription}
       </h3>
     </header>
 

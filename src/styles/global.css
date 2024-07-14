@@ -16,7 +16,7 @@ html {
 
 ::-webkit-scrollbar {
   width: 10px;
-  background-color: theme("colors.gray.400");
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {

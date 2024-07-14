@@ -1,45 +1,45 @@
 @layer base {
   .title {
-    @apply !font-heading !font-black !text-5xl sm:!text-6xl !text-gray-100 !mb-6 !mt-4 leading-10;
+    @apply !mb-6 !mt-4 !font-heading !text-5xl !font-black leading-10 !text-gray-100 sm:!text-6xl;
   }
 
   .h1,
   .prose h1 {
-    @apply font-heading font-bold text-4xl sm:text-5xl text-gray-100 my-4;
+    @apply mb-4 mt-6 font-heading text-4xl font-bold text-gray-100 sm:text-5xl;
   }
 
   .h2,
   .prose h2 {
-    @apply font-heading font-bold text-3xl sm:text-4xl text-gray-100 my-4;
+    @apply mb-4 mt-6 font-heading text-3xl font-bold text-gray-100 sm:text-4xl;
   }
 
   .h3,
   .prose h3 {
-    @apply font-heading font-bold text-2xl sm:text-3xl text-gray-100 my-4;
+    @apply mb-4 mt-6 font-heading text-2xl font-bold text-gray-100 sm:text-3xl;
   }
 
   .h4,
   .prose h4 {
-    @apply font-heading font-bold text-xl sm:text-2xl text-gray-100 my-4;
+    @apply mb-4 mt-6 font-heading text-xl font-bold text-gray-100 sm:text-2xl;
   }
 
   .h5,
   .prose h5 {
-    @apply font-heading font-bold text-lg sm:text-xl text-gray-100 my-4;
+    @apply mb-4 mt-6 font-heading text-lg font-bold text-gray-100 sm:text-xl;
   }
 
   .large {
-    @apply font-body text-lg sm:text-xl text-gray-200;
+    @apply mb-2 font-body text-lg text-gray-200 sm:text-xl;
   }
 
   .body,
   .prose * {
-    @apply font-body text-base text-gray-200 mb-2;
+    @apply mb-2 font-body text-base text-gray-200;
   }
 
   .small,
   .prose small {
-    @apply font-body text-sm text-gray-200 uppercase font-thin;
+    @apply mb-2 font-body text-sm font-thin uppercase text-gray-200;
   }
 
   .container {
@@ -48,5 +48,5 @@
 }
 
 .prose {
-  @apply leading-relaxed max-w-prose mx-auto;
+  @apply max-w-prose leading-relaxed;
 }

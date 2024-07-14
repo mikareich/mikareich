@@ -7,13 +7,14 @@ import "@fontsource/space-mono";
 import "@/styles/global.css";
 
 import NavBar from "@/components/NavBar";
-import { ViewTransitions } from "astro:transitions";
+import { fade, ViewTransitions } from "astro:transitions";
 import Footer from "@/components/Footer.astro";
+import type { CollectionEntry } from "astro:content";
+import TagList from "@/components/TagList.astro";
 
-const DEFAULT_DESCRIPTION =
-  "Hi, I'm Mika Reich, an 18-year-old student from Germany. Ever since I was 12, I've been passionately coding web applications and much more.";
+type Props = CollectionEntry<"posts">["data"];
 
-const { title, description = DEFAULT_DESCRIPTION, keywords } = Astro.props;
+const { title, description, tags, published } = Astro.props;
 ---
 
 <html lang="en">
@@ -21,23 +22,56 @@ const { title, description = DEFAULT_DESCRIPTION, keywords } = Astro.props;
     <ViewTransitions />
 
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>Mika Reich | {title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Mika Reich" />
-    {keywords && <meta name="keywords" content={keywords} />}
   </head>
 
   <body
-    class="min-h-[100dvh] flex flex-col bg-gray-400 text-gray-200 font-body"
+    class="container flex min-h-dvh flex-col gap-5 bg-gray-400 font-body text-gray-200 sm:gap-10"
   >
-    <div class="container flex-1">
-      <NavBar client:load />
+    <NavBar client:only="react" />
 
-      <slot />
+    <div>
+      <header class="grid grid-rows-2 gap-x-5 sm:h-72 lg:gap-x-20">
+        <h1 class="title mt-1 self-end">
+          {title}
+        </h1>
+
+        <h3
+          transition:persist="description"
+          class="h3 m-0 w-full font-thin text-gray-200"
+        >
+          {description}
+        </h3>
+      </header>
+
+      <div class="flex flex-wrap gap-4 border-b border-gray-100/10 pb-4">
+        <TagList tags={tags} />
+
+        <time
+          class="small ml-auto text-gray-200"
+          datetime={published.toDateString()}
+        >
+          {
+            published.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }
+        </time>
+      </div>
     </div>
+
+    <main class="prose">
+      <slot />
+    </main>
+
+    <span class="mt-auto"></span>
 
     <Footer />
   </body>

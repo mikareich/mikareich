@@ -1,0 +1,74 @@
+[
+  {
+    "name": "CSS",
+    "path": "/skills/css.svg"
+  },
+  {
+    "name": "Docker",
+    "path": "/skills/docker.svg"
+  },
+  {
+    "name": "Figma",
+    "path": "/skills/figma.svg"
+  },
+  {
+    "name": "Firebase",
+    "path": "/skills/firebase.svg"
+  },
+  {
+    "name": "Git",
+    "path": "/skills/git.svg"
+  },
+  {
+    "name": "GraphQL",
+    "path": "/skills/graphql.svg"
+  },
+  {
+    "name": "HTML",
+    "path": "/skills/html.svg"
+  },
+  {
+    "name": "JavaScript",
+    "path": "/skills/javascript.svg"
+  },
+  {
+    "name": "Jest",
+    "path": "/skills/jest.svg"
+  },
+  {
+    "name": "MongoDB",
+    "path": "/skills/mongodb.svg"
+  },
+  {
+    "name": "NextJS",
+    "path": "/skills/nextjs.svg"
+  },
+  {
+    "name": "NodeJS",
+    "path": "/skills/nodejs.svg"
+  },
+  {
+    "name": "NPM",
+    "path": "/skills/npm.svg"
+  },
+  {
+    "name": "Python",
+    "path": "/skills/python.svg"
+  },
+  {
+    "name": "React",
+    "path": "/skills/react.svg"
+  },
+  {
+    "name": "TailwindCSS",
+    "path": "/skills/tailwindcss.svg"
+  },
+  {
+    "name": "TypeScript",
+    "path": "/skills/typescript.svg"
+  },
+  {
+    "name": "Vue",
+    "path": "/skills/vue.svg"
+  }
+]

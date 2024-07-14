@@ -22,7 +22,7 @@ const skillPath = skillMap.find((skill) => skill.name === skillName)?.path;
 if (!skillPath) throw new Error(`Skill "${skillName}" not found in skill map`);
 ---
 
-<div class="flex gap-2 text-gray-100 items-center">
+<div class="flex items-center gap-2 text-gray-100">
   <Image
     src={skillPath}
     alt={skillName}

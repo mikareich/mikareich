@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const props = {
+  pageTitle: "Page not found.",
+  metaDescription: "Page not found.",
+  heroTitle: "Page not found.",
+  heroDescription: "Are you sure you're in the right place?",
+  heroImage: "/error.svg",
+} satisfies Parameters<typeof BaseLayout>[0];
+---
+
+<BaseLayout {...props} />

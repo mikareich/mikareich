@@ -1,5 +1,5 @@
-import skillMap from "../../public/data/skills.json";
-import projects from "../../public/data/projects.json";
+import skillMap from "../content/data/skills.json";
+import projects from "../content/data/projects.json";
 
 export { skillMap, projects };
 

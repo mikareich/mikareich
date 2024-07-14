@@ -1,0 +1,44 @@
+---
+import { projects } from "@/lib/utils";
+import Skill from "../Skill.astro";
+---
+
+<section class="flex flex-wrap gap-5">
+  {
+    projects.map((project, i) => (
+      <div class="h-fit min-w-72 max-w-96 flex-1 space-y-3 border border-gray-100/10 p-4">
+        <header class="flex justify-between">
+          <h5 class="truncate text-xl font-medium text-gray-100">
+            {project.title}
+          </h5>
+          <span class="text-blue-200">{i.toString().padStart(2, "0")}</span>
+        </header>
+
+        <div>
+          <p class="small">Description</p>
+          <p class="font-medium text-gray-100">{project.description}</p>
+        </div>
+
+        <div>
+          <p class="small">Technologies</p>
+          <div class="flex flex-wrap gap-2 py-1">
+            {project.skills.map((skill) => (
+              <Skill skill={skill} size="small" />
+            ))}
+          </div>
+        </div>
+
+        <a
+          class="highlighted mt-2 block w-fit"
+          href={
+            "websiteUrl" in project ? project.websiteUrl : project.githubRepoURL
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {"websiteUrl" in project ? "Visit Website" : "View Source Code"}
+        </a>
+      </div>
+    ))
+  }
+</section>

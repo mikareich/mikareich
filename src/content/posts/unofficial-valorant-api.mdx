@@ -1,0 +1,149 @@
+---
+title: Unofficial Valorant API
+description: How to work with the game internal API of Riot Games.
+published: 2024-07-14
+tags: [valorant, api, riot-games]
+---
+
+<>
+  {/* 
+    0. Intro
+    1. Create request function
+    2. Auth
+    3. PVP endpoints
+    4. Store endpoints
+    5. Extra: proxy? 
+*/}
+</>
+
+> TL;DR: In this tutorial, we will create a simple tracker and store checker
+> using Node.js + TypeScript. You should have basic knowledge on how to work
+> with Node.js as well as TypeScript, although this project is also completely
+> doable in other programming languages like python (see
+> [github/floaxy](https://github.com/floxay/python-riot-auth)).
+
+Ever wondered where apps like Blitz.gg or any Valorant store checker get their
+data from? They use the _unofficial Riot Games API_. This REST API is used by
+Riot Games for any of their games like _League of Legends_, _Teamfight Tactics_,
+or _Valorant_. They even provide and maintain a public access to this API,
+assuming you have registered your application for an API key. In order to
+preserve the game's integrity, the official layer of the API is very limited
+which makes it virtually impossible to use in trackers or store checkers... and
+thats where the unofficial part of the API takes place.
+
+## Create a request function
+
+Not to start easy, this is the most crucial part of the project: a request
+function that perfectly imitates the Riot Client. If done wrong, all our
+requests get blocked by CloudFlare or Riot Games servers.
+
+With every request the Riot Client makes, it exchanges a few credentials,
+starting with more "low-level" TLS Ciphers up to standard REST Headers. Thats
+why it is impotent to use Node.js and not other JavaScript runtimes like Bun or
+Deno, because its their Fetch / Http API does not support setting TLS Ciphers.
+
+The following TLS Ciphers may change in the future:
+
+```ts
+const CIPHERS = [
+  "TLS_AES_128_GCM_SHA256",
+  "TLS_AES_256_GCM_SHA384",
+  "TLS_CHACHA20_POLY1305_SHA256",
+  "ECDHE-ECDSA-AES128-GCM-SHA256",
+  "ECDHE-RSA-AES128-GCM-SHA256",
+  "ECDHE-ECDSA-AES256-GCM-SHA384",
+  "ECDHE-RSA-AES256-GCM-SHA384",
+  "ECDHE-ECDSA-CHACHA20-POLY1305",
+  "ECDHE-RSA-CHACHA20-POLY1305",
+  "ECDHE-RSA-AES128-SHA",
+  "ECDHE-RSA-AES256-SHA",
+  "AES128-GCM-SHA256",
+  "AES256-GCM-SHA384",
+  "AES128-SHA",
+  "AES256-SHA",
+];
+```
+
+Next up: the HTTPS agent. For this, you can use the built-in `node:https`
+package or something like
+[https-proxy-agent](https://www.npmjs.com/package/https-proxy-agent) if you also
+want to use a proxy server:
+
+```ts
+import https from "node:https";
+
+const HTTPS_OPTIONS = {
+  ciphers: CIPHERS.join(":"),
+  honorCipherOrder: true,
+  minVersion: "TLSv1.3",
+  rejectUnauthorized: false,
+  maxCachedSessions: 0,
+} satisfies https.AgentOptions;
+
+const HTTPS_AGENT = new https.Agent(HTTPS_OPTIONS);
+```
+
+Finally, we have to set the right request headers. Because we will use
+[node-fetch](https://www.npmjs.com/package/node-fetch), we have to use their
+Header class too:
+
+```ts
+import { Headers } from "node-fetch";
+
+const RIOT_USER_AGENT =
+  "RiotClient/87.0.2.1547.3551 rso-auth (Windows;10;;Professional, x64)";
+
+const HEADERS = new Headers();
+headers.set("User-Agent", RIOT_USER_AGENT);
+headers.set("Content-Type", "application/json"); // endpoint-specific, but we mostly expect an json object as response
+```
+
+With this, we can create the request function. It should take the request
+method, url and body as parameters and return a serialized JSON object of the
+response if it was successful.
+
+```ts
+import fetch from "node-fetch";
+
+function request(method: string, url: string, body: string) {
+  // execute request
+  const response = await fetch(url, {
+    method,
+    body,
+    headers: HEADERS,
+    agent: HTTPS_AGENT,
+  });
+
+  // validate response
+  if (response.status >= 400) throw new Error("Bad Request");
+
+  let data = await response.text();
+
+  // transform response if possible
+  const isJSON = headers.get("content-type")?.includes("application/json");
+  if (isJSON) data = JSON.parse(data);
+
+  return {
+    headers: response.headers,
+    status: response.status,
+    data,
+  };
+}
+```
+
+Now we have a working request function. Nice! As you can see, we are not limited
+to Riot Games related requests as long as the server doesn't care about the Riot
+Games User-Agent and Https Agent. Try making requests to
+[jsonplaceholder.typicode.com](https://jsonplaceholder.typicode.com) to see if
+it works.
+
+## The Auth Flow
+
+The Auth Flow for the Riot Games API is pretty annoying because it can change
+anytime and unexpectedly. Unfortunately, it is necessary to gather the auth
+tokens we need to make most other request.
+
+I will only cover the authentication for accounts without Multi-Factor-Auth, if
+you need to enable this, see implementations like
+[github/floaxy](https://github.com/floxay/python-riot-auth) or
+[github/ohlunaa](https://github.com/ohlunaaa/Valorant-auth).

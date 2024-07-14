@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./src/**/*.astro", "./src/**/*.tsx"],
+  content: ["./src/**/*.astro", "./src/**/*.tsx", "./src/**/*.mdx"],
   theme: {
     colors: {
       gray: {
@@ -14,7 +14,7 @@ const config: Config = {
         "100": "#b0bce9",
         "200": "#7c90db",
         "300": "#4a5683",
-        "400": "#191d2c",
+        "400": "#0f131d",
       },
       transparent: "transparent",
     },
