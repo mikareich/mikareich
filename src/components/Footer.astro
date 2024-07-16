@@ -6,7 +6,12 @@ const CURRENT_YEAR = new Date().getFullYear();
 
 <footer class="small flex gap-8 border-t border-gray-300 py-10">
   <span class="mr-auto truncate">Mika Reich &horbar; {CURRENT_YEAR}</span>
-  <a class="highlighted truncate" href={socials.github}>GitHub</a>
-  <a class="highlighted truncate" href={`mailto:${socials.email}`}>Email</a>
-  <a class="highlighted truncate" href={socials.discord}>Discord</a>
+
+  <a class="highlighted truncate max-sm:hidden" href={socials.github}>GitHub</a>
+  <a class="highlighted truncate max-sm:hidden" href={`mailto:${socials.email}`}
+    >Email</a
+  >
+  <a class="highlighted truncate max-sm:hidden" href={socials.discord}
+    >Discord</a
+  >
 </footer>

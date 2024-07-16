@@ -11,6 +11,8 @@ import { ViewTransitions } from "astro:transitions";
 import Footer from "@/components/Footer.astro";
 import type { CollectionEntry } from "astro:content";
 import TagList from "@/components/TagList.astro";
+import Comments from "@/components/Comments.tsx";
+import OnThisPage from "@/components/OnThisPage.astro";
 
 type Props = CollectionEntry<"posts">["data"] & {
   headings: { slug: string; text: string }[];
@@ -70,32 +72,23 @@ const { title, description, tags, published, headings, id } = Astro.props;
       </div>
     </div>
 
-    <main class="flex justify-between">
-      <article class="prose">
-        <slot />
-      </article>
+    <main class="flex justify-between gap-4">
+      <div class="max-w-prose overflow-hidden">
+        <details class="max-lg:mb-4 lg:hidden">
+          <summary class="large m-0 text-gray-100"> On this page </summary>
+          <OnThisPage {...{ headings, id, description }} />
+        </details>
 
-      <aside class="sticky top-5 h-min max-w-72">
-        <h2 class="large text-gray-100">On this page</h2>
-        <p class="mb-2">{description}</p>
-        <ol class="mb-10 space-y-4">
-          {
-            headings.map(({ slug, text }) => (
-              <li class="truncate">
-                <a class="highlighted truncate" href={`#${slug}`}>
-                  {text}
-                </a>
-              </li>
-            ))
-          }
-        </ol>
+        <article class="prose mb-8">
+          <slot />
+        </article>
 
-        <a
-          class="small"
-          href={`https://github.com/mikareich/portfolio/edit/main/src/content/posts/${id}`}
-          >Edit this page on GitHub
-        </a>
-      </aside>
+        <Comments postId={id} client:only="react" />
+      </div>
+
+      <div class="sticky top-5 h-min max-w-72 overflow-hidden max-lg:hidden">
+        <OnThisPage {...{ headings, id, description }} />
+      </div>
     </main>
 
     <span class="mt-auto"></span>

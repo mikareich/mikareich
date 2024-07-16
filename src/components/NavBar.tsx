@@ -1,4 +1,4 @@
-import { router } from "@/lib/utils";
+import { router, socials } from "@/lib/utils";
 import { useAnimate, type AnimationSequence } from "framer-motion";
 import Logo from "./Logo";
 import { useState, useMemo } from "react";
@@ -77,9 +77,20 @@ export default function NavBar() {
         ref={drawerScope}
         className="fixed left-0 top-0 z-10 hidden h-screen w-screen bg-gray-400/50 backdrop-blur-3xl sm:hidden"
       >
-        <ol className="mx-auto flex h-full w-fit flex-col justify-center gap-4">
-          {links}
-        </ol>
+        <div className="mx-auto flex h-full w-fit flex-col justify-center">
+          <ol className="space-y-4">
+            {links}
+
+            <p className="small !mt-8">Socials</p>
+            {Object.entries(socials).map(([name, link]) => (
+              <li key={name} className="large">
+                <a href={link} className="highlighted">
+                  {name}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
       </aside>
     </>
   );

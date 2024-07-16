@@ -7,7 +7,6 @@ import Code from "@/components/content/Code.astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import Preformatted from "@/components/content/Preformatted.astro";
-import React from "react";
 import { headingFactory } from "@/components/content/headingFactory";
 
 export async function getStaticPaths() {
@@ -31,11 +30,7 @@ const components = {
   blockquote: Blockqoute,
   pre: Preformatted,
   code: Code,
-  h1: headingFactory(1, headings),
-  h2: headingFactory(2, headings),
-  h3: headingFactory(3, headings),
-  h4: headingFactory(4, headings),
-  h5: headingFactory(5, headings),
+  ...headingFactory(headings),
 };
 
 const layoutProps = { ...entry.data, headings, id: entry.id };

@@ -48,5 +48,5 @@
 }
 
 .prose {
-  @apply max-w-prose leading-relaxed;
+  @apply overflow-hidden leading-relaxed;
 }
