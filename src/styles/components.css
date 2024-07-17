@@ -1,0 +1,88 @@
+@layer components {
+  /* Card component */
+
+  .card {
+    @apply border border-gray-100/10 bg-blue-400 p-4;
+  }
+
+  /* List component */
+
+  .ol,
+  .prose ol {
+    list-style-type: decimal;
+    counter-reset: list-counter -1;
+    list-style-position: inside;
+
+    li {
+      counter-increment: list-counter;
+      &::marker {
+        @apply text-blue-200;
+        content: counter(list-counter, decimal-leading-zero) " ";
+      }
+    }
+  }
+
+  .ul,
+  .prose ul {
+    list-style-position: inside;
+
+    li {
+      &::marker {
+        @apply font-heading text-blue-200;
+        content: "-> ";
+      }
+    }
+  }
+
+  /* prose component */
+  .prose {
+    h1 {
+      @apply h1;
+    }
+
+    h2 {
+      @apply h2;
+    }
+
+    h3 {
+      @apply h3;
+    }
+
+    h4 {
+      @apply h4;
+    }
+
+    h5 {
+      @apply h5;
+    }
+
+    p {
+      @apply body;
+    }
+
+    small {
+      @apply small;
+    }
+
+    a {
+      @apply highlighted;
+    }
+
+    blockquote {
+      @apply blockqoute;
+    }
+
+    pre {
+      @apply pre !bg-blue-400;
+
+      code {
+        background-color: transparent !important;
+        padding: unset !important;
+      }
+    }
+
+    code {
+      @apply code;
+    }
+  }
+}

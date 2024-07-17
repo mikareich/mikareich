@@ -7,8 +7,8 @@ type CommentProps = {
 };
 
 export default function Comments({ postId }: CommentProps) {
-  const [username, setUsername] = useState("Mika Reich");
-  const [comment, setComment] = useState("comment");
+  const [username, setUsername] = useState("");
+  const [comment, setComment] = useState("");
 
   const [comments, setComments] = useState<Comment[]>([]);
 
@@ -39,17 +39,14 @@ export default function Comments({ postId }: CommentProps) {
   return (
     <section className="max-w-prose space-y-8">
       <p className="large text-gray-100">
-        What other people are saying about this post...
+        What do you think? Leave a comment below!
       </p>
 
       <div className="mb-4 space-y-4">
         {comments
           .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
           .map((comment) => (
-            <div
-              key={comment.id}
-              className="border border-gray-100/10 bg-blue-400 p-4"
-            >
+            <div key={comment.id} className="card">
               <header className="flex items-baseline gap-4">
                 <h5 className="large m-0 text-blue-200">@{comment.username}</h5>
                 <time className="small">
@@ -61,14 +58,7 @@ export default function Comments({ postId }: CommentProps) {
           ))}
       </div>
 
-      <p className="large text-gray-100">
-        What do you think? Leave your thoughts below...
-      </p>
-
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-4 border border-gray-100/10 p-4"
-      >
+      <form onSubmit={handleSubmit} className="card space-y-4 bg-transparent">
         <label htmlFor="username" className="block space-y-1">
           <span className="small block">Username</span>
           <input
@@ -79,7 +69,7 @@ export default function Comments({ postId }: CommentProps) {
             maxLength={20}
             value={username}
             onChange={(event) => setUsername(event.target.value)}
-            className="border border-gray-100/10 bg-blue-400 px-4 py-2"
+            className="card px-4 py-2"
           />
         </label>
 

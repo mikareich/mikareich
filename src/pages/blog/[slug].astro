@@ -1,12 +1,9 @@
 ---
 import Highlighted from "@/components/content/Highlighted.astro";
-import Blockqoute from "@/components/content/Blockqoute.astro";
 import PostLayout from "@/layouts/PostLayout.astro";
-import Code from "@/components/content/Code.astro";
 
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
-import Preformatted from "@/components/content/Preformatted.astro";
 import { headingFactory } from "@/components/content/headingFactory";
 
 export async function getStaticPaths() {
@@ -27,9 +24,6 @@ const { Content, headings } = await entry.render();
 
 const components = {
   strong: Highlighted,
-  blockquote: Blockqoute,
-  pre: Preformatted,
-  code: Code,
   ...headingFactory(headings),
 };
 

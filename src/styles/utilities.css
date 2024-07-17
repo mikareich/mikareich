@@ -1,0 +1,84 @@
+@layer utilities {
+  /* highlighted util */
+  .highlighted,
+  .highlighted-full {
+    @apply relative cursor-pointer whitespace-nowrap text-gray-100;
+  }
+
+  .highlighted::after,
+  .highlighted-full::after {
+    @apply absolute bottom-1 left-0 -z-10 h-2 w-full bg-blue-300 transition-all;
+    content: "";
+  }
+
+  .highlighted-full::after {
+    @apply !h-full;
+  }
+
+  .highlighted:hover::after {
+    @apply h-full;
+  }
+
+  /* typography utils */
+
+  .title,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5 {
+    @apply mb-4 mt-6 font-heading text-gray-100;
+  }
+
+  .title {
+    @apply mb-6 mt-4 text-5xl font-black leading-10 sm:text-6xl;
+  }
+
+  .h1 {
+    @apply text-4xl font-bold sm:text-5xl;
+  }
+
+  .h2 {
+    @apply text-3xl font-bold sm:text-4xl;
+  }
+
+  .h3 {
+    @apply text-2xl font-bold sm:text-3xl;
+  }
+
+  .h4 {
+    @apply text-xl font-bold sm:text-2xl;
+  }
+
+  .h5 {
+    @apply text-lg font-bold sm:text-xl;
+  }
+
+  .large {
+    @apply mb-2 font-body text-lg sm:text-xl;
+  }
+
+  .body {
+    @apply mb-2 font-body text-base;
+  }
+
+  .small {
+    @apply mb-2 font-body text-sm font-thin uppercase;
+  }
+
+  .blockqoute {
+    @apply card mb-4 mt-2 px-4 py-3 italic;
+  }
+
+  .pre {
+    @apply card mb-4 mt-2 overflow-auto p-4;
+  }
+
+  .code {
+    @apply bg-blue-400;
+  }
+
+  .code {
+    @apply bg-blue-200/50 px-1;
+  }
+}

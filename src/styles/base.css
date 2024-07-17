@@ -1,0 +1,38 @@
+@layer base {
+  html {
+    scrollbar-gutter: stable both-edges;
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px;
+    @apply text-gray-200;
+  }
+
+  ::selection {
+    @apply bg-blue-300;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2.5 bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-none bg-blue-300;
+  }
+
+  details {
+    summary {
+      @apply w-fit;
+    }
+
+    summary::marker {
+      @apply select-none font-heading text-lg text-gray-200;
+    }
+
+    &[open] summary::marker {
+      content: "[hide]";
+    }
+
+    &:not([open]) summary::marker {
+      content: "[show]";
+    }
+  }
+}

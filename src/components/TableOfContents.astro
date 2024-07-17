@@ -10,7 +10,7 @@ const { headings, id, description } = Astro.props;
 
 <aside class="w-full space-y-2 overflow-hidden">
   <p>{description}</p>
-  <ol class="space-y-4">
+  <ol class="ol space-y-4">
     {
       headings.map(({ slug, text }) => (
         <li class="truncate">

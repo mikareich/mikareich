@@ -49,7 +49,7 @@ export default function NavBar() {
     <>
       <nav className="z-30 mt-10 flex items-center justify-between gap-4 py-5">
         <Logo />
-        <ol className="hidden gap-4 overflow-hidden sm:flex">{links}</ol>
+        <ol className="ol hidden gap-4 overflow-hidden sm:flex">{links}</ol>
         <button
           ref={btnScope}
           className="relative h-6 w-6 sm:hidden"
@@ -78,7 +78,7 @@ export default function NavBar() {
         className="fixed left-0 top-0 z-10 hidden h-screen w-screen bg-gray-400/50 backdrop-blur-3xl sm:hidden"
       >
         <div className="mx-auto flex h-full w-fit flex-col justify-center">
-          <ol className="space-y-4">
+          <ol className="ol space-y-4">
             {links}
 
             <p className="small !mt-8">Socials</p>

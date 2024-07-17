@@ -1,48 +1,7 @@
-@import "./highlighted.css";
-@import "./lists.css";
-@import "./typography.css";
+@import "./base.css";
+@import "./components.css";
+@import "./utilities.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-html {
-  scrollbar-gutter: stable both-edges;
-  scroll-behavior: smooth;
-  scroll-padding-top: 20px;
-}
-
-::selection {
-  background-color: theme("colors.blue.300");
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: theme("colors.blue.300");
-  border-radius: 0px;
-}
-
-details {
-  summary {
-    width: fit-content;
-  }
-
-  summary::marker {
-    font-family: theme("fontFamily.heading");
-    color: theme("colors.gray.200");
-    font-size: 16px;
-    user-select: none;
-  }
-
-  &[open] summary::marker {
-    content: "[hide]";
-  }
-
-  &:not([open]) summary::marker {
-    content: "[show]";
-  }
-}
