@@ -75,7 +75,7 @@ export default function NavBar() {
 
       <aside
         ref={drawerScope}
-        className="fixed left-0 top-0 z-10 hidden h-screen w-screen bg-gray-400/50 backdrop-blur-3xl sm:hidden"
+        className="fixed left-0 top-0 z-20 hidden h-screen w-screen bg-gray-400/50 backdrop-blur-3xl sm:hidden"
       >
         <div className="mx-auto flex h-full w-fit flex-col justify-center">
           <ol className="ol space-y-4">
