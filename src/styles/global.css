@@ -25,3 +25,24 @@ html {
   background-color: theme("colors.blue.300");
   border-radius: 0px;
 }
+
+details {
+  summary {
+    width: fit-content;
+  }
+
+  summary::marker {
+    font-family: theme("fontFamily.heading");
+    color: theme("colors.gray.200");
+    font-size: 16px;
+    user-select: none;
+  }
+
+  &[open] summary::marker {
+    content: "[hide]";
+  }
+
+  &:not([open]) summary::marker {
+    content: "[show]";
+  }
+}

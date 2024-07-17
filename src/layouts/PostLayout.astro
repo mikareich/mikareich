@@ -12,7 +12,7 @@ import Footer from "@/components/Footer.astro";
 import type { CollectionEntry } from "astro:content";
 import TagList from "@/components/TagList.astro";
 import Comments from "@/components/Comments.tsx";
-import OnThisPage from "@/components/OnThisPage.astro";
+import TableOfContents from "@/components/TableOfContents.astro";
 
 type Props = CollectionEntry<"posts">["data"] & {
   headings: { slug: string; text: string }[];
@@ -20,6 +20,8 @@ type Props = CollectionEntry<"posts">["data"] & {
 };
 
 const { title, description, tags, published, headings, id } = Astro.props;
+
+const TOCProps = { headings, id, description };
 ---
 
 <html lang="en">
@@ -75,8 +77,10 @@ const { title, description, tags, published, headings, id } = Astro.props;
     <main class="flex justify-between gap-4">
       <div class="max-w-prose overflow-hidden">
         <details class="max-lg:mb-4 lg:hidden">
-          <summary class="large m-0 text-gray-100"> On this page </summary>
-          <OnThisPage {...{ headings, id, description }} />
+          <summary class="h4 cursor-pointer text-gray-100">
+            <span class="highlighted">On this page </span>
+          </summary>
+          <TableOfContents {...TOCProps} />
         </details>
 
         <article class="prose mb-8">
@@ -87,7 +91,8 @@ const { title, description, tags, published, headings, id } = Astro.props;
       </div>
 
       <div class="sticky top-5 h-min max-w-72 overflow-hidden max-lg:hidden">
-        <OnThisPage {...{ headings, id, description }} />
+        <p class="large mb-2 text-gray-100">On this page</p>
+        <TableOfContents {...TOCProps} />
       </div>
     </main>
 
