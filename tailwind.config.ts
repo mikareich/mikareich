@@ -1,8 +1,10 @@
 import type { Config } from "tailwindcss";
-import plugin from "tailwindcss";
 
 const config: Config = {
-  content: ["./src/**/*.astro", "./src/**/*.tsx", "./src/**/*.mdx"],
+  content: [
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     colors: {
       gray: {
@@ -36,5 +38,4 @@ const config: Config = {
     },
   },
 };
-
 export default config;

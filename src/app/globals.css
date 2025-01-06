@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scrollbar-gutter: stable both-edges;
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+  @apply text-gray-200 bg-gray-400;
+}
+
+::selection {
+  @apply bg-blue-300;
+}
+
+::-webkit-scrollbar {
+  @apply w-2.5 bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-none bg-blue-300;
+}
+
+details {
+  summary {
+    @apply w-fit;
+  }
+
+  summary::marker {
+    @apply select-none font-heading text-lg text-gray-200;
+  }
+
+  &[open] summary::marker {
+    content: "[hide] ";
+  }
+
+  &:not([open]) summary::marker {
+    content: "[show] ";
+  }
+}
+
+@layer components {
+  .card {
+    @apply border border-gray-100/10 bg-blue-400 p-4;
+  }
+
+  .highlighted,
+  .highlighted-full {
+    @apply relative z-10 cursor-pointer whitespace-nowrap text-gray-100;
+  }
+
+  .highlighted::after,
+  .highlighted-full::after {
+    @apply absolute bottom-1 left-0 -z-10 h-2 w-full bg-blue-300 transition-all;
+    content: "";
+  }
+
+  .highlighted-full::after {
+    @apply !h-full;
+  }
+
+  .highlighted:hover::after {
+    @apply h-full;
+  }
+
+  .ol,
+  .prose ol {
+    list-style-type: decimal;
+    counter-reset: list-counter -1;
+    list-style-position: inside;
+
+    li {
+      counter-increment: list-counter;
+      &::marker {
+        @apply text-blue-200;
+        content: counter(list-counter, decimal-leading-zero) " ";
+      }
+    }
+  }
+
+  .ul,
+  .prose ul {
+    list-style-position: inside;
+
+    li {
+      &::marker {
+        @apply font-heading text-blue-200;
+        content: "-> ";
+      }
+    }
+  }
+}
+
+.prose {
+  h1 {
+    @apply text-4xl font-bold sm:text-5xl font-heading text-gray-100 mb-4 mt-6;
+  }
+
+  h2 {
+    @apply text-3xl font-bold sm:text-4xl font-heading text-gray-100 mb-4 mt-6;
+  }
+
+  h3 {
+    @apply text-2xl font-bold sm:text-3xl font-heading text-gray-100 mb-4 mt-6;
+  }
+
+  h4 {
+    @apply text-xl font-bold sm:text-2xl font-heading text-gray-100 mb-4 mt-6;
+  }
+
+  h5 {
+    @apply text-lg font-bold sm:text-xl font-heading text-gray-100 mb-4 mt-6;
+  }
+
+  p {
+    @apply mb-2 font-body text-base;
+  }
+
+  small {
+    @apply mb-2 font-body text-sm font-thin uppercase;
+  }
+
+  a {
+    @apply highlighted;
+  }
+
+  blockquote {
+    @apply card mb-4 mt-2 px-4 py-3 italic;
+  }
+
+  pre {
+    @apply card mb-4 mt-2 overflow-auto p-4;
+
+    code {
+      background-color: transparent !important;
+      padding: unset !important;
+    }
+  }
+
+  code {
+    @apply bg-blue-200/50 px-1;
+  }
+}

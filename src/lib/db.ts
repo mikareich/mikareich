@@ -1,7 +1,9 @@
-import { neon } from "@neondatabase/serverless";
-import { drizzle } from "drizzle-orm/neon-http";
+import "dotenv/config";
+import { drizzle } from "drizzle-orm/node-postgres";
 
-const sql = neon(import.meta.env.DATABASE_URL!);
-const db = drizzle(sql);
+const { DATABASE_URL } = process.env;
+if (!DATABASE_URL) throw new Error("Add db url!");
+
+const db = drizzle(DATABASE_URL);
 
 export default db;
