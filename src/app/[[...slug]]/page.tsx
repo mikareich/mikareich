@@ -1,11 +1,20 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Content from '~/components/Content'
+import { PAGES } from '~/content/config'
 import { getFileBySlug } from '~/lib/content'
 import HeroSection from './HeroSection'
 
 type PageProps = {
   params: Promise<{ slug: string }>
+}
+
+export async function generateStaticParams() {
+  const slugs = []
+
+  for (const page of PAGES) slugs.push({ slug: [page.slug.slice(1)] })
+
+  return slugs
 }
 
 export async function generateMetadata({

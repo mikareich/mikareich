@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
+import { POSTS } from '~/content/config'
 import { getFileBySlug } from '~/lib/content'
 import getHeadings from '~/lib/getHeadings'
 import Comments from './Comments'
@@ -10,6 +11,14 @@ import TableOfContents from './TableOfContents'
 
 type PageProps = {
   params: Promise<{ slug: string }>
+}
+
+export async function generateStaticParams() {
+  const slugs = []
+
+  for (const post of POSTS) slugs.push({ slug: post.slug.slice(1) })
+
+  return slugs
 }
 
 export async function generateMetadata({
