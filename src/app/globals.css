@@ -1,6 +1,36 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-gray-100: #fcfffd;
+  --color-gray-200: #d1d1d3;
+  --color-gray-300: #1b1725;
+  --color-gray-400: #050507;
+
+  --color-blue-100: #b0bce9;
+  --color-blue-200: #7c90db;
+  --color-blue-300: #4a5683;
+  --color-blue-400: #0f131d;
+
+  --font-body: "Space Mono", monospace;
+  --font-heading: "Fira Code", monospace;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @variant sm {
+    padding-inline: 2rem;
+  }
+
+  @variant lg {
+    padding-inline: 4rem;
+  }
+
+  @variant xl {
+    padding-inline: 5rem;
+  }
+}
 
 html {
   scrollbar-gutter: stable both-edges;
@@ -121,15 +151,24 @@ details {
   }
 
   a {
-    @apply highlighted;
+    @apply relative z-10 cursor-pointer whitespace-nowrap text-gray-100;
+  }
+
+  a::after {
+    @apply absolute bottom-1 left-0 -z-10 h-2 w-full bg-blue-300 transition-all;
+    content: "";
+  }
+
+  a:hover::after {
+    @apply h-full;
   }
 
   blockquote {
-    @apply card mb-4 mt-2 px-4 py-3 italic;
+    @apply border border-gray-100/10 bg-blue-400 p-4 mb-4 mt-2 px-4 py-3 italic;
   }
 
   pre {
-    @apply card mb-4 mt-2 overflow-auto p-4;
+    @apply border border-gray-100/10 bg-blue-400 p-4 mb-4 mt-2 overflow-auto p-4;
 
     code {
       background-color: transparent !important;
