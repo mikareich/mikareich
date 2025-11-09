@@ -1,29 +1,29 @@
-import { asc, eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
-import { comments } from "~/lib/comments";
-import db from "~/lib/db";
+import { asc, eq } from 'drizzle-orm'
+import { revalidatePath } from 'next/cache'
+import { comments } from '~/lib/comments'
+import db from '~/lib/db'
 
 type CommentProps = {
-  postId: string;
-};
+  postId: string
+}
 
 const postComment = (postId: string) => async (formData: FormData) => {
-  "use server";
+  'use server'
 
-  const username = formData.get("username")?.toString();
-  const comment = formData.get("comment")?.toString();
-  if (!username || !comment) return;
+  const username = formData.get('username')?.toString()
+  const comment = formData.get('comment')?.toString()
+  if (!username || !comment) return
 
-  await db.insert(comments).values({ username, comment, postId });
-  revalidatePath(`/blog/${postId}`);
-};
+  await db.insert(comments).values({ comment, postId, username })
+  revalidatePath(`/blog/${postId}`)
+}
 
 export default async function Comments({ postId }: CommentProps) {
   const allComments = await db
     .select()
     .from(comments)
     .where(eq(comments.postId, postId))
-    .orderBy(asc(comments.createdAt));
+    .orderBy(asc(comments.createdAt))
 
   return (
     <section className="max-w-prose space-y-8">
@@ -33,13 +33,13 @@ export default async function Comments({ postId }: CommentProps) {
 
       <div className="mb-4 space-y-4">
         {allComments.map((comment) => (
-          <div key={comment.id} className="card">
+          <div className="card" key={comment.id}>
             <header className="flex items-baseline gap-4">
               <h5 className="text-blue-200 text-lg sm:text-xl">
                 @{comment.username}
               </h5>
               <time className="mb-2 font-thin text-sm uppercase">
-                {comment.createdAt.toLocaleDateString("en-EN")}
+                {comment.createdAt.toLocaleDateString('en-EN')}
               </time>
             </header>
             <p>{comment.comment}</p>
@@ -51,35 +51,35 @@ export default async function Comments({ postId }: CommentProps) {
         action={postComment(postId)}
         className="card space-y-4 bg-transparent"
       >
-        <label htmlFor="username" className="block space-y-1">
+        <label className="block space-y-1" htmlFor="username">
           <span className="mb-2 block font-thin text-sm uppercase">
             Username
           </span>
           <input
-            type="text"
+            className="card px-4 py-2"
             id="username"
+            maxLength={20}
             name="username"
             required
-            maxLength={20}
-            className="card px-4 py-2"
+            type="text"
           />
         </label>
 
-        <label htmlFor="comment" className="block space-y-1">
+        <label className="block space-y-1" htmlFor="comment">
           <span className="mb-2 block font-thin text-sm uppercase">
             Comment
           </span>
           <textarea
-            required
-            name="comment"
             className="w-full border border-gray-100/10 bg-blue-400 px-4 py-2"
+            name="comment"
+            required
           />
         </label>
 
-        <button type="submit" className="bg-blue-200 px-4 py-2 text-gray-100">
+        <button className="bg-blue-200 px-4 py-2 text-gray-100" type="submit">
           Submit
         </button>
       </form>
     </section>
-  );
+  )
 }

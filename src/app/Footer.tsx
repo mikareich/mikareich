@@ -1,7 +1,7 @@
-import { SOCIALS } from "~/content/config";
+import { SOCIALS } from '~/content/config'
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
 
   return (
     <footer className="small flex gap-8 border-gray-300 border-t py-10">
@@ -20,5 +20,5 @@ export default function Footer() {
         Discord
       </a>
     </footer>
-  );
+  )
 }

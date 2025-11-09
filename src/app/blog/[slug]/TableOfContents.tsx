@@ -1,10 +1,10 @@
-import type { Headings } from "~/lib/getHeadings";
+import type { Headings } from '~/lib/getHeadings'
 
 type TocProps = {
-  headings: Headings;
-  id: string;
-  description: string;
-};
+  headings: Headings
+  id: string
+  description: string
+}
 
 export default function TableOfContents({
   description,
@@ -16,7 +16,7 @@ export default function TableOfContents({
       <p>{description}</p>
       <ol className="ol space-y-4">
         {headings.map(({ slug, content }) => (
-          <li key={slug} className="truncate">
+          <li className="truncate" key={slug}>
             <a className="highlighted truncate" href={`#${slug}`}>
               {content}
             </a>
@@ -31,5 +31,5 @@ export default function TableOfContents({
         Edit this page on GitHub
       </a>
     </aside>
-  );
+  )
 }

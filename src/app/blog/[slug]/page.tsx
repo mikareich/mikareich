@@ -1,36 +1,39 @@
-import { getFileBySlug } from "~/lib/content";
-import { notFound } from "next/navigation";
-import HeroSection from "./HeroSection";
-import TableOfContents from "./TableOfContents";
-import getHeadings from "~/lib/getHeadings";
-import Content from "./PostContent";
-import Comments from "./Comments";
-import { Suspense } from "react";
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
+import { getFileBySlug } from '~/lib/content'
+import getHeadings from '~/lib/getHeadings'
+import Comments from './Comments'
+import HeroSection from './HeroSection'
+import Content from './PostContent'
+import TableOfContents from './TableOfContents'
 
 type PageProps = {
-  params: Promise<{ slug: string }>;
-};
+  params: Promise<{ slug: string }>
+}
 
-export async function generateMetadata({ params }: PageProps) {
-  const { slug } = await params;
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params
 
-  const file = await getFileBySlug("post", slug ? `/${slug}` : "/");
-  if (!file) notFound();
+  const file = await getFileBySlug('post', slug ? `/${slug}` : '/')
+  if (!file) notFound()
 
   return {
-    title: `Mika Reich | ${file.frontmatter.hero.title}`,
     description: file.frontmatter.hero.subtitle,
-  };
+    title: `Mika Reich | ${file.frontmatter.hero.title}`,
+  }
 }
 
 export default async function Post({ params }: PageProps) {
-  const { slug } = await params;
+  const { slug } = await params
 
-  const file = await getFileBySlug("post", slug ? `/${slug}` : "/");
-  if (!file) notFound();
+  const file = await getFileBySlug('post', slug ? `/${slug}` : '/')
+  if (!file) notFound()
 
-  const { frontmatter, source, components } = file;
-  const headings = getHeadings(source);
+  const { frontmatter, source, components } = file
+  const headings = getHeadings(source)
 
   return (
     <>
@@ -45,17 +48,17 @@ export default async function Post({ params }: PageProps) {
             </summary>
 
             <TableOfContents
-              id={`${slug}.mdx`}
-              headings={headings}
               description={frontmatter.hero.subtitle}
+              headings={headings}
+              id={`${slug}.mdx`}
             />
           </details>
 
           {/* Actual Content */}
           <Content
-            source={source}
             components={components}
             headings={headings}
+            source={source}
           />
 
           <Suspense fallback="Loading Comments...">
@@ -71,12 +74,12 @@ export default async function Post({ params }: PageProps) {
           </p>
 
           <TableOfContents
-            id={`${slug}.mdx`}
-            headings={headings}
             description={frontmatter.hero.subtitle}
+            headings={headings}
+            id={`${slug}.mdx`}
           />
         </div>
       </main>
     </>
-  );
+  )
 }

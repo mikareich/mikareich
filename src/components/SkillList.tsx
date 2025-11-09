@@ -1,13 +1,13 @@
-import { SKILLS } from "~/content/config";
-import Skill from "./Skill";
+import { SKILLS } from '~/content/config'
+import Skill from './Skill'
 
 export default function SkillList() {
   return (
     <section className="line-clamp-5 flex flex-wrap gap-8">
       {SKILLS.map(({ name }) => (
-        <Skill key={name} skill={name} size="large" />
+        <Skill key={name} size="large" skill={name} />
       ))}
       <span className="small my-auto">And many more...</span>
     </section>
-  );
+  )
 }

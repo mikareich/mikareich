@@ -1,30 +1,30 @@
-import "./globals.css";
-import { Fira_Code, Space_Mono } from "next/font/google";
-import NavBar from "./NavBar";
-import Footer from "./Footer";
-import type { Metadata } from "next";
-import { ViewTransitions } from "next-view-transitions";
+import './globals.css'
+import type { Metadata } from 'next'
+import { Fira_Code, Space_Mono } from 'next/font/google'
+import { ViewTransitions } from 'next-view-transitions'
+import Footer from './Footer'
+import NavBar from './NavBar'
 
 const headingFont = Fira_Code({
-  weight: "variable",
-  subsets: ["latin"],
-  variable: "--font-heading",
-});
+  subsets: ['latin'],
+  variable: '--font-heading',
+  weight: 'variable',
+})
 
 const bodyFont = Space_Mono({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  variable: "--font-body",
-});
+  subsets: ['latin'],
+  variable: '--font-body',
+  weight: ['400', '700'],
+})
 
-const FONTS = [bodyFont.variable, headingFont.variable].join(" ");
+const FONTS = [bodyFont.variable, headingFont.variable].join(' ')
 
 export const metadata: Metadata = {
-  title: "Mika Reich",
   icons: {
-    icon: "/icons/favicon.ico",
+    icon: '/icons/favicon.ico',
   },
-};
+  title: 'Mika Reich',
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -41,5 +41,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </body>
       </html>
     </ViewTransitions>
-  );
+  )
 }
