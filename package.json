@@ -31,7 +31,8 @@
   "name": "mikareich",
   "scripts": {
     "build": "next build",
-    "check": "biome check --write",
+    "lint": "biome check",
+    "format": "biome check --write --unsafe",
     "dev": "next dev",
     "start": "next start"
   }
