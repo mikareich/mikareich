@@ -1,29 +1,29 @@
-import { asc, eq } from 'drizzle-orm'
-import { revalidatePath } from 'next/cache'
-import { comments } from '~/lib/comments'
-import db from '~/lib/db'
+import { asc, eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
+import { comments } from "~/lib/comments";
+import db from "~/lib/db";
 
 type CommentProps = {
-  postId: string
-}
+  postId: string;
+};
 
 const postComment = (postId: string) => async (formData: FormData) => {
-  'use server'
+  "use server";
 
-  const username = formData.get('username')?.toString()
-  const comment = formData.get('comment')?.toString()
-  if (!username || !comment) return
+  const username = formData.get("username")?.toString();
+  const comment = formData.get("comment")?.toString();
+  if (!username || !comment) return;
 
-  await db.insert(comments).values({ comment, postId, username })
-  revalidatePath(`/blog/${postId}`)
-}
+  await db.insert(comments).values({ comment, postId, username });
+  revalidatePath(`/blog/${postId}`);
+};
 
 export default async function Comments({ postId }: CommentProps) {
   const allComments = await db
     .select()
     .from(comments)
     .where(eq(comments.postId, postId))
-    .orderBy(asc(comments.createdAt))
+    .orderBy(asc(comments.createdAt));
 
   return (
     <section className="max-w-prose space-y-8">
@@ -39,7 +39,7 @@ export default async function Comments({ postId }: CommentProps) {
                 @{comment.username}
               </h5>
               <time className="mb-2 font-thin text-sm uppercase">
-                {comment.createdAt.toLocaleDateString('en-EN')}
+                {comment.createdAt.toLocaleDateString("en-EN")}
               </time>
             </header>
             <p>{comment.comment}</p>
@@ -81,5 +81,5 @@ export default async function Comments({ postId }: CommentProps) {
         </button>
       </form>
     </section>
-  )
+  );
 }

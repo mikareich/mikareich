@@ -1,10 +1,10 @@
-import type { Headings } from '~/lib/getHeadings'
+import type { Headings } from "~/lib/getHeadings";
 
 type TocProps = {
-  headings: Headings
-  id: string
-  description: string
-}
+  headings: Headings;
+  id: string;
+  description: string;
+};
 
 export default function TableOfContents({
   description,
@@ -31,5 +31,5 @@ export default function TableOfContents({
         Edit this page on GitHub
       </a>
     </aside>
-  )
+  );
 }

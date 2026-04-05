@@ -1,28 +1,28 @@
-import { createElement } from 'react'
-import rehypePrettyCode from 'rehype-pretty-code'
-import rehypeSlug from 'rehype-slug'
-import Content from '~/components/Content'
-import type { ComponentMap } from '~/lib/content'
-import type { Headings } from '~/lib/getHeadings'
+import { createElement } from "react";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
+import Content from "~/components/Content";
+import type { ComponentMap } from "~/lib/content";
+import type { Headings } from "~/lib/getHeadings";
 
 type ContentProps = {
-  source: string
-  components: ComponentMap
-  headings: Headings
-}
+  source: string;
+  components: ComponentMap;
+  headings: Headings;
+};
 
 type HeadingProps = {
-  level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-  headings: Headings
-} & React.HTMLAttributes<HTMLHeadingElement>
+  level: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  headings: Headings;
+} & React.HTMLAttributes<HTMLHeadingElement>;
 
 const Heading = ({ level, headings, id, children, ...props }: HeadingProps) => {
-  const index = headings.findIndex((heading) => heading.slug === id)
+  const index = headings.findIndex((heading) => heading.slug === id);
   const indexElement = (
-    <span className="font-heading text-blue-200" style={{ fontSize: 'unset' }}>
-      {index.toString().padStart(2, '0')}{' '}
+    <span className="font-heading text-blue-200" style={{ fontSize: "unset" }}>
+      {index.toString().padStart(2, "0")}{" "}
     </span>
-  )
+  );
 
   const component = createElement(
     level,
@@ -30,10 +30,10 @@ const Heading = ({ level, headings, id, children, ...props }: HeadingProps) => {
     <>
       {indexElement} {children}
     </>,
-  )
+  );
 
-  return component
-}
+  return component;
+};
 
 export default function PostContent({
   source,
@@ -60,7 +60,7 @@ export default function PostContent({
       <Heading {...props} headings={headings} level="h6" />
     ),
     ...customComponents,
-  }
+  };
 
   return (
     <article className="prose mb-8">
@@ -72,7 +72,7 @@ export default function PostContent({
               rehypeSlug,
               [
                 rehypePrettyCode,
-                { keepBackground: false, theme: 'github-dark' },
+                { keepBackground: false, theme: "github-dark" },
               ],
             ],
           },
@@ -80,5 +80,5 @@ export default function PostContent({
         source={source}
       />
     </article>
-  )
+  );
 }

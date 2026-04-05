@@ -1,11 +1,11 @@
-import { Link } from 'next-view-transitions'
-import { POSTS } from '~/content/config'
-import { getFileBySlug } from '~/lib/content'
+import { Link } from "next-view-transitions";
+import { POSTS } from "~/content/config";
+import { getFileBySlug } from "~/lib/content";
 
 export default async function PostList() {
   const posts = await Promise.all(
-    POSTS.map(({ slug }) => getFileBySlug('post', slug)),
-  )
+    POSTS.map(({ slug }) => getFileBySlug("post", slug)),
+  );
 
   return (
     <section className="space-y-10">
@@ -16,7 +16,7 @@ export default async function PostList() {
             key={post.frontmatter.hero.title}
           >
             <span className="row-span-2 row-start-1 self-start text-2xl text-blue-200 max-sm:row-span-4">
-              {i.toString().padStart(2, '0')}
+              {i.toString().padStart(2, "0")}
             </span>
 
             <h2 className="truncate font-heading font-medium text-2xl text-gray-100 sm:whitespace-nowrap">
@@ -47,5 +47,5 @@ export default async function PostList() {
         ),
       )}
     </section>
-  )
+  );
 }

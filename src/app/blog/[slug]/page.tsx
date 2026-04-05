@@ -1,48 +1,48 @@
-import { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import { Suspense } from 'react'
-import { POSTS } from '~/content/config'
-import { getFileBySlug } from '~/lib/content'
-import getHeadings from '~/lib/getHeadings'
-import Comments from './Comments'
-import HeroSection from './HeroSection'
-import Content from './PostContent'
-import TableOfContents from './TableOfContents'
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import { POSTS } from "~/content/config";
+import { getFileBySlug } from "~/lib/content";
+import getHeadings from "~/lib/getHeadings";
+import Comments from "./Comments";
+import HeroSection from "./HeroSection";
+import Content from "./PostContent";
+import TableOfContents from "./TableOfContents";
 
 type PageProps = {
-  params: Promise<{ slug: string }>
-}
+  params: Promise<{ slug: string }>;
+};
 
 export async function generateStaticParams() {
-  const slugs = []
+  const slugs = [];
 
-  for (const post of POSTS) slugs.push({ slug: post.slug.slice(1) })
+  for (const post of POSTS) slugs.push({ slug: post.slug.slice(1) });
 
-  return slugs
+  return slugs;
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params
+  const { slug } = await params;
 
-  const file = await getFileBySlug('post', slug ? `/${slug}` : '/')
-  if (!file) notFound()
+  const file = await getFileBySlug("post", slug ? `/${slug}` : "/");
+  if (!file) notFound();
 
   return {
     description: file.frontmatter.hero.subtitle,
     title: `Mika Reich | ${file.frontmatter.hero.title}`,
-  }
+  };
 }
 
 export default async function Post({ params }: PageProps) {
-  const { slug } = await params
+  const { slug } = await params;
 
-  const file = await getFileBySlug('post', slug ? `/${slug}` : '/')
-  if (!file) notFound()
+  const file = await getFileBySlug("post", slug ? `/${slug}` : "/");
+  if (!file) notFound();
 
-  const { frontmatter, source, components } = file
-  const headings = getHeadings(source)
+  const { frontmatter, source, components } = file;
+  const headings = getHeadings(source);
 
   return (
     <>
@@ -90,5 +90,5 @@ export default async function Post({ params }: PageProps) {
         </div>
       </main>
     </>
-  )
+  );
 }

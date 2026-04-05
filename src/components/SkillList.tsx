@@ -1,5 +1,5 @@
-import { SKILLS } from '~/content/config'
-import Skill from './Skill'
+import { SKILLS } from "~/content/config";
+import Skill from "./Skill";
 
 export default function SkillList() {
   return (
@@ -9,5 +9,5 @@ export default function SkillList() {
       ))}
       <span className="small my-auto">And many more...</span>
     </section>
-  )
+  );
 }

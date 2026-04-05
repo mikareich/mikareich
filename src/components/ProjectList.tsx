@@ -1,5 +1,5 @@
-import { PROJECTS } from '~/content/config'
-import Skill from './Skill'
+import { PROJECTS } from "~/content/config";
+import Skill from "./Skill";
 
 export default function ProjectList() {
   return (
@@ -14,7 +14,7 @@ export default function ProjectList() {
               {project.title}
             </h5>
             <span className="text-blue-200">
-              {i.toString().padStart(2, '0')}
+              {i.toString().padStart(2, "0")}
             </span>
           </header>
 
@@ -35,17 +35,17 @@ export default function ProjectList() {
           <a
             className="highlighted mt-2 block w-fit"
             href={
-              'websiteUrl' in project
+              "websiteUrl" in project
                 ? project.websiteUrl
                 : project.githubRepoURL
             }
             rel="noopener noreferrer"
             target="_blank"
           >
-            {'websiteUrl' in project ? 'Visit Website' : 'View Source Code'}
+            {"websiteUrl" in project ? "Visit Website" : "View Source Code"}
           </a>
         </div>
       ))}
     </section>
-  )
+  );
 }
