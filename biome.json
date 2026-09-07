@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.10/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.12/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -17,9 +17,24 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
       "suspicious": {
         "noUnknownAtRules": "off"
+      },
+      "nursery": {
+        "noTailwindArbitraryValue": "off"
+      },
+      "style": {
+        "useComponentExportOnlyModules": {
+          "level": "on",
+          "options": {
+            "allowExportNames": [
+              "generateMetadata",
+              "generateStaticParams",
+              "metadata"
+            ]
+          }
+        }
       }
     },
     "domains": {
@@ -28,6 +43,12 @@
       "tailwind": "all"
     }
   },
+  "overrides": [
+    {
+      "includes": ["public/**/*.svg"],
+      "formatter": { "enabled": false }
+    }
+  ],
   "css": {
     "parser": {
       "tailwindDirectives": true

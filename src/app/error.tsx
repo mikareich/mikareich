@@ -14,7 +14,7 @@ export default function ErrorPage({ retry }: { retry: () => void }) {
         <p>Looks like an error happened. Please try again.</p>
         <button
           className="bg-blue-200 px-4 py-2 text-gray-100"
-          onClick={() => retry()}
+          onClick={retry}
           type="button"
         >
           Try again
