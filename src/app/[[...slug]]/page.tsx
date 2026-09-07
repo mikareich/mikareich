@@ -5,24 +5,19 @@ import { PAGES } from "~/content/config";
 import { getFileBySlug } from "~/lib/content";
 import HeroSection from "./HeroSection";
 
-type PageProps = {
-  params: Promise<{ slug: string }>;
-};
-
-export async function generateStaticParams() {
-  const slugs = [];
-
-  for (const page of PAGES) slugs.push({ slug: [page.slug.slice(1)] });
-
-  return slugs;
+export function generateStaticParams() {
+  return PAGES.map((page) => ({ slug: page.slug.split("/").filter(Boolean) }));
 }
 
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
+}: PageProps<"/[[...slug]]">): Promise<Metadata> {
   const { slug } = await params;
 
-  const file = await getFileBySlug("page", slug ? `/${slug}` : "/");
+  const file = await getFileBySlug(
+    "page",
+    slug?.length ? `/${slug.join("/")}` : "/",
+  );
   if (!file) notFound();
 
   return {
@@ -31,10 +26,13 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: PageProps<"/[[...slug]]">) {
   const { slug } = await params;
 
-  const file = await getFileBySlug("page", slug ? `/${slug}` : "/");
+  const file = await getFileBySlug(
+    "page",
+    slug?.length ? `/${slug.join("/")}` : "/",
+  );
   if (!file) notFound();
 
   const { frontmatter, source, components } = file;
