@@ -77,10 +77,10 @@ export async function getFileBySlug<Type extends FileType>(
   const schema = type === "page" ? PAGE_MATTER : POST_MATTER;
 
   // check for correct format
-  schema.parse(data);
+  const parsed = schema.parse(data);
 
   const { components: componentList = [], ...frontmatter } =
-    data as Frontmatter<Type>;
+    parsed as Frontmatter<Type>;
 
   const components = {} as ComponentMap;
   for (const key of componentList) {
