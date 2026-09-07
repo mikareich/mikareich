@@ -66,7 +66,7 @@ export default function NavBar() {
         <ol className="ol hidden gap-4 overflow-hidden sm:flex">{links}</ol>
 
         <button
-          className="relative h-6 w-6 sm:hidden"
+          className="relative size-6 sm:hidden"
           onClick={toggleMenu}
           ref={btnScope}
           type="button"
@@ -97,7 +97,7 @@ export default function NavBar() {
           <ol className="ol space-y-4">
             {links}
 
-            <p className="small !mt-8">Socials</p>
+            <p className="small mt-8!">Socials</p>
             {/* {Object.entries(socials).map(([name, link]) => (
               <li key={name} className="large">
                 <a href={link} className="highlighted">
