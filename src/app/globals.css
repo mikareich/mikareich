@@ -86,7 +86,7 @@ details {
   }
 
   .highlighted-full::after {
-    @apply !h-full;
+    @apply h-full!;
   }
 
   .highlighted:hover::after {
@@ -167,6 +167,10 @@ details {
     @apply border border-gray-100/10 bg-blue-400 p-4 mb-4 mt-2 px-4 py-3 italic;
   }
 
+  code {
+    @apply bg-blue-200/50 px-1;
+  }
+
   pre {
     @apply border border-gray-100/10 bg-blue-400 p-4 mb-4 mt-2 overflow-auto p-4;
 
@@ -174,9 +178,5 @@ details {
       background-color: transparent;
       padding: unset;
     }
-  }
-
-  code {
-    @apply bg-blue-200/50 px-1;
   }
 }

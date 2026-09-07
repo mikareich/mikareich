@@ -9,21 +9,13 @@ import HeroSection from "./HeroSection";
 import Content from "./PostContent";
 import TableOfContents from "./TableOfContents";
 
-type PageProps = {
-  params: Promise<{ slug: string }>;
-};
-
-export async function generateStaticParams() {
-  const slugs = [];
-
-  for (const post of POSTS) slugs.push({ slug: post.slug.slice(1) });
-
-  return slugs;
+export function generateStaticParams() {
+  return POSTS.map((post) => ({ slug: post.slug.slice(1) }));
 }
 
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
+}: PageProps<"/blog/[slug]">): Promise<Metadata> {
   const { slug } = await params;
 
   const file = await getFileBySlug("post", slug ? `/${slug}` : "/");
@@ -35,7 +27,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function Post({ params }: PageProps) {
+export default async function Post({ params }: PageProps<"/blog/[slug]">) {
   const { slug } = await params;
 
   const file = await getFileBySlug("post", slug ? `/${slug}` : "/");

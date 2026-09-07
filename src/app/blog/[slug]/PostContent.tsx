@@ -14,9 +14,9 @@ type ContentProps = {
 type HeadingProps = {
   level: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   headings: Headings;
-} & React.HTMLAttributes<HTMLHeadingElement>;
+} & React.ComponentProps<"h1">;
 
-const Heading = ({ level, headings, id, children, ...props }: HeadingProps) => {
+function Heading({ level, headings, id, children, ...props }: HeadingProps) {
   const index = headings.findIndex((heading) => heading.slug === id);
   const indexElement = (
     <span className="font-heading text-blue-200" style={{ fontSize: "unset" }}>
@@ -33,7 +33,7 @@ const Heading = ({ level, headings, id, children, ...props }: HeadingProps) => {
   );
 
   return component;
-};
+}
 
 export default function PostContent({
   source,
@@ -41,22 +41,22 @@ export default function PostContent({
   components: customComponents,
 }: ContentProps) {
   const components = {
-    h1: (props: HeadingProps) => (
+    h1: (props: React.ComponentProps<"h1">) => (
       <Heading {...props} headings={headings} level="h1" />
     ),
-    h2: (props: HeadingProps) => (
+    h2: (props: React.ComponentProps<"h2">) => (
       <Heading {...props} headings={headings} level="h2" />
     ),
-    h3: (props: HeadingProps) => (
+    h3: (props: React.ComponentProps<"h3">) => (
       <Heading {...props} headings={headings} level="h3" />
     ),
-    h4: (props: HeadingProps) => (
+    h4: (props: React.ComponentProps<"h4">) => (
       <Heading {...props} headings={headings} level="h4" />
     ),
-    h5: (props: HeadingProps) => (
+    h5: (props: React.ComponentProps<"h5">) => (
       <Heading {...props} headings={headings} level="h5" />
     ),
-    h6: (props: HeadingProps) => (
+    h6: (props: React.ComponentProps<"h6">) => (
       <Heading {...props} headings={headings} level="h6" />
     ),
     ...customComponents,

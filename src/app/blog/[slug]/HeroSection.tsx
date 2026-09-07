@@ -5,7 +5,7 @@ export default function HeroSection({
   publishedAt,
 }: Omit<PostMatter, "components">) {
   return (
-    <header className="grid grid-rows-[1fr,1fr,auto,auto] gap-x-5 border-gray-100/10 border-b pb-4 sm:h-72 lg:gap-x-20">
+    <header className="grid grid-rows-[1fr_1fr_auto_auto] gap-x-5 border-gray-100/10 border-b pb-4 sm:h-72 lg:gap-x-20">
       <h1 className="col-span-2 mt-1 mb-6 self-end font-black font-heading text-5xl text-gray-100 leading-10 sm:text-6xl">
         {hero.title}
       </h1>

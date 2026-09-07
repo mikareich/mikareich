@@ -19,6 +19,8 @@ const postComment = (postId: string) => async (formData: FormData) => {
 };
 
 export default async function Comments({ postId }: CommentProps) {
+  const usernameId = `${postId}-username`;
+  const commentId = `${postId}-comment`;
   const allComments = await db
     .select()
     .from(comments)
@@ -51,13 +53,13 @@ export default async function Comments({ postId }: CommentProps) {
         action={postComment(postId)}
         className="card space-y-4 bg-transparent"
       >
-        <label className="block space-y-1" htmlFor="username">
+        <label className="block space-y-1" htmlFor={usernameId}>
           <span className="mb-2 block font-thin text-sm uppercase">
             Username
           </span>
           <input
             className="card px-4 py-2"
-            id="username"
+            id={usernameId}
             maxLength={20}
             name="username"
             required
@@ -65,11 +67,12 @@ export default async function Comments({ postId }: CommentProps) {
           />
         </label>
 
-        <label className="block space-y-1" htmlFor="comment">
+        <label className="block space-y-1" htmlFor={commentId}>
           <span className="mb-2 block font-thin text-sm uppercase">
             Comment
           </span>
           <textarea
+            id={commentId}
             className="w-full border border-gray-100/10 bg-blue-400 px-4 py-2"
             name="comment"
             required

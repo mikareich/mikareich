@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <ViewTransitions>
-      <html lang="en">
+      <html lang="en" data-scroll-behavior="smooth">
         <head>
           <script
             data-website-id="adfb98de-72de-4522-a6b3-3d10bbd736e3"
