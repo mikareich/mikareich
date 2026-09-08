@@ -2,8 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Fira_Code, Space_Mono } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
-import Footer from "./Footer";
-import NavBar from "./NavBar";
+import Footer from "~/components/Footer";
+import NavBar from "~/components/NavBar";
 
 const headingFont = Fira_Code({
   subsets: ["latin"],
