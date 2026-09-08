@@ -7,7 +7,7 @@ export default function SkillList() {
       {SKILLS.map(({ name }) => (
         <Skill key={name} size="large" skill={name} />
       ))}
-      <span className="small my-auto">And many more...</span>
+      <span className="text-small my-auto">And many more...</span>
     </section>
   );
 }

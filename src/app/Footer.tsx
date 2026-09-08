@@ -4,7 +4,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="small flex gap-8 border-gray-300 border-t py-10">
+    <footer className="text-small flex gap-8 border-portfolio-divider border-t py-10">
       <span className="mr-auto truncate">Mika Reich ― {currentYear}</span>
 
       <a className="highlighted truncate max-sm:hidden" href={SOCIALS.github}>

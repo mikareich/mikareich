@@ -52,7 +52,7 @@ export default async function Post({ params }: PageProps) {
         {/* Upper Side TOC */}
         <div className="max-w-prose overflow-hidden">
           <details className="max-lg:mb-4 lg:hidden">
-            <summary className="mt-6 mb-4 cursor-pointer font-bold font-heading text-gray-100 text-xl sm:text-2xl">
+            <summary className="mt-6 mb-4 cursor-pointer font-bold font-heading text-portfolio-text-strong text-xl sm:text-2xl">
               <span className="highlighted">On this page </span>
             </summary>
 
@@ -78,7 +78,7 @@ export default async function Post({ params }: PageProps) {
         {/* Right Side TOC */}
 
         <div className="sticky top-5 h-min max-w-72 overflow-hidden max-lg:hidden">
-          <p className="mb-2 font-body text-gray-100 text-lg sm:text-xl">
+          <p className="mb-2 font-body text-portfolio-text-strong text-lg sm:text-xl">
             On this page
           </p>
 

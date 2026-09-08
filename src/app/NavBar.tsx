@@ -90,14 +90,14 @@ export default function NavBar() {
       </nav>
 
       <aside
-        className="fixed top-0 left-0 z-20 hidden h-screen w-screen bg-gray-400/50 backdrop-blur-3xl sm:hidden"
+        className="fixed top-0 left-0 z-20 hidden h-screen w-screen bg-theme-bg/50 backdrop-blur-3xl sm:hidden"
         ref={drawerScope}
       >
         <div className="mx-auto flex h-full w-fit flex-col justify-center">
           <ol className="ol space-y-4">
             {links}
 
-            <p className="small !mt-8">Socials</p>
+            <p className="text-small !mt-8">Socials</p>
             {/* {Object.entries(socials).map(([name, link]) => (
               <li key={name} className="large">
                 <a href={link} className="highlighted">

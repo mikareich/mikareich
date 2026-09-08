@@ -7,13 +7,13 @@ import NavBar from "./NavBar";
 
 const headingFont = Fira_Code({
   subsets: ["latin"],
-  variable: "--font-heading",
+  variable: "--font-portfolio-heading",
   weight: "variable",
 });
 
 const bodyFont = Space_Mono({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-portfolio-body",
   weight: ["400", "700"],
 });
 
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <ViewTransitions>
-      <html lang="en">
+      <html className={FONTS} lang="en">
         <head>
           <script
             data-website-id="adfb98de-72de-4522-a6b3-3d10bbd736e3"
@@ -38,8 +38,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           />
         </head>
 
-        <body className={`${FONTS} bg-gray-400`}>
-          <div className="container mx-auto flex min-h-dvh flex-col gap-5 font-body text-gray-200 sm:gap-10">
+        <body className="bg-theme-bg font-body text-theme-text">
+          <div className="container mx-auto flex min-h-dvh flex-col gap-5 sm:gap-10">
             <NavBar />
 
             {children}

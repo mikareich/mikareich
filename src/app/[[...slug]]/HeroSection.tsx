@@ -8,7 +8,7 @@ export default function HeroSection({
 }: PageMatter["hero"]) {
   return (
     <header className="grid grid-cols-[1fr_auto] grid-rows-2 gap-x-5 sm:h-72 lg:gap-x-20">
-      <h1 className="self-end font-black font-heading text-5xl text-gray-100 leading-10 sm:text-6xl">
+      <h1 className="self-end font-black font-heading text-5xl text-portfolio-text-strong leading-10 sm:text-6xl">
         {title}
       </h1>
 
@@ -20,7 +20,7 @@ export default function HeroSection({
         width={300}
       />
 
-      <h3 className="row-start-2 font-thin text-2xl text-gray-200 sm:text-3xl">
+      <h3 className="row-start-2 font-thin text-2xl text-theme-text sm:text-3xl">
         {subtitle}
       </h3>
     </header>
