@@ -108,6 +108,15 @@ export const PAGES = [
   { filename: "projects.mdx", slug: "/projects" },
 ] as const;
 
+export const NAVIGATION = [
+  { slug: "/", title: "About Me" },
+  { slug: "/projects", title: "Projects" },
+  { slug: "/blog", title: "Blog" },
+] as const satisfies ReadonlyArray<{
+  slug: (typeof PAGES)[number]["slug"];
+  title: string;
+}>;
+
 export const POSTS = [
   { filename: "unofficial-valorant-api.mdx", slug: "/unofficial-valorant-api" },
 ] as const;
