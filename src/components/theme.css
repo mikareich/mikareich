@@ -1,12 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap");
-@import "tailwindcss";
 @source "./";
 
 :root,
 .default {
-  --theme-font-body: "Geist";
-  --theme-font-heading: "Geist";
-
   --theme-bg: var(--color-white);
   --theme-bg-accent: var(--color-gray-100);
 
@@ -62,7 +57,7 @@
 }
 
 @utility text-link {
-  @apply text-theme-primary underline decoration-current focus-visible:outline-none focus-visible:outlined;
+  @apply text-theme-primary underlined decoration-current focus-visible:outline-none;
 }
 
 @utility text-heading-1 {
@@ -90,5 +85,5 @@
 }
 
 @utility text-small {
-  @apply font-body uppercase font-normal text-xs leading-loose select-text;
+  @apply font-body uppercase font-normal text-sm select-text;
 }

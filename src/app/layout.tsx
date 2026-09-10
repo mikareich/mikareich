@@ -2,8 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Fira_Code, Space_Mono } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
-import Footer from "~/components/Footer";
-import NavBar from "~/components/NavBar";
+import { Footer } from "~/components/navigation/footer";
+import { NavBar } from "~/components/navigation/nav-bar";
 
 const headingFont = Fira_Code({
   subsets: ["latin"],
@@ -38,14 +38,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           />
         </head>
 
-        <body className="bg-theme-bg font-body text-theme-text">
-          <div className="container mx-auto flex min-h-dvh flex-col gap-5 sm:gap-10">
-            <NavBar />
+        <body className="bg-theme-bg px-4 sm:px-8 font-body pt-10 text-theme-text min-h-dvh container mx-auto space-y-5 sm:space-y-10">
+          <NavBar />
 
-            {children}
+          {children}
 
-            <Footer />
-          </div>
+          <Footer />
         </body>
       </html>
     </ViewTransitions>

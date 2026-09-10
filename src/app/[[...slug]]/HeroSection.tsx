@@ -7,8 +7,8 @@ export default function HeroSection({
   imageSrc,
 }: PageMatter["hero"]) {
   return (
-    <header className="grid grid-cols-[1fr_auto] grid-rows-2 gap-x-5 sm:h-72 lg:gap-x-20">
-      <h1 className="self-end font-black font-heading text-5xl text-portfolio-text-strong leading-10 sm:text-6xl">
+    <header className="grid grid-cols-[1fr_auto] grid-rows-2 gap-x-5 sm:min-h-72 lg:gap-x-20">
+      <h1 className="self-end font-black font-heading text-5xl text-portfolio-text-strong leading-tight sm:text-6xl">
         {title}
       </h1>
 

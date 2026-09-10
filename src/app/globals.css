@@ -1,7 +1,42 @@
+@import "tailwindcss";
+@import "@toolwind/anchors";
 @import "../components/theme.css";
-@source "../";
 
-/* Portfolio overrides stay outside layers to override kit's unlayered tokens. */
+@theme {
+  --animate-fade-in: fade-in 160ms ease-out both;
+  --animate-fade-out: fade-out 160ms ease-in both;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+}
+
+/* Keep the outgoing drawer fading while the destination page transitions in. */
+::view-transition-old(mobile-drawer):only-child {
+  animation: var(--animate-fade-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(mobile-drawer):only-child {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 :root,
 .default {
   --theme-font-body: var(--font-portfolio-body), monospace;
@@ -12,67 +47,27 @@
   --theme-primary: #7c90db;
   --theme-foreground: #050507;
   --theme-foreground-subtle: #1b1725;
-  --theme-text: #d1d1d3;
-  --theme-text-subtle: #a1a1aa;
+  --theme-text: #fcfffd;
+  --theme-text-subtle: #d1d1d3;
   --theme-border: rgb(252 255 253 / 10%);
-
-  --portfolio-text-strong: #fcfffd;
-  --portfolio-highlight: #4a5683;
-  --portfolio-divider: #1b1725;
 }
 
-.error {
-  --theme-bg: #1f0a0a;
-  --theme-bg-accent: #450a0a;
-  --theme-primary: #fca5a5;
-  --theme-foreground: #450a0a;
-  --theme-foreground-subtle: #7f1d1d;
-  --theme-text: #fecaca;
-  --theme-text-subtle: #fca5a5;
-  --theme-border: #7f1d1d;
-  --portfolio-text-strong: #fef2f2;
-  --portfolio-highlight: #7f1d1d;
-  --portfolio-divider: #7f1d1d;
-}
-
-.warning {
-  --theme-bg: #1c1405;
-  --theme-bg-accent: #451a03;
-  --theme-primary: #fbbf24;
-  --theme-foreground: #451a03;
-  --theme-foreground-subtle: #78350f;
-  --theme-text: #fde68a;
-  --theme-text-subtle: #fcd34d;
-  --theme-border: #92400e;
-  --portfolio-text-strong: #fffbeb;
-  --portfolio-highlight: #92400e;
-  --portfolio-divider: #92400e;
-}
-
-@theme inline {
-  --color-portfolio-text-strong: var(--portfolio-text-strong);
-  --color-portfolio-highlight: var(--portfolio-highlight);
-  --color-portfolio-divider: var(--portfolio-divider);
-}
-
-@utility container {
-  margin-inline: auto;
-  padding-inline: 1rem;
-
-  @variant sm {
-    padding-inline: 2rem;
-  }
-
-  @variant lg {
-    padding-inline: 4rem;
-  }
-
-  @variant xl {
-    padding-inline: 5rem;
-  }
+/* Preserve the page layout when Radix injects its scroll-lock styles. */
+html body[data-scroll-locked] {
+  --removed-body-scroll-bar-size: 0px;
+  /* biome-ignore lint/complexity/noImportantStyles: Preserve this page's centered container margins. */
+  margin-right: revert-layer !important;
+  margin-left: revert-layer;
+  padding-top: revert-layer;
+  padding-right: revert-layer;
+  padding-left: revert-layer;
 }
 
 @layer base {
+  html:has(body[data-scroll-locked]) {
+    overflow: hidden;
+  }
+
   html {
     scrollbar-gutter: stable both-edges;
     scroll-behavior: smooth;
@@ -82,7 +77,7 @@
   }
 
   ::selection {
-    @apply bg-portfolio-highlight text-portfolio-text-strong;
+    @apply bg-theme-primary/75 text-theme-text;
   }
 
   ::-webkit-scrollbar {
@@ -90,13 +85,50 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply rounded-none bg-portfolio-highlight;
+    @apply rounded-none bg-theme-primary/75;
   }
 
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
+  }
+}
+
+@utility underlined {
+  @apply relative ring-0! z-10 cursor-pointer whitespace-nowrap after:absolute;
+  @apply after:bottom-1 after:left-0 after:-z-10 after:h-2 after:w-full;
+  @apply after:bg-theme-primary/75 after:content-[''] hover:after:h-full;
+  @apply focus:after:h-full after:transition-all;
+}
+
+@utility underlined-none {
+  @apply after:content-none;
+}
+
+@utility list-ordered {
+  --list-marker: counter(list-counter, decimal-leading-zero) " ";
+  --list-marker-font: inherit;
+  counter-reset: list-counter -1;
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+@utility list-unordered {
+  --list-marker: "-> ";
+  --list-marker-font: var(--theme-font-heading);
+  counter-reset: list-counter -1;
+  list-style-position: inside;
+}
+
+@utility list-item {
+  display: list-item;
+  counter-increment: list-counter;
+
+  &::marker {
+    @apply text-theme-primary;
+    content: var(--list-marker);
+    font-family: var(--list-marker-font);
   }
 }
 
@@ -123,80 +155,43 @@
     @apply border border-theme-border bg-theme-bg-accent p-4;
   }
 
-  .highlighted,
-  .highlighted-full,
-  .prose a {
-    @apply relative z-10 cursor-pointer whitespace-nowrap text-portfolio-text-strong focus-visible:outline-none focus-visible:outlined;
-  }
-
-  .highlighted::after,
-  .highlighted-full::after,
-  .prose a::after {
-    @apply absolute bottom-1 left-0 -z-10 h-2 w-full bg-portfolio-highlight transition-all motion-reduce:transition-none;
-    content: "";
-  }
-
-  .highlighted-full::after {
-    @apply h-full;
-  }
-
-  .highlighted:hover::after,
-  .highlighted:focus-visible::after,
-  .prose a:hover::after,
-  .prose a:focus-visible::after {
-    @apply h-full;
-  }
-
-  .ol,
-  .prose ol {
-    list-style-type: decimal;
-    counter-reset: list-counter -1;
-    list-style-position: inside;
-
-    > li {
-      counter-increment: list-counter;
-
-      &::marker {
-        @apply text-theme-primary;
-        content: counter(list-counter, decimal-leading-zero) " ";
-      }
-    }
-  }
-
-  .ul,
-  .prose ul {
-    list-style-position: inside;
-
-    > li::marker {
-      @apply font-heading text-theme-primary;
-      content: "-> ";
-    }
-  }
-
   .prose {
+    ol {
+      @apply list-ordered;
+    }
+
+    ul {
+      @apply list-unordered;
+    }
+
+    ol > li,
+    ul > li {
+      @apply list-item;
+    }
+
     h1 {
-      @apply text-4xl font-bold sm:text-5xl font-heading text-portfolio-text-strong mb-4 mt-6;
+      @apply text-4xl font-bold sm:text-5xl font-heading text-theme-text mb-4 mt-6;
     }
 
     h2 {
-      @apply text-3xl font-bold sm:text-4xl font-heading text-portfolio-text-strong mb-4 mt-6;
+      @apply text-3xl font-bold sm:text-4xl font-heading text-theme-text mb-4 mt-6;
     }
 
     h3 {
-      @apply text-2xl font-bold sm:text-3xl font-heading text-portfolio-text-strong mb-4 mt-6;
+      @apply text-2xl font-bold sm:text-3xl font-heading text-theme-text mb-4 mt-6;
     }
 
     h4 {
-      @apply text-xl font-bold sm:text-2xl font-heading text-portfolio-text-strong mb-4 mt-6;
+      @apply text-xl font-bold sm:text-2xl font-heading text-theme-text mb-4 mt-6;
     }
 
     h5,
     h6 {
-      @apply text-lg font-bold sm:text-xl font-heading text-portfolio-text-strong mb-4 mt-6;
+      @apply text-lg font-bold sm:text-xl font-heading text-theme-text mb-4 mt-6;
     }
 
     p {
-      @apply mb-2 font-body text-base;
+      @apply text-body;
     }
 
     small {
