@@ -31,11 +31,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <ViewTransitions>
       <html className={FONTS} lang="en">
         <head>
-          <script
+          {/*<script
             data-website-id="adfb98de-72de-4522-a6b3-3d10bbd736e3"
             defer
             src="https://cloud.umami.is/script.js"
-          />
+          />*/}
         </head>
 
         <body className="bg-theme-bg px-4 sm:px-8 font-body pt-10 text-theme-text min-h-dvh container mx-auto space-y-5 sm:space-y-10">

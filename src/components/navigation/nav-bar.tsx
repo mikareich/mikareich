@@ -1,5 +1,6 @@
 import { Link } from "next-view-transitions";
 import { NAVIGATION } from "~/content/config";
+import { ActiveLink } from "../active-link";
 import { AppBar } from "./app-bar";
 import { Drawer } from "./drawer";
 import { Logo } from "./logo";
@@ -11,13 +12,14 @@ export function NavBar() {
         <Logo />
 
         {NAVIGATION.map(({ slug, title }) => (
-          <AppBar.Item
-            key={slug}
-            className="underlined-none text-theme-text hidden leading-7 text-lg sm:list-item sm:text-xl"
-            asChild
-          >
-            <Link href={slug}>
-              <span className="underlined">{title}</span>
+          <AppBar.Item key={slug} asChild>
+            <Link
+              className="underlined-none text-theme-text hidden leading-7 text-lg sm:list-item sm:text-xl"
+              href={slug}
+            >
+              <ActiveLink href={slug} asChild>
+                <span className="underlined">{title}</span>
+              </ActiveLink>
             </Link>
           </AppBar.Item>
         ))}

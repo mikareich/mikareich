@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import * as p from "next/root-params";
 import Content from "~/components/Content";
 import { PAGES } from "~/content/config";
 import { getFileBySlug } from "~/lib/content";
@@ -32,6 +33,7 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: PageProps) {
+  console.log(p);
   const { slug } = await params;
 
   const file = await getFileBySlug("page", slug ? `/${slug}` : "/");
