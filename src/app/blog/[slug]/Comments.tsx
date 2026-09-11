@@ -27,7 +27,7 @@ export default async function Comments({ postId }: CommentProps) {
 
   return (
     <section className="max-w-prose space-y-8">
-      <p className="mb-2 text-gray-100 text-lg sm:text-xl">
+      <p className="mb-2 text-portfolio-text-strong text-lg sm:text-xl">
         What do you think? Leave a comment below!
       </p>
 
@@ -35,7 +35,7 @@ export default async function Comments({ postId }: CommentProps) {
         {allComments.map((comment) => (
           <div className="card" key={comment.id}>
             <header className="flex items-baseline gap-4">
-              <h5 className="text-blue-200 text-lg sm:text-xl">
+              <h5 className="text-theme-primary text-lg sm:text-xl">
                 @{comment.username}
               </h5>
               <time className="mb-2 font-thin text-sm uppercase">
@@ -51,13 +51,12 @@ export default async function Comments({ postId }: CommentProps) {
         action={postComment(postId)}
         className="card space-y-4 bg-transparent"
       >
-        <label className="block space-y-1" htmlFor="username">
+        <label className="block space-y-1">
           <span className="mb-2 block font-thin text-sm uppercase">
             Username
           </span>
           <input
-            className="card px-4 py-2"
-            id="username"
+            className="card w-full px-4 py-2 focus-visible:outline-none focus-visible:outlined"
             maxLength={20}
             name="username"
             required
@@ -65,18 +64,21 @@ export default async function Comments({ postId }: CommentProps) {
           />
         </label>
 
-        <label className="block space-y-1" htmlFor="comment">
+        <label className="block space-y-1">
           <span className="mb-2 block font-thin text-sm uppercase">
             Comment
           </span>
           <textarea
-            className="w-full border border-gray-100/10 bg-blue-400 px-4 py-2"
+            className="w-full border border-theme-border bg-theme-bg-accent px-4 py-2 focus-visible:outline-none focus-visible:outlined"
             name="comment"
             required
           />
         </label>
 
-        <button className="bg-blue-200 px-4 py-2 text-gray-100" type="submit">
+        <button
+          className="bg-theme-primary px-4 py-2 text-theme-foreground focus-visible:outline-none focus-visible:outlined"
+          type="submit"
+        >
           Submit
         </button>
       </form>

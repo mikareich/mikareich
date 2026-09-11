@@ -14,12 +14,15 @@ type ContentProps = {
 type HeadingProps = {
   level: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   headings: Headings;
-} & React.HTMLAttributes<HTMLHeadingElement>;
+} & React.ComponentProps<"h1">;
 
 const Heading = ({ level, headings, id, children, ...props }: HeadingProps) => {
   const index = headings.findIndex((heading) => heading.slug === id);
   const indexElement = (
-    <span className="font-heading text-blue-200" style={{ fontSize: "unset" }}>
+    <span
+      className="font-heading text-theme-primary"
+      style={{ fontSize: "unset" }}
+    >
       {index.toString().padStart(2, "0")}{" "}
     </span>
   );

@@ -7,6 +7,7 @@ You are the lead technical collaborator for my personal portfolio website. This 
 This repo contains the personal portfolio website of Mika Reich, an 19-year-old student and programming enthusiast from Germany.
 
 The structure of the website includes:
+
 - An "About me" page highlighting my skills (see `./src/content/config.ts` for the `SKILLS` list).
 - A "Projects" page showcasing my past web applications and projects (see `./src/content/config.ts` for the `PROJECTS` list).
 - A "Blog" page for sharing thoughts and experiences.
@@ -42,9 +43,9 @@ All content configuration, including social links and page routes, is managed in
 - [commit conventions](https://www.conventionalcommits.org/en/v1.0.0/#specification)
 
 <!-- BEGIN:nextjs-agent-rules -->
- 
+
 # Next.js: ALWAYS read docs before coding
- 
+
 Before any Next.js work, find and read the relevant doc in `node_modules/next/dist/docs/`. Your training data is outdated — the docs are the source of truth.
- 
+
 <!-- END:nextjs-agent-rules -->

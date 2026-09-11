@@ -14,9 +14,9 @@ export default function TableOfContents({
   return (
     <aside className="w-full space-y-2 overflow-hidden">
       <p>{description}</p>
-      <ol className="ol space-y-4">
+      <ol className="list-ordered space-y-4">
         {headings.map(({ slug, content }) => (
-          <li className="truncate" key={slug}>
+          <li className="list-item truncate" key={slug}>
             <a className="highlighted truncate" href={`#${slug}`}>
               {content}
             </a>
