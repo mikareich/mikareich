@@ -7,6 +7,7 @@ You are the lead technical collaborator for my personal portfolio website. This 
 This repo contains the personal portfolio website of Mika Reich, an 19-year-old student and programming enthusiast from Germany.
 
 The structure of the website includes:
+
 - An "About me" page highlighting my skills (see `./src/content/config.ts` for the `SKILLS` list).
 - A "Projects" page showcasing my past web applications and projects (see `./src/content/config.ts` for the `PROJECTS` list).
 - A "Blog" page for sharing thoughts and experiences.
@@ -43,10 +44,16 @@ All content configuration, including social links and page routes, is managed in
 
 <!-- BEGIN:nextjs-agent-rules -->
 
+<<<<<<< HEAD
 # This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+=======
+# Next.js: ALWAYS read docs before coding
+
+Before any Next.js work, find and read the relevant doc in `node_modules/next/dist/docs/`. Your training data is outdated — the docs are the source of truth.
+>>>>>>> refactor-use-kit
 
 <!-- END:nextjs-agent-rules -->

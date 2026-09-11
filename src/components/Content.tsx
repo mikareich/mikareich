@@ -1,5 +1,6 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Link } from "next-view-transitions";
+import { cn } from "~/lib/cn";
 
 type LinkProps = React.ComponentProps<typeof Link>;
 
@@ -9,7 +10,7 @@ export default function Content({
 }: React.ComponentProps<typeof MDXRemote>) {
   const components = {
     a: ({ className, ...props }: LinkProps) => (
-      <Link className={`${className} highlighted`} {...props} />
+      <Link className={cn("highlighted", className)} {...props} />
     ),
     ...customComponents,
   };

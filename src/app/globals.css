@@ -1,182 +1,235 @@
 @import "tailwindcss";
+@import "@toolwind/anchors";
+@import "../components/theme.css";
 
 @theme {
-  --color-gray-100: #fcfffd;
-  --color-gray-200: #d1d1d3;
-  --color-gray-300: #1b1725;
-  --color-gray-400: #050507;
+  --animate-fade-in: fade-in 160ms ease-out both;
+  --animate-fade-out: fade-out 160ms ease-in both;
 
-  --color-blue-100: #b0bce9;
-  --color-blue-200: #7c90db;
-  --color-blue-300: #4a5683;
-  --color-blue-400: #0f131d;
-
-  --font-body: "Space Mono", monospace;
-  --font-heading: "Fira Code", monospace;
-}
-
-@utility container {
-  margin-inline: auto;
-  padding-inline: 1rem;
-
-  @variant sm {
-    padding-inline: 2rem;
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
-  @variant lg {
-    padding-inline: 4rem;
-  }
-
-  @variant xl {
-    padding-inline: 5rem;
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
   }
 }
 
-html {
-  scrollbar-gutter: stable both-edges;
-  scroll-behavior: smooth;
-  scroll-padding-top: 20px;
-  @apply text-gray-200 bg-gray-400;
+/* Keep the outgoing drawer fading while the destination page transitions in. */
+::view-transition-old(mobile-drawer):only-child {
+  animation: var(--animate-fade-out);
 }
 
-::selection {
-  @apply bg-blue-300;
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(mobile-drawer):only-child {
+    animation: none;
+    opacity: 0;
+  }
 }
 
-::-webkit-scrollbar {
-  @apply w-2.5 bg-transparent;
+:root,
+.default {
+  --theme-font-body: var(--font-portfolio-body), monospace;
+  --theme-font-heading: var(--font-portfolio-heading), monospace;
+
+  --theme-bg: #050507;
+  --theme-bg-accent: #0f131d;
+  --theme-primary: #7c90db;
+  --theme-foreground: #050507;
+  --theme-foreground-subtle: #1b1725;
+  --theme-text: #fcfffd;
+  --theme-text-subtle: #d1d1d3;
+  --theme-border: rgb(252 255 253 / 10%);
 }
 
-::-webkit-scrollbar-thumb {
-  @apply rounded-none bg-blue-300;
+/* Preserve the page layout when Radix injects its scroll-lock styles. */
+html body[data-scroll-locked] {
+  --removed-body-scroll-bar-size: 0px;
+  /* biome-ignore lint/complexity/noImportantStyles: Preserve this page's centered container margins. */
+  margin-right: revert-layer !important;
+  margin-left: revert-layer;
+  padding-top: revert-layer;
+  padding-right: revert-layer;
+  padding-left: revert-layer;
 }
 
-details {
-  summary {
-    @apply w-fit;
+@layer base {
+  html:has(body[data-scroll-locked]) {
+    overflow: hidden;
   }
 
-  summary::marker {
-    @apply select-none font-heading text-lg text-gray-200;
+  html {
+    scrollbar-gutter: stable both-edges;
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px;
+    color-scheme: dark;
+    @apply text-theme-text bg-theme-bg;
   }
 
-  &[open] summary::marker {
-    content: "[hide] ";
+  ::selection {
+    @apply bg-theme-primary/75 text-theme-text;
   }
 
-  &:not([open]) summary::marker {
-    content: "[show] ";
+  ::-webkit-scrollbar {
+    @apply w-2.5 bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-none bg-theme-primary/75;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@utility underlined {
+  @apply relative ring-0! z-10 cursor-pointer whitespace-nowrap after:absolute;
+  @apply after:bottom-1 after:left-0 after:-z-10 after:h-2 after:w-full;
+  @apply after:bg-theme-primary/75 after:content-[''] hover:after:h-full;
+  @apply focus:after:h-full after:transition-all;
+}
+
+@utility underlined-none {
+  @apply after:content-none;
+}
+
+@utility list-ordered {
+  --list-marker: counter(list-counter, decimal-leading-zero) " ";
+  --list-marker-font: inherit;
+  counter-reset: list-counter -1;
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+@utility list-unordered {
+  --list-marker: "-> ";
+  --list-marker-font: var(--theme-font-heading);
+  counter-reset: list-counter -1;
+  list-style-position: inside;
+}
+
+@utility list-item {
+  display: list-item;
+  counter-increment: list-counter;
+
+  &::marker {
+    @apply text-theme-primary;
+    content: var(--list-marker);
+    font-family: var(--list-marker-font);
   }
 }
 
 @layer components {
+  details {
+    summary {
+      @apply w-fit;
+    }
+
+    summary::marker {
+      @apply select-none font-heading text-lg text-theme-text;
+    }
+
+    &[open] summary::marker {
+      content: "[hide] ";
+    }
+
+    &:not([open]) summary::marker {
+      content: "[show] ";
+    }
+  }
+
   .card {
-    @apply border border-gray-100/10 bg-blue-400 p-4;
+    @apply border border-theme-border bg-theme-bg-accent p-4;
   }
 
-  .highlighted,
-  .highlighted-full {
-    @apply relative z-10 cursor-pointer whitespace-nowrap text-gray-100;
-  }
-
-  .highlighted::after,
-  .highlighted-full::after {
-    @apply absolute bottom-1 left-0 -z-10 h-2 w-full bg-blue-300 transition-all;
-    content: "";
-  }
-
-  .highlighted-full::after {
-    @apply h-full!;
-  }
-
-  .highlighted:hover::after {
-    @apply h-full;
-  }
-
-  .ol,
-  .prose ol {
-    list-style-type: decimal;
-    counter-reset: list-counter -1;
-    list-style-position: inside;
-
-    li {
-      counter-increment: list-counter;
-      &::marker {
-        @apply text-blue-200;
-        content: counter(list-counter, decimal-leading-zero) " ";
-      }
+  .prose {
+    ol {
+      @apply list-ordered;
     }
-  }
 
-  .ul,
-  .prose ul {
-    list-style-position: inside;
-
-    li {
-      &::marker {
-        @apply font-heading text-blue-200;
-        content: "-> ";
-      }
+    ul {
+      @apply list-unordered;
     }
-  }
-}
 
-.prose {
-  h1 {
-    @apply text-4xl font-bold sm:text-5xl font-heading text-gray-100 mb-4 mt-6;
-  }
+    ol > li,
+    ul > li {
+      @apply list-item;
+    }
 
-  h2 {
-    @apply text-3xl font-bold sm:text-4xl font-heading text-gray-100 mb-4 mt-6;
-  }
+    h1 {
+      @apply text-4xl font-bold sm:text-5xl font-heading text-theme-text mb-4 mt-6;
+    }
 
-  h3 {
-    @apply text-2xl font-bold sm:text-3xl font-heading text-gray-100 mb-4 mt-6;
-  }
+    h2 {
+      @apply text-3xl font-bold sm:text-4xl font-heading text-theme-text mb-4 mt-6;
+    }
 
-  h4 {
-    @apply text-xl font-bold sm:text-2xl font-heading text-gray-100 mb-4 mt-6;
-  }
+    h3 {
+      @apply text-2xl font-bold sm:text-3xl font-heading text-theme-text mb-4 mt-6;
+    }
 
-  h5 {
-    @apply text-lg font-bold sm:text-xl font-heading text-gray-100 mb-4 mt-6;
-  }
+    h4 {
+      @apply text-xl font-bold sm:text-2xl font-heading text-theme-text mb-4 mt-6;
+    }
 
-  p {
-    @apply mb-2 font-body text-base;
-  }
+    h5,
+    h6 {
+      @apply text-lg font-bold sm:text-xl font-heading text-theme-text mb-4 mt-6;
+    }
 
-  small {
-    @apply mb-2 font-body text-sm font-thin uppercase;
-  }
+    p {
+      @apply text-body;
+    }
 
-  a {
-    @apply relative z-10 cursor-pointer whitespace-nowrap text-gray-100;
-  }
+    small {
+      @apply text-small mb-2;
+    }
 
-  a::after {
-    @apply absolute bottom-1 left-0 -z-10 h-2 w-full bg-blue-300 transition-all;
-    content: "";
-  }
+    a::after {
+      @apply absolute bottom-1 left-0 -z-10 h-2 w-full bg-blue-300 transition-all;
+      content: "";
+    }
 
-  a:hover::after {
-    @apply h-full;
-  }
+    a:hover::after {
+      @apply h-full;
+    }
 
-  blockquote {
-    @apply border border-gray-100/10 bg-blue-400 p-4 mb-4 mt-2 px-4 py-3 italic;
-  }
-
-  code {
-    @apply bg-blue-200/50 px-1;
-  }
-
-  pre {
-    @apply border border-gray-100/10 bg-blue-400 p-4 mb-4 mt-2 overflow-auto p-4;
+    blockquote {
+      @apply border border-gray-100/10 bg-blue-400 p-4 mb-4 mt-2 px-4 py-3 italic;
+    }
 
     code {
-      background-color: transparent;
-      padding: unset;
+      @apply bg-blue-200/50 px-1;
+    }
+
+    pre {
+      @apply border border-gray-100/10 bg-blue-400 p-4 mb-4 mt-2 overflow-auto p-4;
+
+      code {
+        @apply bg-theme-primary/50 px-1;
+      }
+
+      pre {
+        @apply border border-theme-border bg-theme-bg-accent mb-4 mt-2 overflow-auto p-4;
+
+        code {
+          background-color: transparent;
+          padding: unset;
+        }
+      }
     }
   }
 }

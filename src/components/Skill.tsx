@@ -19,7 +19,7 @@ export default function Skill({ skill, size = "medium" }: Props) {
   if (!skillPath) return null;
 
   return (
-    <div className="flex items-center gap-2 text-gray-100">
+    <div className="flex items-center gap-2 text-portfolio-text-strong">
       <Image
         alt={skill}
         height={SIZE_IN_PIXELS[size]}

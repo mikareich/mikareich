@@ -19,7 +19,10 @@ type HeadingProps = {
 function Heading({ level, headings, id, children, ...props }: HeadingProps) {
   const index = headings.findIndex((heading) => heading.slug === id);
   const indexElement = (
-    <span className="font-heading text-blue-200" style={{ fontSize: "unset" }}>
+    <span
+      className="font-heading text-theme-primary"
+      style={{ fontSize: "unset" }}
+    >
       {index.toString().padStart(2, "0")}{" "}
     </span>
   );
