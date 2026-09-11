@@ -8,6 +8,7 @@ import { useTransitionRouter } from "next-view-transitions";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "~/components/button";
 import { NAVIGATION, SOCIALS } from "~/content/config";
+import { ActiveUnderlined } from "../active-link";
 import { AppBar } from "./app-bar";
 
 const fadeStyles =
@@ -73,7 +74,9 @@ function DrawerInstance({ pathname }: { pathname: string }) {
                       else router.push(slug);
                     }}
                   >
-                    <span className="underlined">{title}</span>
+                    <ActiveUnderlined exact={slug === "/"} pathname={slug}>
+                      {title}
+                    </ActiveUnderlined>
                   </Link>
                 </AppBar.Item>
               ))}

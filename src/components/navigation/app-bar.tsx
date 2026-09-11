@@ -12,7 +12,7 @@ const appBarStyles = `
 `;
 
 const appBarItemStyles = `
-	inline-flex shrink-0 items-center gap-2
+	flex shrink-0 items-center gap-2
 	cursor-pointer select-none
 	text-body text-link text-theme-text-subtle
 	h-min

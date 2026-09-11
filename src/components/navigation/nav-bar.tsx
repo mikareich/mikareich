@@ -1,6 +1,6 @@
 import { Link } from "next-view-transitions";
 import { NAVIGATION } from "~/content/config";
-import { ActiveLink } from "../active-link";
+import { ActiveUnderlined } from "../active-link";
 import { AppBar } from "./app-bar";
 import { Drawer } from "./drawer";
 import { Logo } from "./logo";
@@ -17,9 +17,9 @@ export function NavBar() {
               className="underlined-none text-theme-text hidden leading-7 text-lg sm:list-item sm:text-xl"
               href={slug}
             >
-              <ActiveLink href={slug} asChild>
-                <span className="underlined">{title}</span>
-              </ActiveLink>
+              <ActiveUnderlined exact={slug === "/"} pathname={slug}>
+                {title}
+              </ActiveUnderlined>
             </Link>
           </AppBar.Item>
         ))}
