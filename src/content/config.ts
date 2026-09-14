@@ -1,3 +1,4 @@
+import { CONTENT_TYPES, type ContentType } from "~/lib/content/content-types";
 import { evaluateFile } from "~/lib/content/evaluation";
 
 export const SOCIALS = {
@@ -7,24 +8,39 @@ export const SOCIALS = {
 } as const;
 
 export const PAGES = {
-  "/": await evaluateFile("page", import.meta.resolve("about-me.mdx")),
-  "/blog": await evaluateFile("page", import.meta.resolve("blog.mdx")),
-  "/projects": await evaluateFile("page", import.meta.resolve("projects.mdx")),
+  "/": await evaluateFile("page", "./about-me.mdx", import.meta.url),
+  "/projects": await evaluateFile("page", "./projects.mdx", import.meta.url),
+  "/blog": await evaluateFile("page", "./blog.mdx", import.meta.url),
 } as const;
 
 export const POSTS = {
   "/unofficial-valorant-api": await evaluateFile(
     "blog",
-    import.meta.resolve("./posts/unofficial-valorant-api.mdx"),
+    "./posts/unofficial-valorant-api.mdx",
+    import.meta.url,
   ),
 } as const;
 
 export const NOT_FOUND_CONTENT = await evaluateFile(
   "page",
-  import.meta.resolve("not-found.mdx"),
+  "./not-found.mdx",
+  import.meta.url,
 );
 
 export const ERROR_CONTENT = await evaluateFile(
   "page",
-  import.meta.resolve("error.mdx"),
+  "./error.mdx",
+  import.meta.url,
 );
+
+export function isDefinedSlug<T extends ContentType>(
+  type: T,
+  slug: string,
+): slug is T extends typeof CONTENT_TYPES.page
+  ? keyof typeof PAGES
+  : keyof typeof POSTS {
+  if (type === CONTENT_TYPES.page) return slug in PAGES;
+  else if (type === CONTENT_TYPES.blog) return slug in POSTS;
+
+  throw new Error(`Invalid content type supplied: ${type}.`);
+}

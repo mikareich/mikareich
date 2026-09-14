@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { SKILLS } from "~/content/config";
+import { cn } from "~/lib/cn";
 
 const SIZE_IN_PIXELS = {
   large: 32,
@@ -9,26 +9,30 @@ const SIZE_IN_PIXELS = {
 
 type Size = keyof typeof SIZE_IN_PIXELS;
 
-type Props = {
-  skill: string;
-  size?: Size;
-};
+type SkillProps = React.ComponentProps<"div"> & { src: string; size?: Size };
 
-export default function Skill({ skill, size = "medium" }: Props) {
-  const skillPath = SKILLS.find((s) => s.name === skill)?.path;
-  if (!skillPath) return null;
-
+export function Skill({
+  src,
+  size = "medium",
+  className,
+  children,
+  ...props
+}: SkillProps) {
+  // TODO: use a Button asChild component
   return (
-    <div className="flex items-center gap-2 text-portfolio-text-strong">
+    <div
+      className={cn("flex items-center gap-2 text-theme-text", className)}
+      {...props}
+    >
       <Image
-        alt={skill}
+        alt={src}
         height={SIZE_IN_PIXELS[size]}
-        src={skillPath}
+        src={src}
         width={SIZE_IN_PIXELS[size]}
       />
 
       {size !== "small" && (
-        <span className={size === "medium" ? "base" : "large"}>{skill}</span>
+        <span className={size === "medium" ? "base" : "large"}>{children}</span>
       )}
     </div>
   );

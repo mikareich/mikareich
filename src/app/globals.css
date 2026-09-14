@@ -131,7 +131,7 @@ html body[data-scroll-locked] {
     font-family: var(--list-marker-font);
   }
 }
-
+/*
 @layer components {
   details {
     summary {
@@ -232,4 +232,4 @@ html body[data-scroll-locked] {
       }
     }
   }
-}
+}*/

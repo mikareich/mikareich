@@ -1,11 +1,16 @@
 import Image from "next/image";
-import type { PageMatter } from "~/lib/content";
+
+type HeroSectionProps = {
+  title: string;
+  subtitle: string;
+  imageUrl: string;
+};
 
 export default function HeroSection({
   title,
   subtitle,
-  imageSrc,
-}: PageMatter["hero"]) {
+  imageUrl,
+}: HeroSectionProps) {
   return (
     <header className="grid grid-cols-[1fr_auto] grid-rows-2 gap-x-5 sm:min-h-72 lg:gap-x-20">
       <h1 className="self-end font-black font-heading text-5xl text-portfolio-text-strong leading-tight sm:text-6xl">
@@ -16,7 +21,7 @@ export default function HeroSection({
         alt={`Image for ${title}`}
         className="row-span-2 hidden aspect-square h-full w-40 self-center overflow-hidden sm:block sm:w-52 lg:w-72"
         height={300}
-        src={imageSrc}
+        src={imageUrl}
         width={300}
       />
 

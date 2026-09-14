@@ -7,19 +7,28 @@ import { usePathname } from "next/navigation";
 import { useTransitionRouter } from "next-view-transitions";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "~/components/button";
-import { NAVIGATION, SOCIALS } from "~/content/config";
+import type { SOCIALS } from "~/content/config";
 import { ActiveUnderlined } from "../active-link";
 import { AppBar } from "./app-bar";
 
 const fadeStyles =
   "motion-safe:data-[state=open]:animate-fade-in motion-safe:data-[state=closed]:animate-fade-out";
 
-export function Drawer() {
+type DrawerProps = {
+  links: { href: string; title: string }[];
+  socials: typeof SOCIALS;
+};
+
+export function Drawer(props: DrawerProps) {
   const pathname = usePathname();
-  return <DrawerInstance key={pathname} pathname={pathname} />;
+  return <DrawerInstance {...props} key={pathname} pathname={pathname} />;
 }
 
-function DrawerInstance({ pathname }: { pathname: string }) {
+function DrawerInstance({
+  links,
+  pathname,
+  socials,
+}: DrawerProps & { pathname: string }) {
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
   const router = useTransitionRouter();
@@ -60,21 +69,21 @@ function DrawerInstance({ pathname }: { pathname: string }) {
             <aside
               className={`anchored-bottom-center/nav-bar anchored-visible-always [view-transition-name:mobile-drawer] border-t border-theme-border list-ordered grid place-content-center-safe justify-items-start z-20 h-full w-anchor/nav-bar inset-0 m-0 fixed overflow-y-auto overscroll-contain ${fadeStyles}`}
             >
-              {NAVIGATION.map(({ slug, title }) => (
+              {links.map(({ href, title }) => (
                 <AppBar.Item
-                  key={slug}
+                  key={href}
                   className="list-item underlined-none"
                   asChild
                 >
                   <Link
-                    href={slug}
+                    href={href}
                     onNavigate={(event) => {
                       event.preventDefault();
-                      if (slug === pathname) close();
-                      else router.push(slug);
+                      if (href === pathname) close();
+                      else router.push(href);
                     }}
                   >
-                    <ActiveUnderlined exact={slug === "/"} pathname={slug}>
+                    <ActiveUnderlined exact={href === "/"} pathname={href}>
                       {title}
                     </ActiveUnderlined>
                   </Link>
@@ -83,15 +92,15 @@ function DrawerInstance({ pathname }: { pathname: string }) {
 
               <h5 className="text-small">Socials</h5>
 
-              <AppBar.Item href={SOCIALS.discord} onClick={close}>
+              <AppBar.Item href={socials.discord} onClick={close}>
                 Discord
               </AppBar.Item>
 
-              <AppBar.Item href={`mailto:${SOCIALS.email}`} onClick={close}>
+              <AppBar.Item href={`mailto:${socials.email}`} onClick={close}>
                 Email
               </AppBar.Item>
 
-              <AppBar.Item href={SOCIALS.github} onClick={close}>
+              <AppBar.Item href={socials.github} onClick={close}>
                 GitHub
               </AppBar.Item>
             </aside>

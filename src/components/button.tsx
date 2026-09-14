@@ -6,7 +6,7 @@ import { cloneElement, isValidElement } from "react";
 import { cn } from "~/lib/cn";
 
 const buttonStyles = cva(
-	`
+  `
 	flex gap-2 items-center
 	w-fit max-w-full px-4 py-3
 	cursor-pointer
@@ -14,61 +14,61 @@ const buttonStyles = cva(
 	text-action
 	focus-within:outline-none
 	`,
-	{
-		compoundVariants: [
-			{
-				className: `
+  {
+    compoundVariants: [
+      {
+        className: `
 									hover:bg-theme-primary/80 focus:bg-theme-primary/80
 									`,
-				disabled: false,
-				mode: "filled",
-			},
-			{
-				className: `
+        disabled: false,
+        mode: "filled",
+      },
+      {
+        className: `
 									 hover:bg-theme-bg-accent
 									 `,
-				disabled: false,
-				mode: ["outlined", "ghost", "icon"],
-			},
-		],
-		variants: {
-			disabled: {
-				true: `
+        disabled: false,
+        mode: ["outlined", "ghost", "icon"],
+      },
+    ],
+    variants: {
+      disabled: {
+        true: `
 		          opacity-50 cursor-not-allowed
 							`,
-				false:	`
+        false: `
 								focus-within:outlined
-								`
-			},
-			mode: {
-				filled: `
+								`,
+      },
+      mode: {
+        filled: `
 								bg-theme-primary text-theme-foreground
 								border border-theme-primary
 								`,
-				ghost: `
+        ghost: `
 							 bg-transparent text-theme-text
 							 border border-transparent
 							 `,
-				icon: `
+        icon: `
               bg-transparent text-theme-text
 							border border-theme-border
 							p-3
               `,
-				outlined: `
+        outlined: `
 								  bg-transparent text-theme-text
 									border border-theme-border
 									`,
-			},
-		},
-	},
+      },
+    },
+  },
 );
 
 type ButtonProps = React.ComponentProps<"button"> & {
-	prefixIcon?: React.ReactNode;
-	suffixIcon?: React.ReactNode;
-	asChild?: boolean;
-	loading?: boolean;
-	mode?: "filled" | "outlined" | "ghost" | "icon";
+  prefixIcon?: React.ReactNode;
+  suffixIcon?: React.ReactNode;
+  asChild?: boolean;
+  loading?: boolean;
+  mode?: "filled" | "outlined" | "ghost" | "icon";
 };
 
 /**
@@ -76,66 +76,66 @@ type ButtonProps = React.ComponentProps<"button"> & {
  * @link https://kit.reich.re/docs/components/button
  */
 export function Button({
-	className,
-	prefixIcon,
-	suffixIcon,
-	children,
-	asChild,
-	disabled,
-	loading,
-	mode = "filled",
-	...props
+  className,
+  prefixIcon,
+  suffixIcon,
+  children,
+  asChild,
+  disabled,
+  loading,
+  mode = "filled",
+  ...props
 }: ButtonProps): React.ReactElement {
-	let Comp: typeof Slot | "button" = "button";
-	if (asChild) {
-		Comp = Slot;
-	}
+  let Comp: typeof Slot | "button" = "button";
+  if (asChild) {
+    Comp = Slot;
+  }
 
-	const effectiveDisabled = Boolean(disabled || loading);
-	let effectivePrefixIcon = prefixIcon;
-	let effectiveSuffixIcon = suffixIcon;
-	let effectiveChildren = children;
-	const loadingIcon = <ReloadIcon className="animate-spin" />;
+  const effectiveDisabled = Boolean(disabled || loading);
+  let effectivePrefixIcon = prefixIcon;
+  let effectiveSuffixIcon = suffixIcon;
+  let effectiveChildren = children;
+  const loadingIcon = <ReloadIcon className="animate-spin" />;
 
-	if (loading) {
-		effectivePrefixIcon = loadingIcon;
-	}
+  if (loading) {
+    effectivePrefixIcon = loadingIcon;
+  }
 
-	if (mode === "icon") {
-		effectivePrefixIcon = null;
-		effectiveSuffixIcon = null;
+  if (mode === "icon") {
+    effectivePrefixIcon = null;
+    effectiveSuffixIcon = null;
 
-		if (loading) {
-			effectiveChildren = loadingIcon;
+    if (loading) {
+      effectiveChildren = loadingIcon;
 
-			if (asChild && isValidElement(children)) {
-				effectiveChildren = cloneElement(children, undefined, loadingIcon);
-			}
-		}
-	}
+      if (asChild && isValidElement(children)) {
+        effectiveChildren = cloneElement(children, undefined, loadingIcon);
+      }
+    }
+  }
 
-	return (
-		<Comp
-			className={cn(
-				buttonStyles({ disabled: effectiveDisabled, mode }),
-				className,
-			)}
-			disabled={effectiveDisabled}
-			{...props}
-		>
-			{effectivePrefixIcon !== null && effectivePrefixIcon !== undefined && (
-				<span className="shrink-0 opacity-50">{effectivePrefixIcon}</span>
-			)}
+  return (
+    <Comp
+      className={cn(
+        buttonStyles({ disabled: effectiveDisabled, mode }),
+        className,
+      )}
+      disabled={effectiveDisabled}
+      {...props}
+    >
+      {effectivePrefixIcon !== null && effectivePrefixIcon !== undefined && (
+        <span className="shrink-0 opacity-50">{effectivePrefixIcon}</span>
+      )}
 
-			<Slottable child={effectiveChildren}>
-				{(child: React.ReactNode): React.ReactNode => (
-					<span className="min-w-0 flex-1 truncate">{child}</span>
-				)}
-			</Slottable>
+      <Slottable child={effectiveChildren}>
+        {(child: React.ReactNode): React.ReactNode => (
+          <span className="min-w-0 flex-1 truncate">{child}</span>
+        )}
+      </Slottable>
 
-			{effectiveSuffixIcon !== null && effectiveSuffixIcon !== undefined && (
-				<span className="shrink-0 opacity-50">{effectiveSuffixIcon}</span>
-			)}
-		</Comp>
-	);
+      {effectiveSuffixIcon !== null && effectiveSuffixIcon !== undefined && (
+        <span className="shrink-0 opacity-50">{effectiveSuffixIcon}</span>
+      )}
+    </Comp>
+  );
 }

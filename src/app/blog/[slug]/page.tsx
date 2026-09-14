@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { POSTS } from "~/content/config";
-import { getFileBySlug } from "~/lib/content";
+import { isDefinedSlug, POSTS } from "~/content/config";
 import getHeadings from "~/lib/getHeadings";
 import Comments from "./Comments";
 import HeroSection from "./HeroSection";
@@ -10,35 +9,27 @@ import Content from "./PostContent";
 import TableOfContents from "./TableOfContents";
 
 export function generateStaticParams() {
-  return POSTS.map((post) => ({ slug: post.slug.slice(1) }));
+  return Object.keys(POSTS).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps<"/blog/[slug]">): Promise<Metadata> {
-  const { slug } = await params;
+  const slug = `/${(await params).slug}`;
+  if (!isDefinedSlug("blog", slug)) notFound();
 
-  const file = await getFileBySlug("post", slug ? `/${slug}` : "/");
-  if (!file) notFound();
-
-  return {
-    description: file.frontmatter.hero.subtitle,
-    title: `Mika Reich | ${file.frontmatter.hero.title}`,
-  };
+  return POSTS[slug].config.meta;
 }
 
 export default async function Post({ params }: PageProps<"/blog/[slug]">) {
-  const { slug } = await params;
+  const slug = `/${(await params).slug}`;
+  if (!isDefinedSlug("blog", slug)) notFound();
 
-  const file = await getFileBySlug("post", slug ? `/${slug}` : "/");
-  if (!file) notFound();
-
-  const { frontmatter, source, components } = file;
-  const headings = getHeadings(source);
+  const { config, Component } = POSTS[slug];
 
   return (
     <>
-      <HeroSection {...frontmatter} />
+      <HeroSection {...config} />
 
       <main className="flex justify-between gap-4">
         {/* Upper Side TOC */}
@@ -48,19 +39,15 @@ export default async function Post({ params }: PageProps<"/blog/[slug]">) {
               <span className="highlighted">On this page </span>
             </summary>
 
-            <TableOfContents
+            {/*<TableOfContents
               description={frontmatter.hero.subtitle}
               headings={headings}
               id={`${slug}.mdx`}
-            />
+            />*/}
           </details>
 
           {/* Actual Content */}
-          <Content
-            components={components}
-            headings={headings}
-            source={source}
-          />
+          <Component />
 
           <Suspense fallback="Loading Comments...">
             <Comments postId={slug} />
@@ -74,11 +61,11 @@ export default async function Post({ params }: PageProps<"/blog/[slug]">) {
             On this page
           </p>
 
-          <TableOfContents
+          {/*<TableOfContents
             description={frontmatter.hero.subtitle}
             headings={headings}
             id={`${slug}.mdx`}
-          />
+          />*/}
         </div>
       </main>
     </>

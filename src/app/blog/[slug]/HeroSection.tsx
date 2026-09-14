@@ -1,21 +1,29 @@
-import type { PostMatter } from "~/lib/content";
+type HeroSectionProps = {
+  title: string;
+  subtitle: string;
+  imageUrl: string;
+  tags: string[];
+  publishedAt: Date;
+};
 
 export default function HeroSection({
-  hero,
+  title,
+  subtitle,
+  tags,
   publishedAt,
-}: Omit<PostMatter, "components">) {
+}: HeroSectionProps) {
   return (
     <header className="grid grid-rows-[1fr_1fr_auto_auto] gap-x-5 border-theme-border border-b pb-4 sm:min-h-72 lg:gap-x-20">
       <h1 className="col-span-2 mt-1 mb-6 self-end font-black font-heading text-5xl text-portfolio-text-strong leading-tight sm:text-6xl">
-        {hero.title}
+        {title}
       </h1>
 
       <h3 className="col-span-2 row-start-2 w-full font-thin text-2xl text-theme-text sm:text-3xl">
-        {hero.subtitle}
+        {subtitle}
       </h3>
 
       <div className="row-start-3 flex gap-4">
-        {hero.tags.map((tag) => (
+        {tags.map((tag) => (
           <span className="truncate font-thin text-sm uppercase" key={tag}>
             <span className="text-theme-primary"># </span>
             {tag}

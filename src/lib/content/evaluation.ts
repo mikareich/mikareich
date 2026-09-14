@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import { type EvaluateOptions, evaluate } from "@mdx-js/mdx";
 import type { MDXContent } from "mdx/types";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
@@ -18,17 +19,18 @@ type ContentEvaluation<Type extends ContentType> = {
   config: output<(typeof CONTENT_TYPE_SCHEMAS)[Type]>;
 };
 
-/** Validates file and returns react evaluation. */
+/** Validates and evaluates an MDX file relative to the consumer's module URL. */
 export async function evaluateFile<Type extends ContentType>(
   type: Type,
-  fileUrl: string,
+  relativePath: string,
+  consumerUrl: string,
 ): Promise<ContentEvaluation<Type>> {
-  const path = Bun.fileURLToPath(fileUrl);
-  const source = await Bun.file(path).text();
+  const fileUrl = new URL(relativePath, consumerUrl);
+  const source = await readFile(fileUrl, "utf8");
 
   const { default: Component, frontmatter } = await evaluate(source, {
     ...EVALUATE_OPTIONS,
-    baseUrl: fileUrl,
+    baseUrl: fileUrl.href,
   });
 
   // validate config

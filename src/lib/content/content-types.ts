@@ -18,7 +18,7 @@ export const CONTENT_TYPE_SCHEMAS = {
     title: string(),
     subtitle: string(),
     imageUrl: url(),
-    tags: array(string()).optional(),
+    tags: array(string()),
     publishedAt: date(),
   }),
   [CONTENT_TYPES.page]: object({

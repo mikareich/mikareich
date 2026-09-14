@@ -4,11 +4,15 @@ meta:
   description: The best way to learn is by doing...
 title: Project Showcase
 subtitle: The best way to learn is by doing...
-imageUrl: https://mikareich.studio/images/projects.svg
+imageUrl: http://mika.reich.re/images/projects.svg
 ---
+
+import { PROJECTS } from './projects.ts'
 
 Below you'll find a collection of web applications and other projects I've
 worked on over the years. Each one reflects my skills, passion, and dedication
 to web development. Take a look and see what I've been up to!
 
-<ProjectList />
+<section className="flex flex-wrap gap-5">
+    {PROJECTS.map(project => (<ProjectCard key={project.title} {...project} />))}
+</section>
