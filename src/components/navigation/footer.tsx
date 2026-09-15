@@ -1,5 +1,5 @@
 import { Link } from "next-view-transitions";
-import { SOCIALS } from "~/content/config";
+import { SOCIALS } from "~/app/config";
 import { AppBar } from "./app-bar";
 
 export function Footer() {

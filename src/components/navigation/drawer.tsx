@@ -2,12 +2,13 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTransitionRouter } from "next-view-transitions";
 import { useEffect, useRef, useState } from "react";
+import type { SOCIALS } from "~/app/config";
 import { Button } from "~/components/button";
-import type { SOCIALS } from "~/content/config";
 import { ActiveUnderlined } from "../active-link";
 import { AppBar } from "./app-bar";
 
@@ -15,7 +16,7 @@ const fadeStyles =
   "motion-safe:data-[state=open]:animate-fade-in motion-safe:data-[state=closed]:animate-fade-out";
 
 type DrawerProps = {
-  links: { href: string; title: string }[];
+  links: readonly { slug: Route; title: string }[];
   socials: typeof SOCIALS;
 };
 
@@ -69,21 +70,21 @@ function DrawerInstance({
             <aside
               className={`anchored-bottom-center/nav-bar anchored-visible-always [view-transition-name:mobile-drawer] border-t border-theme-border list-ordered grid place-content-center-safe justify-items-start z-20 h-full w-anchor/nav-bar inset-0 m-0 fixed overflow-y-auto overscroll-contain ${fadeStyles}`}
             >
-              {links.map(({ href, title }) => (
+              {links.map(({ slug, title }) => (
                 <AppBar.Item
-                  key={href}
+                  key={slug}
                   className="list-item underlined-none"
                   asChild
                 >
                   <Link
-                    href={href}
+                    href={slug}
                     onNavigate={(event) => {
                       event.preventDefault();
-                      if (href === pathname) close();
-                      else router.push(href);
+                      if (slug === pathname) close();
+                      else router.push(slug);
                     }}
                   >
-                    <ActiveUnderlined exact={href === "/"} pathname={href}>
+                    <ActiveUnderlined exact={slug === "/"} pathname={slug}>
                       {title}
                     </ActiveUnderlined>
                   </Link>
