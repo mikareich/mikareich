@@ -1,13 +1,16 @@
 import { Link } from "next-view-transitions";
 import { SOCIALS } from "~/app/config";
-import { CONTENT_TYPES } from "~/lib/content/content-types";
-import { ROUTE_MANIFEST } from "~/lib/content/manifest";
+import { ROUTE_MANIFEST, type RouteMetadata } from "~/lib/content/manifest";
+import { CONTENT_TYPE } from "~/lib/content/plugins/content-types";
 import { ActiveUnderlined } from "../active-link";
 import { AppBar } from "./app-bar";
 import { Drawer } from "./drawer";
 import { Logo } from "./logo";
 
-const links = ROUTE_MANIFEST.filter(({ type }) => type === CONTENT_TYPES.PAGE);
+const links = ROUTE_MANIFEST.filter(
+  (route): route is RouteMetadata & { type: typeof CONTENT_TYPE.PAGE } =>
+    route.type === CONTENT_TYPE.PAGE,
+).sort((a, b) => b.metadata.priority - a.metadata.priority);
 
 export function NavBar() {
   return (
@@ -15,14 +18,14 @@ export function NavBar() {
       <nav className="anchor/nav-bar list-ordered gap-6 relative z-20 pointer-events-auto">
         <Logo />
 
-        {links.map(({ slug, title }) => (
+        {links.map(({ slug, metadata }) => (
           <AppBar.Item key={slug} asChild>
             <Link
               className="underlined-none text-theme-text hidden leading-7 text-lg sm:list-item sm:text-xl"
               href={slug}
             >
               <ActiveUnderlined exact={slug === "/"} pathname={slug}>
-                {title}
+                {metadata.title}
               </ActiveUnderlined>
             </Link>
           </AppBar.Item>

@@ -9,6 +9,8 @@ import { useTransitionRouter } from "next-view-transitions";
 import { useEffect, useRef, useState } from "react";
 import type { SOCIALS } from "~/app/config";
 import { Button } from "~/components/button";
+import type { RouteMetadata } from "~/lib/content/manifest";
+import type { CONTENT_TYPE } from "~/lib/content/plugins/content-types";
 import { ActiveUnderlined } from "../active-link";
 import { AppBar } from "./app-bar";
 
@@ -16,7 +18,7 @@ const fadeStyles =
   "motion-safe:data-[state=open]:animate-fade-in motion-safe:data-[state=closed]:animate-fade-out";
 
 type DrawerProps = {
-  links: readonly { slug: Route; title: string }[];
+  links: (RouteMetadata & { type: typeof CONTENT_TYPE.PAGE })[];
   socials: typeof SOCIALS;
 };
 
@@ -70,7 +72,7 @@ function DrawerInstance({
             <aside
               className={`anchored-bottom-center/nav-bar anchored-visible-always [view-transition-name:mobile-drawer] border-t border-theme-border list-ordered grid place-content-center-safe justify-items-start z-20 h-full w-anchor/nav-bar inset-0 m-0 fixed overflow-y-auto overscroll-contain ${fadeStyles}`}
             >
-              {links.map(({ slug, title }) => (
+              {links.map(({ slug, metadata }) => (
                 <AppBar.Item
                   key={slug}
                   className="list-item underlined-none"
@@ -85,7 +87,7 @@ function DrawerInstance({
                     }}
                   >
                     <ActiveUnderlined exact={slug === "/"} pathname={slug}>
-                      {title}
+                      {metadata.title}
                     </ActiveUnderlined>
                   </Link>
                 </AppBar.Item>

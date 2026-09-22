@@ -1,10 +1,10 @@
 import { Link } from "next-view-transitions";
-import { CONTENT_TYPES } from "~/lib/content/content-types";
 import { ROUTE_MANIFEST, type RouteMetadata } from "~/lib/content/manifest";
+import { CONTENT_TYPE } from "~/lib/content/plugins/content-types";
 
 const POSTS = ROUTE_MANIFEST.filter(
-  (metadata): metadata is RouteMetadata<typeof CONTENT_TYPES.POST> =>
-    metadata.type === CONTENT_TYPES.POST,
+  (metadata): metadata is RouteMetadata & { type: typeof CONTENT_TYPE.POST } =>
+    metadata.type === CONTENT_TYPE.POST,
 );
 
 export async function PostList() {
@@ -20,11 +20,11 @@ export async function PostList() {
           </span>
 
           <h2 className="truncate font-heading font-medium text-2xl text-portfolio-text-strong sm:whitespace-nowrap">
-            {post.title}
+            {post.metadata.title}
           </h2>
 
           <div className="flex gap-4">
-            {post.keywords.map((tag) => (
+            {post.metadata.keywords.map((tag) => (
               <span className="truncate font-thin text-sm uppercase" key={tag}>
                 <span className="text-theme-primary"># </span>
                 {tag}
@@ -32,7 +32,7 @@ export async function PostList() {
             ))}
           </div>
 
-          <span className="truncate">{post.description}</span>
+          <span className="truncate">{post.metadata.description}</span>
 
           <Link
             className="text-link w-fit sm:justify-self-end"

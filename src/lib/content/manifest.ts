@@ -1,45 +1,15 @@
-import { readdir, readFile } from "node:fs/promises";
-import { join, resolve } from "node:path";
-import matter from "gray-matter";
+import { readdir } from "node:fs/promises";
+import { join } from "node:path";
 import type { Route } from "next";
-import type { output } from "zod";
-import {
-  CONTENT_TYPE_METADATA,
-  CONTENT_TYPES,
-  type ContentType,
-} from "./content-types";
+import { processFile } from "./compilation";
+import { APP_FOLDER } from "./paths";
+import type { CompiledVFile } from "./plugins/predicates";
 
-const APP_FOLDER = resolve(process.cwd(), "src", "app");
-const POSTS_FOLDER = join(APP_FOLDER, "blog", "(posts)");
 const PAGE_FILENAME = "page.mdx";
 
-type MetadataMap = {
-  [T in ContentType]: { type: T } & output<(typeof CONTENT_TYPE_METADATA)[T]>;
-};
-
-export type RouteMetadata<T extends ContentType = ContentType> = {
+export type RouteMetadata = {
   slug: Route;
-} & MetadataMap[T];
-
-/** Extracts and validates metadata from file under path. */
-async function getMetadataFromFile(
-  path: string,
-): Promise<MetadataMap[ContentType] | null> {
-  try {
-    const source = await readFile(path, { encoding: "utf-8" });
-    const { data } = matter(source);
-
-    const type = path.startsWith(POSTS_FOLDER)
-      ? CONTENT_TYPES.POST
-      : CONTENT_TYPES.PAGE;
-
-    const metadata = CONTENT_TYPE_METADATA[type].parse(data);
-    return { type, ...metadata } as MetadataMap[typeof type];
-  } catch (e) {
-    console.error(`Could not parse file under ${path}.`, e);
-    return null;
-  }
-}
+} & CompiledVFile["data"];
 
 /**
  * Collects route and metadata from mdx pages in give folder.
@@ -53,11 +23,11 @@ async function generateRouteManifest(
   const children = await readdir(path).catch(() => null);
   if (!children) return [];
 
-  const routes: RouteMetadata[] = [];
+  const manifest: RouteMetadata[] = [];
 
   // parse page.mdx file on current path
-  const metadata = await getMetadataFromFile(join(path, PAGE_FILENAME));
-  if (metadata) routes.push({ slug, ...metadata });
+  const file = await processFile(join(path, PAGE_FILENAME)).catch(() => null);
+  if (file) manifest.push({ slug, ...file.data });
 
   // recursively iterate over child folders
   for await (const child of children) {
@@ -75,10 +45,10 @@ async function generateRouteManifest(
 
     const childPath = join(path, child);
     const childRoutes = await generateRouteManifest(childSlug, childPath);
-    routes.push(...childRoutes);
+    manifest.push(...childRoutes);
   }
 
-  return routes;
+  return manifest;
 }
 
 export const ROUTE_MANIFEST = await generateRouteManifest();

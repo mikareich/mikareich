@@ -1,6 +1,9 @@
-import { resolve } from "node:path";
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
+import {
+  REHYPE_PLUGINS,
+  REMARK_PLUGINS,
+} from "./src/lib/content/compilation.ts";
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["dev-box"],
@@ -16,15 +19,8 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [
-      "remark-frontmatter",
-      ["remark-mdx-frontmatter", { name: "metadata" }],
-    ],
-    rehypePlugins: [
-      "rehype-slug",
-      resolve("src/lib/mdx/rehype-post-toc.mts"),
-      ["rehype-pretty-code", { keepBackground: false, theme: "github-dark" }],
-    ],
+    remarkPlugins: REMARK_PLUGINS.map(([_, ...plugin]) => plugin),
+    rehypePlugins: REHYPE_PLUGINS.map(([_, ...plugin]) => plugin),
   },
 });
 
