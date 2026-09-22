@@ -1,7 +1,7 @@
 import { Link } from "next-view-transitions";
 import { SOCIALS } from "~/app/config";
+import { CONTENT_TYPE } from "~/lib/content/content-types";
 import { ROUTE_MANIFEST, type RouteMetadata } from "~/lib/content/manifest";
-import { CONTENT_TYPE } from "~/lib/content/plugins/content-types";
 import { ActiveUnderlined } from "../active-link";
 import { AppBar } from "./app-bar";
 import { Drawer } from "./drawer";

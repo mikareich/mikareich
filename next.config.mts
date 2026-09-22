@@ -1,9 +1,7 @@
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
-import {
-  REHYPE_PLUGINS,
-  REMARK_PLUGINS,
-} from "./src/lib/content/compilation.ts";
+import { REHYPE_PLUGINS } from "./src/lib/content/plugins/rehype.ts";
+import { REMARK_PLUGINS } from "./src/lib/content/plugins/remark.ts";
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["dev-box"],

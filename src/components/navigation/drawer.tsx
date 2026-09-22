@@ -2,15 +2,14 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
-import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTransitionRouter } from "next-view-transitions";
 import { useEffect, useRef, useState } from "react";
 import type { SOCIALS } from "~/app/config";
 import { Button } from "~/components/button";
+import type { CONTENT_TYPE } from "~/lib/content/content-types";
 import type { RouteMetadata } from "~/lib/content/manifest";
-import type { CONTENT_TYPE } from "~/lib/content/plugins/content-types";
 import { ActiveUnderlined } from "../active-link";
 import { AppBar } from "./app-bar";
 

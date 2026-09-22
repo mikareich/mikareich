@@ -2,14 +2,14 @@ import { readdir } from "node:fs/promises";
 import { join } from "node:path";
 import type { Route } from "next";
 import { processFile } from "./compilation";
+import type { ContentData } from "./content-types";
 import { APP_FOLDER } from "./paths";
-import type { CompiledVFile } from "./plugins/predicates";
 
 const PAGE_FILENAME = "page.mdx";
 
 export type RouteMetadata = {
   slug: Route;
-} & CompiledVFile["data"];
+} & ContentData;
 
 /**
  * Collects route and metadata from mdx pages in give folder.
