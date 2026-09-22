@@ -64,6 +64,10 @@
   @apply font-heading font-bold mt-0 mb-8 text-5xl;
 }
 
+@utility text-subtitle {
+  @apply font-heading font-medium mt-6 mb-2 text-xl text-theme-text-subtle;
+}
+
 @utility text-heading-1 {
   @apply font-heading font-bold mt-0 mb-8 text-3xl;
 }
