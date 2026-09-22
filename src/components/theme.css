@@ -60,6 +60,10 @@
   @apply text-theme-primary underlined decoration-current focus-visible:outline-none;
 }
 
+@utility text-title {
+  @apply font-heading font-bold mt-0 mb-8 text-5xl;
+}
+
 @utility text-heading-1 {
   @apply font-heading font-bold mt-0 mb-8 text-3xl;
 }
