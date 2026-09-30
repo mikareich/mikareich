@@ -8,7 +8,7 @@ import { useTransitionRouter } from "next-view-transitions";
 import { useEffect, useRef, useState } from "react";
 import type { SOCIALS } from "~/app/config";
 import { Button } from "~/components/button";
-import type { CONTENT_TYPE } from "~/lib/content/content-types";
+import type { PageData } from "~/lib/content/content-types";
 import type { RouteMetadata } from "~/lib/content/manifest";
 import { ActiveUnderlined } from "../active-link";
 import { AppBar } from "./app-bar";
@@ -17,7 +17,7 @@ const fadeStyles =
   "motion-safe:data-[state=open]:animate-fade-in motion-safe:data-[state=closed]:animate-fade-out";
 
 type DrawerProps = {
-  links: (RouteMetadata & { type: typeof CONTENT_TYPE.PAGE })[];
+  links: (RouteMetadata & PageData)[];
   socials: typeof SOCIALS;
 };
 

@@ -4,6 +4,7 @@ import type { MdxjsEsmHast } from "mdast-util-mdxjs-esm";
 import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import type { VFile } from "vfile";
+import { CONTENT_TYPE } from "../content-types.ts";
 
 export const REHYPE_PLUGINS = [
   [rehypeSlug, "rehype-slug"],
@@ -26,17 +27,19 @@ function isRootElement(node: Node): node is Doctype | MdxjsEsmHast {
 
 export default function rehypePlugin() {
   return (tree: Root, file: VFile) => {
+    if (file.data.type !== CONTENT_TYPE.POST) return;
+
     const esm = tree.children.filter(isRootElement);
     const content = tree.children.filter((node) => !isRootElement(node));
 
     const wrapper: MdxJsxFlowElementHast = {
       type: "mdxJsxFlowElement",
-      name: "div",
+      name: "Post",
       attributes: [
         {
           type: "mdxJsxAttribute",
-          name: "path",
-          value: JSON.stringify(file.data.path),
+          name: "raw",
+          value: JSON.stringify(file.data),
         },
       ],
       children: content,

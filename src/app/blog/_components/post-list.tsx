@@ -3,8 +3,7 @@ import { CONTENT_TYPE } from "~/lib/content/content-types";
 import { ROUTE_MANIFEST, type RouteMetadata } from "~/lib/content/manifest";
 
 const POSTS = ROUTE_MANIFEST.filter(
-  (metadata): metadata is RouteMetadata & { type: typeof CONTENT_TYPE.POST } =>
-    metadata.type === CONTENT_TYPE.POST,
+  (metadata) => metadata.type === CONTENT_TYPE.POST,
 );
 
 export async function PostList() {

@@ -38,7 +38,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           />*/}
         </head>
 
-        <body className="bg-theme-bg px-4 sm:px-8 font-body pt-10 text-theme-text min-h-dvh container mx-auto space-y-5 sm:space-y-10">
+        <body className="bg-theme-bg px-4 sm:px-8 font-body pt-10 text-theme-text min-h-dvh container mx-auto space-y-5 sm:space-y-20">
           <NavBar />
 
           {children}

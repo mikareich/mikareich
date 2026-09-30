@@ -33,5 +33,5 @@
     "**/*.mdx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
-  ]
+,     "src/lib/content/_plugins/metadata",     "src/lib/content/_plugins/predicates"  ]
 }

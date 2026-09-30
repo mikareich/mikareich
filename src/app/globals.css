@@ -69,9 +69,6 @@ html body[data-scroll-locked] {
   }
 
   html {
-    scrollbar-gutter: stable both-edges;
-    scroll-behavior: smooth;
-    scroll-padding-top: 20px;
     color-scheme: dark;
     @apply text-theme-text bg-theme-bg;
   }
@@ -79,25 +76,11 @@ html body[data-scroll-locked] {
   ::selection {
     @apply bg-theme-primary/75 text-theme-text;
   }
-
-  ::-webkit-scrollbar {
-    @apply w-2.5 bg-transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply rounded-none bg-theme-primary/75;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
 }
 
 @utility underlined {
   @apply relative ring-0! z-10 cursor-pointer whitespace-nowrap after:absolute;
-  @apply after:bottom-1 after:left-0 after:-z-10 after:h-2 after:w-full;
+  @apply after:bottom-1 after:left-0 after:-z-10 after:h-1 after:w-full;
   @apply after:bg-theme-primary/75 after:content-[''] hover:after:h-full;
   @apply focus:after:h-full after:transition-all;
 }

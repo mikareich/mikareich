@@ -16,38 +16,51 @@ export const CONTENT_TYPE = {
 
 export type ContentType = (typeof CONTENT_TYPE)[keyof typeof CONTENT_TYPE];
 
-export const CONTENT_DATA = object({ path: string() }).and(
-  union([
-    // post data
-    object({
-      type: literal(CONTENT_TYPE.POST),
-      metadata: object({
-        title: string(),
-        description: string(),
-        keywords: array(string()),
-        openGraph: object({
-          type: literal("article"),
-          publishedTime: coerce.date(),
-        }),
-      }),
-      toc: array(
-        object({
-          id: string(),
-          depth: number(),
-          value: string(),
-        }),
-      ),
-    }),
-    // page data
-    object({
-      type: literal(CONTENT_TYPE.PAGE),
-      metadata: object({
-        title: string(),
-        description: string(),
-        priority: number().default(1),
-      }),
-    }),
-  ]),
+export const POST_METADATA_SCHEMA = object({
+  title: string(),
+  description: string(),
+  keywords: array(string()),
+  openGraph: object({
+    type: literal("article"),
+    publishedTime: coerce.date(),
+  }),
+});
+
+export type PostMetadata = output<typeof POST_METADATA_SCHEMA>;
+
+export const TOC_SCHEMA = array(
+  object({
+    id: string(),
+    depth: number(),
+    value: string(),
+  }),
 );
+
+export type ToC = output<typeof TOC_SCHEMA>;
+
+export const POST_DATA_SCHEMA = object({
+  type: literal(CONTENT_TYPE.POST),
+  metadata: POST_METADATA_SCHEMA,
+  toc: TOC_SCHEMA,
+});
+
+export type PostData = output<typeof POST_DATA_SCHEMA>;
+
+export const PAGE_METADATA_SCHEMA = object({
+  title: string(),
+  description: string(),
+  priority: number().default(1),
+});
+
+export type PageMetadata = output<typeof PAGE_METADATA_SCHEMA>;
+
+export const PAGE_DATA_SCHEMA = object({
+  type: literal(CONTENT_TYPE.PAGE),
+  metadata: PAGE_METADATA_SCHEMA,
+});
+
+export type PageData = output<typeof PAGE_DATA_SCHEMA>;
+
+export const CONTENT_DATA = union([POST_DATA_SCHEMA, PAGE_DATA_SCHEMA]);
 
 export type ContentData = output<typeof CONTENT_DATA>;
