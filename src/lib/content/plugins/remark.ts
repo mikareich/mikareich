@@ -32,6 +32,5 @@ export default function remarkPlugin() {
     }
 
     file.data = CONTENT_DATA.parse({ type, metadata, toc, path: file.path });
-    console.log(file.data);
   };
 }

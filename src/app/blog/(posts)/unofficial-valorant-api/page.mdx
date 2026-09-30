@@ -7,29 +7,6 @@ openGraph:
   publishedTime: 2024-07-14
 ---
 
-import { Suspense } from "react";
-import Comments from "~/app/blog/_components/comments";
-import { PostBody } from "~/app/blog/_components/post-body";
-import { PostHero } from "~/app/blog/_components/post-hero";
-
-<PostHero
-  publishedAt={metadata.openGraph.publishedTime}
-  subtitle={metadata.description}
-  tags={metadata.keywords}
-  title={metadata.title}
-/>
-
-<>
-  {/*
-    0. Intro
-    1. Create request function
-    2. Auth
-    3. PVP endpoints
-    4. Store endpoints
-    5. Extra: proxy?
-*/}
-</>
-
 > TL;DR: In this tutorial, we will create a simple tracker and store checker
 > using Node.js + TypeScript. You should have basic knowledge on how to work
 > with Node.js as well as TypeScript, although this project is also completely
@@ -45,7 +22,7 @@ preserve the game's integrity, the official layer of the API is very limited
 which makes it virtually impossible to use in trackers or store checkers... and
 thats where the unofficial part of the API takes place.
 
-## Create a request function
+# Create a request function
 
 Not to start easy, this is the most crucial part of the project: a request
 function that perfectly imitates the Riot Client. If done wrong, all our
@@ -159,7 +136,7 @@ Games User-Agent and Https Agent. Try making requests to
 [jsonplaceholder.typicode.com](https://jsonplaceholder.typicode.com) to see if
 it works.
 
-## The Auth Flow
+# The Auth Flow
 
 The Auth Flow for the Riot Games API is pretty annoying because it can change
 anytime and unexpectedly. Unfortunately, it is necessary to gather the auth
@@ -169,7 +146,3 @@ I will only cover the authentication for accounts without Multi-Factor-Auth, if
 you need to enable this, see implementations like
 [github/floaxy](https://github.com/floxay/python-riot-auth) or
 [github/ohlunaa](https://github.com/ohlunaaa/Valorant-auth).
-
-<Suspense fallback="Loading Comments...">
-  <Comments postId="/unofficial-valorant-api" />
-</Suspense>

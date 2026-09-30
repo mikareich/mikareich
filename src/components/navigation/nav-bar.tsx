@@ -8,8 +8,7 @@ import { Drawer } from "./drawer";
 import { Logo } from "./logo";
 
 const links = ROUTE_MANIFEST.filter(
-  (route): route is RouteMetadata & { type: typeof CONTENT_TYPE.PAGE } =>
-    route.type === CONTENT_TYPE.PAGE,
+  (route) => route.type === CONTENT_TYPE.PAGE,
 ).sort((a, b) => b.metadata.priority - a.metadata.priority);
 
 export function NavBar() {

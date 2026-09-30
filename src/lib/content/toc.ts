@@ -1,8 +1,7 @@
 import { slug } from "github-slugger";
 import type { Root } from "mdast";
 import { visit } from "unist-util-visit";
-
-export type ToC = { depth: number; id: string; value: string }[];
+import type { ToC } from "./content-types";
 
 export function generateToC(tree: Root) {
   const toc: ToC = [];

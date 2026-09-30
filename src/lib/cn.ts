@@ -37,6 +37,8 @@ const twMerge = extendTailwindMerge<string, string>({
             "heading-2",
             "heading-3",
             "heading-4",
+            "title",
+            "subtitle",
             "body",
             "action",
             "small",
