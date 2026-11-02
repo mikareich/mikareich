@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="850" viewBox="0 0 1440 850" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Rounded stepped hero blob</title>
+  <desc id="desc">A simple violet blob on the right with a staircase of softly rounded organic steps flowing down to the bottom-left, with gently rounded outer edges.</desc>
+  <defs>
+    <clipPath id="blob">
+      <path d="
+        M 1137 28
+        H 1274
+        C 1356 28 1412 85 1412 166
+        V 680
+        C 1412 773 1357 823 1264 823
+        H 205
+        C 177 823 168 811 179 784
+        C 192 752 217 737 257 737
+        H 294
+        C 338 737 361 714 361 669
+        V 660
+        C 361 618 383 597 425 597
+        H 508
+        C 551 597 574 574 574 532
+        V 502
+        C 574 461 596 439 638 439
+        H 700
+        C 744 439 766 416 766 373
+        V 348
+        C 766 304 788 282 832 282
+        H 872
+        C 917 282 940 259 940 215
+        V 197
+        C 940 154 961 132 1005 132
+        H 1038
+        C 1079 132 1098 112 1098 70
+        C 1098 43 1113 28 1137 28
+        Z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#blob)">
+    <rect x="0" y="0" width="1440" height="850" fill="#6650DE"/>
+    <!-- One restrained, flat inset area rather than textured or layered liquid. -->
+    <path d="M 1385 65
+      C 1280 48 1212 124 1249 236
+      C 1280 332 1231 406 1136 458
+      C 1049 505 1043 595 1122 681
+      C 1172 736 1227 786 1211 852
+      H 1500 V -25 Z" fill="#8A76EB"/>
+  </g>
+</svg>

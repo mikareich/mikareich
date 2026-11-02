@@ -1,4 +1,3 @@
-import { Link } from "next-view-transitions";
 import { cn } from "~/lib/cn";
 import type { PostData } from "~/lib/content/content-types";
 import Comments from "./comments";

@@ -1,6 +1,6 @@
 import { Link } from "next-view-transitions";
 import { CONTENT_TYPE } from "~/lib/content/content-types";
-import { ROUTE_MANIFEST, type RouteMetadata } from "~/lib/content/manifest";
+import { ROUTE_MANIFEST } from "~/lib/content/manifest";
 
 const POSTS = ROUTE_MANIFEST.filter(
   (metadata) => metadata.type === CONTENT_TYPE.POST,

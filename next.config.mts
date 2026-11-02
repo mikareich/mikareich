@@ -1,4 +1,5 @@
 import createMDX from "@next/mdx";
+import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
 import type { NextConfig } from "next";
 import { REHYPE_PLUGINS } from "./src/lib/content/plugins/rehype.ts";
 import { REMARK_PLUGINS } from "./src/lib/content/plugins/remark.ts";
@@ -22,4 +23,10 @@ const withMDX = createMDX({
   },
 });
 
-export default withMDX(nextConfig);
+const withVanillaExtract = createVanillaExtractPlugin({
+  unstable_turbopack: {
+    mode: "auto",
+  },
+});
+
+export default withVanillaExtract(withMDX(nextConfig));

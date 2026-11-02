@@ -7,9 +7,10 @@ import {
   CONTENT_DATA,
   CONTENT_TYPE,
   type ContentType,
+  type ToC,
 } from "../content-types.ts";
 import { POSTS_FOLDER } from "../paths.ts";
-import { generateToC, type ToC } from "../toc.ts";
+import { generateToC } from "../toc.ts";
 
 export const REMARK_PLUGINS = [
   [remarkFrontmatter, "remark-frontmatter"],

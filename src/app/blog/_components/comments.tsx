@@ -1,7 +1,7 @@
 import { asc, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { Button } from "~/components/button";
-import { Input } from "~/components/input";
+import { Button } from "~/components/form/button";
+import { Input } from "~/components/form/input";
 import { cn } from "~/lib/cn";
 import { comments } from "~/lib/db/comments";
 import db from "~/lib/db/db";

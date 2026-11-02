@@ -99,3 +99,7 @@ export const PROJECTS = [
     appUrl: "https://course-planner.mikareich.studio/leistungskurse",
   },
 ] as const;
+
+export const AGE = Math.floor(
+  (Date.now() - new Date("03/27/2005").getTime()) / 31536000000,
+);

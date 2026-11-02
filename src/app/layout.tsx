@@ -1,23 +1,27 @@
-import "./globals.css";
+import "~/styles/globals.css";
+
+import { clsx } from "clsx";
 import type { Metadata } from "next";
-import { Fira_Code, Space_Mono } from "next/font/google";
+import { Geist_Mono, Space_Grotesk } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
+import { NoiseBackground } from "~/components/icons/noise-background";
 import { Footer } from "~/components/navigation/footer";
 import { NavBar } from "~/components/navigation/nav-bar";
+import { LAYOUT } from "~/styles/layout.css";
+import { DARK_THEME, LIGHT_THEME } from "~/styles/theme.css";
+import { TYPOGRAPHY } from "~/styles/typography.css";
 
-const headingFont = Fira_Code({
+const headingFont = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-portfolio-heading",
+  variable: "--theme-font-heading",
   weight: "variable",
 });
 
-const bodyFont = Space_Mono({
+const bodyFont = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-portfolio-body",
-  weight: ["400", "700"],
+  variable: "--theme-font-body",
+  weight: "variable",
 });
-
-const FONTS = [bodyFont.variable, headingFont.variable].join(" ");
 
 export const metadata: Metadata = {
   icons: {
@@ -29,16 +33,18 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <ViewTransitions>
-      <html className={FONTS} lang="en">
-        <head>
-          {/*<script
-            data-website-id="adfb98de-72de-4522-a6b3-3d10bbd736e3"
-            defer
-            src="https://cloud.umami.is/script.js"
-          />*/}
-        </head>
+      <html
+        className={clsx(
+          bodyFont.variable,
+          headingFont.variable,
+          DARK_THEME,
+          TYPOGRAPHY.BODY,
+        )}
+        lang="en"
+      >
+        <body className={LAYOUT.CONTAINER}>
+          <NoiseBackground />
 
-        <body className="bg-theme-bg px-4 sm:px-8 font-body pt-10 text-theme-text min-h-dvh container mx-auto space-y-5 sm:space-y-20">
           <NavBar />
 
           {children}

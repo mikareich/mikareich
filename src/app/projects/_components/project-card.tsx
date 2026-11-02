@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { SKILLS } from "~/app/config";
-import { Skill } from "~/components/skill";
+import type { SKILLS } from "~/app/config";
 
 type ProjectCardProps = {
   title: string;
@@ -36,11 +35,7 @@ export function ProjectCard({
       <div>
         <p className="text-small">Technologies</p>
         <div className="flex flex-wrap gap-2 py-1">
-          {skills.map((skill) => (
-            <Skill key={skill} src={SKILLS[skill]} size="small">
-              {skill}
-            </Skill>
-          ))}
+          {skills.map((skill) => null)}
         </div>
       </div>
 
